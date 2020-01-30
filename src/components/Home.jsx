@@ -9,12 +9,16 @@ class Home extends Component {
   state = {
     dlcheck: false,
     healthcheck: false,
-    photocheck: false
+    photocheck: false,
+    proceed: false
   };
 
   handleDlChecked = () => {
     let dlcheck = !this.state.dlcheck;
     this.setState({ dlcheck });
+    if (this.state.dlcheck === false) {
+      console.log("swag");
+    }
   };
 
   handleOpcChecked = () => {
@@ -42,6 +46,7 @@ class Home extends Component {
           <Row>
             <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
           </Row>
+          {this.props.showerror ? <p>Select one of the products</p> : ""}
           <Form>
             <Row>
               <Col xs={1}>

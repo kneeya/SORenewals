@@ -30,18 +30,27 @@ export default class App extends Component {
             <Route
               exact
               path="/"
-              render={() => <Home sendInfo={this.getInfo.bind(this)} />}
+              render={() => (
+                <Home
+                  showerror={this.state.fail}
+                  sendInfo={this.getInfo.bind(this)}
+                />
+              )}
             />
             <Route
               exact
               path="/step1"
-              render={() => (
-                <Step1
-                  dl={this.state.showdl}
-                  hc={this.state.showhc}
-                  opc={this.state.showopc}
-                />
-              )}
+              render={() =>
+                this.state.showdl || this.state.showhc || this.state.showopc ? (
+                  <Step1
+                    dl={this.state.showdl}
+                    hc={this.state.showhc}
+                    opc={this.state.showopc}
+                  />
+                ) : (
+                  (this.setState({ fail: true }), (<Redirect to="/" />))
+                )
+              }
             />
           </Switch>
         </BrowserRouter>
