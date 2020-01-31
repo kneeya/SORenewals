@@ -29,7 +29,7 @@ export default class Step1 extends Component {
               <Row>
                 <p className="prompt">Ontario Photo Card Information</p>
                 <p className="prompt">
-                  Please input your OPC information below
+                  Please input your OPC information below.
                 </p>
                 <p className="prompt">Ontario Photo Card number</p>
                 <Input />
