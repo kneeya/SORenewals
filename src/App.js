@@ -4,7 +4,6 @@ import Home from "./components/Home.jsx";
 import Step1 from "./components/Step1.jsx";
 import ReactBootstrap from "react-bootstrap";
 import { Container } from "react-bootstrap";
-//import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "./App.css";
 
@@ -13,6 +12,7 @@ export default class App extends Component {
     super(props);
     this.state = {};
   }
+  //call back fct to get info from Home.jsx that will be sent to Step1.jsx to determine which prods to show
   getInfo = (dlcheck, healthcheck, photocheck) => {
     let showThis = this.state;
     showThis = { showdl: dlcheck, showhc: healthcheck, showopc: photocheck };
@@ -25,23 +25,33 @@ export default class App extends Component {
         <Container fluid className="header-bg">
           <Header />
         </Container>
-        <BrowserRouter>
+        <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
+        >
           <Switch>
-            <Route
+            <Route /*using render=() to send props while using react router*/
               exact
               path="/"
-              render={() => <Home sendInfo={this.getInfo.bind(this)} />}
-            />
-            <Route
-              exact
-              path="/step1"
               render={() => (
-                <Step1
-                  dl={this.state.showdl}
-                  hc={this.state.showhc}
-                  opc={this.state.showopc}
+                <Home /* sending state and getInfo fct of App.js to Home.jsx as properties to allow them to be used in Home.jsx as props*/
+                  showerror={this.state.fail}
+                  sendInfo={this.getInfo.bind(this)}
                 />
               )}
+            />
+            <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
+              exact
+              path="/step1"
+              render={() =>
+                this.state.showdl || this.state.showhc || this.state.showopc ? (
+                  <Step1 /* sending the state of app.js to step.jsx as properties*/
+                    dl={this.state.showdl}
+                    hc={this.state.showhc}
+                    opc={this.state.showopc}
+                  />
+                ) : (
+                  (this.setState({ fail: true }), (<Redirect to="/" />))
+                )
+              }
             />
           </Switch>
         </BrowserRouter>
