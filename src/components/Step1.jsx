@@ -13,11 +13,11 @@ export default class Step1 extends Component {
           this.props.dl ? (
             <React.Fragment>
               <Row>
-                <p class="prompt">Driver's License Information</p>
-                <p class="prompt">
+                <p className="prompt">Driver's License Information</p>
+                <p className="prompt">
                   Please input your driver's license information below
                 </p>
-                <p class="prompt">Driver's license number</p>
+                <p className="prompt">Driver's license number</p>
                 <Input />
               </Row>
             </React.Fragment>
@@ -27,9 +27,11 @@ export default class Step1 extends Component {
           {this.props.opc ? (
             <React.Fragment>
               <Row>
-                <p class="prompt">Ontario Photo Card Information</p>
-                <p class="prompt">Please input your OPC information below</p>
-                <p class="prompt">Ontario Photo Card number</p>
+                <p className="prompt">Ontario Photo Card Information</p>
+                <p className="prompt">
+                  Please input your OPC information below
+                </p>
+                <p className="prompt">Ontario Photo Card number</p>
                 <Input />
               </Row>
             </React.Fragment>
@@ -39,11 +41,11 @@ export default class Step1 extends Component {
           {this.props.hc ? (
             <React.Fragment>
               <Row>
-                <p class="prompt">Health Card Information</p>
-                <p class="prompt">
+                <p className="prompt">Health Card Information</p>
+                <p className="prompt">
                   Please input your Health Card information below
                 </p>
-                <p class="prompt">Health Card number</p>
+                <p className="prompt">Health Card number</p>
                 <Input />
               </Row>
             </React.Fragment>
