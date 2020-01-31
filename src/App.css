@@ -20,3 +20,12 @@ body {
   padding-top: 2rem;
   color: white;
 }
+
+.error-msg {
+  color: red;
+  font-weight: 700;
+}
+
+.prompt {
+  margin: 1rem 1.25rem 1.25rem;
+}

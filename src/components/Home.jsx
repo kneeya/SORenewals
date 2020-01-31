@@ -13,6 +13,8 @@ class Home extends Component {
     proceed: false
   };
 
+  //handle fcts set the states of dlcheck, healthcheck and photocheck to true
+
   handleDlChecked = () => {
     let dlcheck = !this.state.dlcheck;
     this.setState({ dlcheck });
@@ -30,8 +32,9 @@ class Home extends Component {
     let healthcheck = !this.state.healthcheck;
     this.setState({ healthcheck });
   };
-
+  //this fct is the getInfo fct in App.js and is being called on as a property to be used in this component
   onSubmit = () => {
+    // sending states of Home.jsx to App.js using this fct
     this.props.sendInfo(
       this.state.dlcheck,
       this.state.healthcheck,
@@ -46,7 +49,12 @@ class Home extends Component {
           <Row>
             <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
           </Row>
-          {this.props.showerror ? <p>Select one of the products</p> : ""}
+          {//this prop is a state in App.js, when true it shows this error msg
+          this.props.showerror ? (
+            <p className="error-msg">You must select one of the products</p>
+          ) : (
+            ""
+          )}
           <Form>
             <Row>
               <Col xs={1}>
