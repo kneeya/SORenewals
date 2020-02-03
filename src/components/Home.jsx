@@ -72,7 +72,7 @@ class Home extends Component {
                 <Checkbox onClick={() => this.handleOpcChecked()}></Checkbox>
               </Col>
               <Col>
-                <p> OPC</p>
+                <p> Ontario Photo Card</p>
               </Col>
             </Row>
             <Row>

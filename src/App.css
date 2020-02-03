@@ -1,9 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   font-family: "Raleway", sans-serif;
   color: #1a1a1a;
+  margin-bottom: 100px;
 }
 
 .header-bg {
@@ -32,9 +38,16 @@ body {
 }
 
 .footer {
-  background-color: #ededed;
   color: #0066cc;
   text-decoration: underline;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+}
+
+.footer p {
+  margin: 0.4rem 1rem;
 }
 
 .elig-title {
@@ -73,4 +86,8 @@ body {
 
 hr {
   margin: 1rem 1rem;
+}
+
+.landing-body {
+  margin: 1rem;
 }

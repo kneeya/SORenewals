@@ -25,50 +25,54 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Container fluid className="header-bg">
-          <Header />
-        </Container>
-        <div class="so-logo">
-          <Row class="so-logo1">
-            <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
-          </Row>
-        </div>
-        <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
-        >
-          <Switch>
-            <Route exact path="/" render={() => <Landing />} />
-            <Route /*using render=() to send props while using react router*/
-              exact
-              path="/home"
-              render={() => (
-                <Home /* sending state and getInfo fct of App.js to Home.jsx as properties to allow them to be used in Home.jsx as props*/
-                  showerror={this.state.fail}
-                  sendInfo={this.getInfo.bind(this)}
-                />
-              )}
-            />
-            <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
-              exact
-              path="/step1"
-              render={() =>
-                this.state.showdl || this.state.showhc || this.state.showopc ? (
-                  <Step1 /* sending the state of app.js to step.jsx as properties*/
-                    dl={this.state.showdl}
-                    hc={this.state.showhc}
-                    opc={this.state.showopc}
+        <div id="container">
+          <Container fluid className="header-bg">
+            <Header />
+          </Container>
+          <div class="so-logo">
+            <Row class="so-logo1">
+              <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
+            </Row>
+          </div>
+          <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
+          >
+            <Switch>
+              <Route exact path="/" render={() => <Landing />} />
+              <Route /*using render=() to send props while using react router*/
+                exact
+                path="/home"
+                render={() => (
+                  <Home /* sending state and getInfo fct of App.js to Home.jsx as properties to allow them to be used in Home.jsx as props*/
+                    showerror={this.state.fail}
+                    sendInfo={this.getInfo.bind(this)}
                   />
-                ) : (
-                  (this.setState({ fail: true }), (<Redirect to="/home" />))
-                )
-              }
-            />
-            <Route exact path="/elig" component={Eligibility} />
-          </Switch>
-        </BrowserRouter>
-
-        <Container fluid className="footer">
+                )}
+              />
+              <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
+                exact
+                path="/step1"
+                render={() =>
+                  this.state.showdl ||
+                  this.state.showhc ||
+                  this.state.showopc ? (
+                    <Step1 /* sending the state of app.js to step.jsx as properties*/
+                      dl={this.state.showdl}
+                      hc={this.state.showhc}
+                      opc={this.state.showopc}
+                    />
+                  ) : (
+                    (this.setState({ fail: true }), (<Redirect to="/home" />))
+                  )
+                }
+              />
+              <Route exact path="/elig" component={Eligibility} />
+            </Switch>
+          </BrowserRouter>
+        </div>
+        <div class="clearfooter"></div>
+        <div class="footer">
           <Footer />
-        </Container>
+        </div>
       </React.Fragment>
     );
   }

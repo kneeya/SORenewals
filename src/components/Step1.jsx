@@ -10,7 +10,6 @@ export default class Step1 extends Component {
     return (
       <React.Fragment>
         <Container>
-          <Back />
           {/*using ? operator to determine what to show if the props defined in App.js are true*/
           this.props.dl ? (
             <React.Fragment>
