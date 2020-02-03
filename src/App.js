@@ -6,6 +6,7 @@ import ReactBootstrap from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "./App.css";
+import Landing from "./components/Landing.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -28,9 +29,10 @@ export default class App extends Component {
         <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
         >
           <Switch>
+            <Route exact path="/" render={() => <Landing />} />
             <Route /*using render=() to send props while using react router*/
               exact
-              path="/"
+              path="/home"
               render={() => (
                 <Home /* sending state and getInfo fct of App.js to Home.jsx as properties to allow them to be used in Home.jsx as props*/
                   showerror={this.state.fail}
@@ -49,7 +51,7 @@ export default class App extends Component {
                     opc={this.state.showopc}
                   />
                 ) : (
-                  (this.setState({ fail: true }), (<Redirect to="/" />))
+                  (this.setState({ fail: true }), (<Redirect to="/home" />))
                 )
               }
             />
