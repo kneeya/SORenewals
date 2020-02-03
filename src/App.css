@@ -91,3 +91,8 @@ hr {
 .landing-body {
   margin: 1rem;
 }
+
+.btn-primary {
+  padding: 0.3rem 13.2rem;
+  background-color: #0066cc;
+}

@@ -11,16 +11,16 @@ class Landing extends Component {
       <React.Fragment>
         <div class="landing-body">
           <h1 class="landing-header">Renew your Ontario cards</h1>
+          <p>What you can renew online:</p>
           <ul>
-            <p>What you can renew online:</p>
             <li>driver's licence ($90)</li>
             <li>photo card ($30)</li>
             <li>health card (free)</li>
           </ul>
           <hr />
           <h2 class="sub-header">Before you Renew</h2>
+          <p>You will need:</p>
           <ul>
-            <p>You will need:</p>
             <li>your current card(s) or card details including card number</li>
             <li>10 -15 minutes to complete the application all at once</li>
           </ul>
@@ -30,10 +30,21 @@ class Landing extends Component {
             <li>Interac® Online account</li>
           </ul>
           <h2 class="sub-header">You may also need</h2>
+          <p>
+            You will need an additional piece of valid identification and its
+            details to renew your health card, for example your:
+          </p>
           <ul>
             <li>driver's licence</li>
             <li>photo card</li>
           </ul>
+          <br />
+          <br />
+          <br />
+          <p>
+            Click "Start" to agree to the Terms and Conditions and privacy
+            policy.
+          </p>
           <Link to="/home">
             <Button>Start</Button>
           </Link>
