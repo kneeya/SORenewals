@@ -6,6 +6,8 @@ import ReactBootstrap from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "./App.css";
+import Footer from "./components/Footer.jsx";
+import Eligibility from "./components/Eligibility.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -53,8 +55,13 @@ export default class App extends Component {
                 )
               }
             />
+            <Route exact path="/elig" component={Eligibility} />
           </Switch>
         </BrowserRouter>
+
+        <Container fluid className="footer">
+          <Footer />
+        </Container>
       </React.Fragment>
     );
   }
