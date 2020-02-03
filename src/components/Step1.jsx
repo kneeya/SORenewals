@@ -3,12 +3,14 @@ import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import Back from "./Back";
 
 export default class Step1 extends Component {
   render() {
     return (
       <React.Fragment>
         <Container>
+          <Back />
           {/*using ? operator to determine what to show if the props defined in App.js are true*/
           this.props.dl ? (
             <React.Fragment>

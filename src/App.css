@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
 
 body {
-  font-family: "Open Sans";
-  color: #000;
+  font-family: "Raleway", sans-serif;
+  color: #1a1a1a;
 }
 
 .header-bg {
@@ -30,6 +31,16 @@ body {
   margin: 1rem 1.25rem 1.25rem;
 }
 
+.footer {
+  background-color: #ededed;
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.elig-title {
+  background-color: #ededed;
+  font-weight: 600;
+}
 .so-logo {
   background: #006c40;
 }
