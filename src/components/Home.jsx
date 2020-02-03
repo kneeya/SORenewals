@@ -59,7 +59,7 @@ class Home extends Component {
             <Row>
               <Col xs={1}>
                 <Checkbox
-                  class
+                  class="checkbox"
                   onClick={() => this.handleDlChecked()}
                 ></Checkbox>
               </Col>
@@ -69,7 +69,10 @@ class Home extends Component {
             </Row>
             <Row>
               <Col xs={1}>
-                <Checkbox onClick={() => this.handleOpcChecked()}></Checkbox>
+                <Checkbox
+                  class="checkbox"
+                  onClick={() => this.handleOpcChecked()}
+                ></Checkbox>
               </Col>
               <Col>
                 <p> Ontario Photo Card</p>
@@ -77,7 +80,10 @@ class Home extends Component {
             </Row>
             <Row>
               <Col xs={1}>
-                <Checkbox onClick={() => this.handleHcChecked()}></Checkbox>
+                <Checkbox
+                  class="checkbox"
+                  onClick={() => this.handleHcChecked()}
+                ></Checkbox>
               </Col>
               <Col>
                 <p>Health Card</p>

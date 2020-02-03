@@ -39,8 +39,6 @@ class Landing extends Component {
             <li>photo card</li>
           </ul>
           <br />
-          <br />
-          <br />
           <p>
             Click "Start" to agree to the Terms and Conditions and privacy
             policy.
