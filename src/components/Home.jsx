@@ -46,9 +46,9 @@ class Home extends Component {
     return (
       <React.Fragment>
         <Container>
-          <Row>
-            <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
-          </Row>
+          <h2 class="sub-header">
+            Choose the card(s) you want to renew (select at least one)
+          </h2>
           {//this prop is a state in App.js, when true it shows this error msg
           this.props.showerror ? (
             <p className="error-msg">You must select one of the products</p>
@@ -58,7 +58,10 @@ class Home extends Component {
           <Form>
             <Row>
               <Col xs={1}>
-                <Checkbox onClick={() => this.handleDlChecked()}></Checkbox>
+                <Checkbox
+                  class
+                  onClick={() => this.handleDlChecked()}
+                ></Checkbox>
               </Col>
               <Col>
                 <p> Driver's Licence</p>
