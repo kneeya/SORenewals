@@ -29,3 +29,45 @@ body {
 .prompt {
   margin: 1rem 1.25rem 1.25rem;
 }
+
+.so-logo {
+  background: #006c40;
+}
+
+.so-logo img {
+  margin: 0.2rem 0 0.2rem 1rem;
+}
+
+.landing-header {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3rem;
+  line-height: 48px;
+  /* or 120% */
+
+  letter-spacing: 0.64px;
+}
+
+.sub-header {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 48px;
+  /* or 120% */
+
+  letter-spacing: 0.64px;
+}
+
+hr {
+  margin: 1rem 1rem;
+}
+
+Checkbox {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  left: 16px;
+  top: 322px;
+}

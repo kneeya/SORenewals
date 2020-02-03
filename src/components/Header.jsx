@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Row, Form, Button, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 
 class Header extends Component {
@@ -12,11 +13,13 @@ class Header extends Component {
           <div className="col">
             <div className="row">
               <div className="col">
-                <img
-                  src={this.state.imgUrl}
-                  alt="logo"
-                  style={{ width: 11 + "rem" }}
-                />
+                <a href="/">
+                  <img
+                    src={this.state.imgUrl}
+                    alt="logo"
+                    style={{ width: 11 + "rem" }}
+                  />
+                </a>
               </div>
               <div className="col">
                 <div className="frenchie">FR</div>
@@ -24,6 +27,7 @@ class Header extends Component {
             </div>
           </div>
         </div>
+        <br />
       </React.Fragment>
     );
   }

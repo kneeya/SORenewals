@@ -3,9 +3,10 @@ import Header from "./components/Header.jsx";
 import Home from "./components/Home.jsx";
 import Step1 from "./components/Step1.jsx";
 import ReactBootstrap from "react-bootstrap";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "./App.css";
+import Landing from "./components/Landing.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -25,12 +26,18 @@ export default class App extends Component {
         <Container fluid className="header-bg">
           <Header />
         </Container>
+        <div class="so-logo">
+          <Row>
+            <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
+          </Row>
+        </div>
         <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
         >
           <Switch>
+            <Route exact path="/" render={() => <Landing />} />
             <Route /*using render=() to send props while using react router*/
               exact
-              path="/"
+              path="/home"
               render={() => (
                 <Home /* sending state and getInfo fct of App.js to Home.jsx as properties to allow them to be used in Home.jsx as props*/
                   showerror={this.state.fail}
@@ -49,7 +56,7 @@ export default class App extends Component {
                     opc={this.state.showopc}
                   />
                 ) : (
-                  (this.setState({ fail: true }), (<Redirect to="/" />))
+                  (this.setState({ fail: true }), (<Redirect to="/home" />))
                 )
               }
             />
