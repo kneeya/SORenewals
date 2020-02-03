@@ -63,11 +63,3 @@ body {
 hr {
   margin: 1rem 1rem;
 }
-
-Checkbox {
-  position: absolute;
-  width: 35px;
-  height: 35px;
-  left: 16px;
-  top: 322px;
-}

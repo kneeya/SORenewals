@@ -27,7 +27,7 @@ export default class App extends Component {
           <Header />
         </Container>
         <div class="so-logo">
-          <Row>
+          <Row class="so-logo1">
             <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
           </Row>
         </div>

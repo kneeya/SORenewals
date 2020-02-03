@@ -58,7 +58,10 @@ class Home extends Component {
           <Form>
             <Row>
               <Col xs={1}>
-                <Checkbox onClick={() => this.handleDlChecked()}></Checkbox>
+                <Checkbox
+                  class
+                  onClick={() => this.handleDlChecked()}
+                ></Checkbox>
               </Col>
               <Col>
                 <p> Driver's Licence</p>
