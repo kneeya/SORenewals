@@ -6,7 +6,7 @@ export default class Footer extends Component {
   render() {
     return (
       <React.Fragment>
-        <Container>
+        <Container style={{ background: "#ededed" }}>
           <Row>
             <p>Contact Us</p>
           </Row>
