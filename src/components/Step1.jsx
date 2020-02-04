@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import Back from "./Back";
 
-export default class Step1 extends Component {
+class Step1 extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
@@ -15,11 +16,8 @@ export default class Step1 extends Component {
   render() {
     return (
       <React.Fragment>
-        <Container>
-          <Row>
-            <p onClick={this.goBack}>Back</p>
-          </Row>
-        </Container>
+        <Back onClick={this.goBack} />
+
         <Container>
           {/*using ? operator to determine what to show if the props defined in App.js are true*/
           this.props.dl ? (
@@ -69,3 +67,4 @@ export default class Step1 extends Component {
     );
   }
 }
+export default withRouter(Step1);

@@ -3,14 +3,23 @@ import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import Checkbox from "rc-checkbox";
 import "rc-checkbox/assets/index.css";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import Back from "./Back";
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
   state = {
     dlcheck: false,
     healthcheck: false,
     photocheck: false
   };
+
+  goBack() {
+    this.props.history.goBack();
+  }
 
   //handle fcts set the states of dlcheck, healthcheck and photocheck to true
 
@@ -46,6 +55,7 @@ class Home extends Component {
   render() {
     return (
       <React.Fragment>
+        <Back onClick={this.goBack} />
         <Container>
           <h2 class="sub-header">
             Choose the card(s) you want to renew (select at least one)
@@ -110,4 +120,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);
