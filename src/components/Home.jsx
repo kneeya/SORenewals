@@ -9,8 +9,7 @@ class Home extends Component {
   state = {
     dlcheck: false,
     healthcheck: false,
-    photocheck: false,
-    proceed: false
+    photocheck: false
   };
 
   //handle fcts set the states of dlcheck, healthcheck and photocheck to true
@@ -18,9 +17,11 @@ class Home extends Component {
   handleDlChecked = () => {
     let dlcheck = !this.state.dlcheck;
     this.setState({ dlcheck });
-    if (this.state.dlcheck === false) {
-      console.log("swag");
-    }
+    this.props.sendInfo(
+      this.state.dlcheck,
+      this.state.healthcheck,
+      this.state.photocheck
+    );
   };
 
   handleOpcChecked = () => {

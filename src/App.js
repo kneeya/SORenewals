@@ -13,7 +13,9 @@ import Landing from "./components/Landing.jsx";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      fail: false
+    };
   }
   //call back fct to get info from Home.jsx that will be sent to Step1.jsx to determine which prods to show
   getInfo = (dlcheck, healthcheck, photocheck) => {
