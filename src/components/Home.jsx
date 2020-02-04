@@ -17,9 +17,11 @@ class Home extends Component {
   handleDlChecked = () => {
     let dlcheck = !this.state.dlcheck;
     this.setState({ dlcheck });
-    if (this.state.dlcheck === false) {
-      console.log("swag");
-    }
+    this.props.sendInfo(
+      this.state.dlcheck,
+      this.state.healthcheck,
+      this.state.photocheck
+    );
   };
 
   handleOpcChecked = () => {
