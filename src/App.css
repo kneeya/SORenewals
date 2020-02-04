@@ -95,6 +95,8 @@ hr {
 .btn-primary {
   width: 100%;
   background-color: #0066cc;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 input[type="checkbox"] {

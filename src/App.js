@@ -9,6 +9,8 @@ import "./App.css";
 import Footer from "./components/Footer.jsx";
 import Eligibility from "./components/Eligibility.jsx";
 import Landing from "./components/Landing.jsx";
+import Step2 from "./components/Step2.jsx";
+import Healthcard from "./components/Healthcard.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -52,16 +54,56 @@ export default class App extends Component {
                 exact
                 path="/step1"
                 render={() =>
-                  this.state.showdl ||
-                  this.state.showhc ||
-                  this.state.showopc ? (
+                  this.state.showdl ? (
                     <Step1 /* sending the state of app.js to step.jsx as properties*/
+                      dl={this.state.showdl}
+                    />
+                  ) : (
+                    <Redirect to="/healthcard" />
+                  )
+                }
+              />
+              <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
+                exact
+                path="/step2"
+                render={() =>
+                  this.state.showhc && this.state.showdl ? (
+                    <Step2 /* sending the state of app.js to step.jsx as properties*/
+                      hc={this.state.showhc}
+                      dl={this.state.showdl}
+                    />
+                  ) : (
+                    <Redirect to="/hc" />
+                  )
+                }
+              />
+              <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
+                exact
+                path="/hc"
+                render={() =>
+                  this.state.showhc ? (
+                    <Step2 /* sending the state of app.js to step.jsx as properties*/
+                      hc={this.state.showhc}
+                    />
+                  ) : (
+                    <Redirect to="/elig" />
+                  )
+                }
+              />
+              <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
+                exact
+                path="/healthcard"
+                render={() =>
+                  this.state.showhc &&
+                  !this.state.showdl &&
+                  !this.state.showopc ? (
+                    <Healthcard /* sending the state of app.js to step.jsx as properties*/
                       dl={this.state.showdl}
                       hc={this.state.showhc}
                       opc={this.state.showopc}
                     />
                   ) : (
-                    (this.setState({ fail: true }), (<Redirect to="/home" />))
+                    <Redirect to="/step2" />
                   )
                 }
               />
