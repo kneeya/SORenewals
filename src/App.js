@@ -15,10 +15,9 @@ import Healthcard from "./components/Healthcard.jsx";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      fail: false
-    };
+    this.state = {};
   }
+
   //call back fct to get info from Home.jsx that will be sent to Step1.jsx to determine which prods to show
   getInfo = (dlcheck, healthcheck, photocheck) => {
     let showThis = this.state;
@@ -41,7 +40,7 @@ export default class App extends Component {
           <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
           >
             <Switch>
-              <Route exact path="/" render={() => <Landing />} />
+              <Route exact path="/" component={Landing} />
               <Route /*using render=() to send props while using react router*/
                 exact
                 path="/home"
