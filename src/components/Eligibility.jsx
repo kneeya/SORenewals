@@ -3,6 +3,9 @@ import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 
 export default class Eligibility extends Component {
+  goBack() {
+    this.props.history.goBack();
+  }
   render() {
     return (
       <React.Fragment>
