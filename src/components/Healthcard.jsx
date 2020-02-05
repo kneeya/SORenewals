@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 
-export default class Healthcard extends Component {
+class Healthcard extends Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+  goBack() {
+    this.props.history.goBack();
+  }
   render() {
     return (
       <React.Fragment>
+        <Back onClick={this.goBack} />
         <Container>
           <React.Fragment>
             <Row>
@@ -29,9 +37,10 @@ export default class Healthcard extends Component {
             </Row>
           </React.Fragment>
           <Link to="/step2">Next</Link>
-          <Link to="/">Back</Link>
         </Container>
       </React.Fragment>
     );
   }
 }
+
+export default withRouter(Healthcard);
