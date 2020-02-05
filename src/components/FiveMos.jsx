@@ -24,7 +24,8 @@ class FiveMos extends Component {
           </Row>
           <Row>
             {
-              //Radio buttons
+              <Radio value="Yes"></Radio>
+              <Radio value="No"></Radio>
             }
           </Row>
           <Link to="">
