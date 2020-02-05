@@ -35,7 +35,6 @@ class Step1 extends Component {
           ) : (
             ""
           )}
-          <Link to="/">Back</Link>
         </Container>
       </React.Fragment>
     );
