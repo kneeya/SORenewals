@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 
 class Address extends Component {
@@ -68,6 +68,7 @@ class Address extends Component {
                 </fieldset>
               </div>
             </Row>
+            <Link to="/elig">Next</Link>
           </Container>
         </div>
       </React.Fragment>
