@@ -55,19 +55,17 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route exact path="/before-you-proceed" component={ByP} />
+              <Route
+                exact
+                path="/before-you-proceed"
+                render={() =>
+                  this.state.showdl ? <ByP /> : <Redirect to="/healthcard" />
+                }
+              />
               <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
                 exact
                 path="/step1"
-                render={() =>
-                  this.state.showdl ? (
-                    <Step1 /* sending the state of app.js to step.jsx as properties*/
-                      dl={this.state.showdl}
-                    />
-                  ) : (
-                    <Redirect to="/healthcard" />
-                  )
-                }
+                component={Step1}
               />
               <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
                 exact

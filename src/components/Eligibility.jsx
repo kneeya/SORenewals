@@ -19,7 +19,6 @@ class Eligibility extends Component {
     return (
       <React.Fragment>
         <Link exact path="/address" component={Address} />
-        <Back onClick={this.goBack} />
       </React.Fragment>
     );
   }

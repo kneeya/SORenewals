@@ -12,7 +12,8 @@ class ByP extends Component {
     this.goBack = this.goBack.bind(this);
   }
   state = {
-    acknowledge: false
+    acknowledge: false,
+    fail: false
   };
 
   goBack() {
@@ -22,6 +23,15 @@ class ByP extends Component {
   handleChecked() {
     this.setState({ acknowledge: true });
   }
+
+  onSubmit = () => {
+    if (this.state.acknowledge === false) {
+      this.setState({ fail: true });
+    } else {
+      this.setState({ fail: false });
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -30,6 +40,15 @@ class ByP extends Component {
           <Row>
             <h2 className="sub-header">Before you proceed</h2>
           </Row>
+          {this.state.fail ? (
+            <Row>
+              <p className="error-msg">
+                Please confirm your understanding before proceeding
+              </p>
+            </Row>
+          ) : (
+            ""
+          )}
           <Row>
             <Col xs={1}>
               <Checkbox
@@ -44,9 +63,15 @@ class ByP extends Component {
               </p>
             </Col>
           </Row>
-          <Link to="/step1">
-            <Button>Next</Button>
-          </Link>
+          {this.state.acknowledge ? (
+            <Link onClick={() => this.onSubmit()} to="/step1">
+              <Button>Next</Button>
+            </Link>
+          ) : (
+            <Link onClick={() => this.onSubmit()} to="/before-you-proceed">
+              <Button>Next</Button>
+            </Link>
+          )}
         </Container>
       </React.Fragment>
     );
