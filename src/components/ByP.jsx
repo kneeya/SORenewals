@@ -3,7 +3,7 @@ import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import Checkbox from "rc-checkbox";
 import "rc-checkbox/assets/index.css";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import Back from "./Back";
 
 class ByP extends Component {
@@ -21,7 +21,8 @@ class ByP extends Component {
   }
 
   handleChecked() {
-    this.setState({ acknowledge: true });
+    let acknowledge = !this.state.acknowledge;
+    this.setState({ acknowledge });
   }
 
   onSubmit = () => {
@@ -68,9 +69,7 @@ class ByP extends Component {
               <Button>Next</Button>
             </Link>
           ) : (
-            <Link onClick={() => this.onSubmit()} to="/before-you-proceed">
-              <Button>Next</Button>
-            </Link>
+            <Button onClick={() => this.onSubmit()}>Next</Button>
           )}
         </Container>
       </React.Fragment>

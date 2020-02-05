@@ -101,7 +101,7 @@ class Home extends Component {
               </Col>
             </Row>
 
-            <Link to="/before-you-proceed/">
+            <Link to="/before-you-proceed">
               <Button
                 onClick={() =>
                   this.onSubmit(
