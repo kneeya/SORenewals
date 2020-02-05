@@ -243,3 +243,7 @@ input[type="checkbox"] {
 .rc-checkbox-disabled .rc-checkbox-inner-input {
   cursor: default;
 }
+
+.row {
+  margin-right: 0;
+}
