@@ -1,0 +1,102 @@
+/* Radio Buttons  */
+
+.ontario-radios {
+  padding: 0 0 0 0.125rem;
+}
+
+.ontario-radios__item {
+  position: relative;
+  display: block;
+  margin: 0 0 1rem;
+  padding: 0 2rem 0;
+}
+
+.ontario-radios__input {
+  cursor: pointer;
+  margin: 0;
+  position: absolute;
+  opacity: 0;
+  top: -0.5em;
+  left: -0.5em;
+  width: 3em;
+  height: 3em;
+  z-index: 1;
+}
+
+@media screen and (max-width: 40em) {
+  .ontario-radios__input {
+    top: -0.375em;
+    left: -0.375em;
+  }
+}
+
+.ontario-radios__label {
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0.2rem 0;
+  padding: 0 0.75rem;
+  touch-action: manipulation;
+}
+
+@media screen and (max-width: 40em) {
+  .ontario-radios__label {
+    margin: 0.3rem 0;
+    padding: 0 1rem;
+  }
+}
+
+.ontario-radios__label:before {
+  content: "";
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  -webkit-transition: border 0.1s ease-in-out;
+  transition: border 0.1s ease-in-out;
+}
+
+@media screen and (max-width: 40em) {
+  .ontario-radios__label:before {
+    width: 2.25em;
+    height: 2.25em;
+  }
+}
+
+.ontario-radios__label:after {
+  content: "";
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px #1a1a1a;
+  border: 4px solid #ffffff;
+  position: absolute;
+  top: 0.75em;
+  left: 0.75em;
+  opacity: 0;
+}
+
+@media screen and (max-width: 40em) {
+  .ontario-radios__label:after {
+    box-shadow: 0 0 0 8px #1a1a1a;
+    top: 0.875em;
+    left: 0.875em;
+  }
+}
+
+.ontario-radios__input:checked + .ontario-radios__label:before,
+.ontario-radios__input:focus + .ontario-radios__label:before {
+  box-shadow: 0 0 0 4px #009adb;
+  outline: 4px solid transparent;
+  -webkit-transition: box-shadow 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.ontario-radios__input:checked + .ontario-radios__label:after {
+  opacity: 1;
+}
+
+.address {
+  margin: 5%;
+}
