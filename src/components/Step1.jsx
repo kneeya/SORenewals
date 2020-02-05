@@ -17,24 +17,16 @@ class Step1 extends Component {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
-
         <Container>
-          {/*using ? operator to determine what to show if the props defined in App.js are true*/
-          this.props.dl ? (
-            <React.Fragment>
-              <Row>
-                <p className="prompt">Driver's License Information</p>
-                <p className="prompt">
-                  Please input your driver's license information below
-                </p>
-                <p className="prompt">Driver's license number</p>
-                <Input />
-              </Row>
-              <Link to="/step2">Next</Link>
-            </React.Fragment>
-          ) : (
-            ""
-          )}
+          <Row>
+            <p className="prompt">Driver's License Information</p>
+            <p className="prompt">
+              Please input your driver's license information below
+            </p>
+            <p className="prompt">Driver's license number</p>
+            <Input />
+          </Row>
+          <Link to="/step2">Next</Link>
         </Container>
       </React.Fragment>
     );
