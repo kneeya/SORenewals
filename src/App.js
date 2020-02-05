@@ -11,6 +11,9 @@ import Eligibility from "./components/Eligibility.jsx";
 import Landing from "./components/Landing.jsx";
 import Step2 from "./components/Step2.jsx";
 import Healthcard from "./components/Healthcard.jsx";
+import Postal from "./components/Postal.jsx";
+import TnC from "./components/TnC.jsx";
+import ByP from "./components/ByP.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -41,6 +44,7 @@ export default class App extends Component {
           >
             <Switch>
               <Route exact path="/" component={Landing} />
+              <Route exact path="/terms-and-conditions" component={TnC} />
               <Route /*using render=() to send props while using react router*/
                 exact
                 path="/home"
@@ -51,6 +55,7 @@ export default class App extends Component {
                   />
                 )}
               />
+              <Route exact path="/before-you-proceed" component={ByP} />
               <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
                 exact
                 path="/step1"
@@ -78,6 +83,7 @@ export default class App extends Component {
                   )
                 }
               />
+              <Route exact path="/postal" component={Postal} />
               <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
                 exact
                 path="/hc"

@@ -100,7 +100,8 @@ class Home extends Component {
                 <p>Health Card</p>
               </Col>
             </Row>
-            <Link to="/step1/">
+
+            <Link to="/before-you-proceed/">
               <Button
                 onClick={() =>
                   this.onSubmit(

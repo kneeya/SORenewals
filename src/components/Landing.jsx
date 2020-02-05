@@ -43,7 +43,7 @@ class Landing extends Component {
             Click "Start" to agree to the Terms and Conditions and privacy
             policy.
           </p>
-          <Link to="/home">
+          <Link to="/terms-and-conditions">
             <Button>Start</Button>
           </Link>
         </div>
