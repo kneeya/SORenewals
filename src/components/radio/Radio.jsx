@@ -1,14 +1,11 @@
-import { Row, Container, Col } from "react-bootstrap";
 import React, { Component } from "react";
-import styled from "styled-components";
-import "./Radio.css";
 
-const OntForm = styled.div``;
+import "./Radio.css";
 
 class Radio extends Component {
   render() {
     return (
-      <div class="ontario-form-group">
+      <div class="ontario-form-group" onClick={this.props.onClick}>
         <fieldset class="ontario-fieldset" aria-describedby="renewal-hint">
           <legend class="ontario-fieldset__legend ontario-fieldset__legend--large"></legend>
           <div class="ontario-radios">

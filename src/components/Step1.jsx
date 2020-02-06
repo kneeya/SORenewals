@@ -26,7 +26,15 @@ class Step1 extends Component {
             <p className="prompt">Driver's license number</p>
             <Input />
           </Row>
-          <Link to="/step2">Next</Link>
+          {this.props.showhc ? (
+            <Link to="/step2">
+              <Button>Next</Button>
+            </Link>
+          ) : (
+            <Link to="/postal">
+              <Button>Next</Button>
+            </Link>
+          )}
         </Container>
       </React.Fragment>
     );
