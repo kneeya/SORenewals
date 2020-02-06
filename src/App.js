@@ -14,6 +14,12 @@ import Healthcard from "./components/Healthcard.jsx";
 import Postal from "./components/Postal.jsx";
 import TnC from "./components/TnC.jsx";
 import ByP from "./components/ByP.jsx";
+import Vision from "./components/Vision.jsx";
+import MedCon from "./components/MedCon.jsx";
+import Contact from "./components/Contact.jsx";
+import FiveMos from "./components/FiveMos.jsx";
+import Notify from "./components/Notify.jsx";
+import Ineligible from "./components/Ineligible.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -65,44 +71,44 @@ export default class App extends Component {
               <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
                 exact
                 path="/step1"
-                component={Step1}
+                render={() => (
+                  <Step1
+                    showhc={this.state.showhc}
+                    showdl={this.state.showdl}
+                    showopc={this.state.showopc}
+                  />
+                )}
               />
-              <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
+              <Route
                 exact
                 path="/step2"
-                render={() =>
-                  this.state.showhc && this.state.showdl ? (
-                    <Step2 /* sending the state of app.js to step.jsx as properties*/
-                      hc={this.state.showhc}
-                      dl={this.state.showdl}
-                    />
-                  ) : (
-                    <Redirect to="/hc" />
-                  )
-                }
-              />
-              <Route exact path="/postal" component={Postal} />
-              <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
-                exact
-                path="/hc"
                 render={() =>
                   this.state.showhc ? (
                     <Step2 /* sending the state of app.js to step.jsx as properties*/
                       hc={this.state.showhc}
+                      dl={this.state.showdl}
                     />
                   ) : (
                     <Redirect to="/elig" />
                   )
                 }
               />
-              <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
+              <Route exact path="/postal" component={Postal} />
+              {/* <Route
+                exact
+                path="/hc"
+                render={() =>
+                  this.state.showhc ? <Step2 /> : <Redirect to="/elig" />
+                }
+              /> */}
+              <Route
                 exact
                 path="/healthcard"
                 render={() =>
                   this.state.showhc &&
                   !this.state.showdl &&
                   !this.state.showopc ? (
-                    <Healthcard /* sending the state of app.js to step.jsx as properties*/
+                    <Healthcard
                       dl={this.state.showdl}
                       hc={this.state.showhc}
                       opc={this.state.showopc}
@@ -112,7 +118,26 @@ export default class App extends Component {
                   )
                 }
               />
-              <Route exact path="/elig" component={Eligibility} />
+              <Route
+                exact
+                path="/elig"
+                render={() => (
+                  <Eligibility
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
+              <Route path="/vision" component={Vision} />
+              <Route
+                path="/med-con"
+                render={() => <MedCon showhc={this.state.showhc} />}
+              />
+              <Route path="/five-mos" component={FiveMos} />
+              <Route path="/ineligible" component={Ineligible} />
+              <Route path="/contact" component={Contact} />
+              <Route path="/notify-so" component={Notify} />
             </Switch>
           </BrowserRouter>
         </div>

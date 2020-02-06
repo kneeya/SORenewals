@@ -5,7 +5,7 @@ import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 
-class Step2 extends Component {
+class Notify extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
@@ -17,21 +17,9 @@ class Step2 extends Component {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
-        <Container>
-          <Row>
-            <p className="prompt">Health Card Information</p>
-            <p className="prompt">
-              Please input your Health Card information below
-            </p>
-            <p className="prompt">Health Card number</p>
-            <Input />
-          </Row>
-          <Link to="/postal">
-            <Button>Next</Button>
-          </Link>
-        </Container>
       </React.Fragment>
     );
   }
 }
-export default withRouter(Step2);
+
+export default withRouter(Notify);

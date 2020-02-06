@@ -11,7 +11,7 @@ const BackButton = styled.span`
 class Back extends Component {
   render() {
     return (
-      <Container>
+      <Container style={{ paddingBottom: 1 + "rem" }}>
         <Row style={{ marginTop: 1 + "rem" }} onClick={this.props.onClick}>
           <svg
             width="7"

@@ -20,14 +20,19 @@ class FiveMos extends Component {
         <Container>
           <Row>
             <h2 className="sub-header">
-              Do you require glasses or contact lenses to drive?
+              Have you lived in Ontario for 5 months in the past year?
             </h2>
+          </Row>
+          <Row>
+            <p>
+              The Ministry of Health may contact you for further verification
+            </p>
           </Row>
           <Row>
             <Radio value="Yes"></Radio>
             <Radio value="No"></Radio>
           </Row>
-          <Link to="">
+          <Link to="/contact">
             <Button>Next</Button>
           </Link>
         </Container>

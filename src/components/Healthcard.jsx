@@ -36,7 +36,9 @@ class Healthcard extends Component {
               <Input />
             </Row>
           </React.Fragment>
-          <Link to="/step2">Next</Link>
+          <Link to="/step2">
+            <Button>Next</Button>
+          </Link>
         </Container>
       </React.Fragment>
     );

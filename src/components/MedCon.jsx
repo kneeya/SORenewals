@@ -29,9 +29,15 @@ class MedCon extends Component {
             <Radio value="Yes"></Radio>
             <Radio value="No"></Radio>
           </Row>
-          <Link to="">
-            <Button>Next</Button>
-          </Link>
+          {this.props.showhc ? (
+            <Link to="/five-mos">
+              <Button>Next</Button>
+            </Link>
+          ) : (
+            <Link to="/contact">
+              <Button>Next</Button>
+            </Link>
+          )}
         </Container>
       </React.Fragment>
     );
