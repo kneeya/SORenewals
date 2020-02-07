@@ -5,16 +5,14 @@ import { Link, withRouter, Route, BrowserRouter } from "react-router-dom";
 import Address from "./Address.jsx";
 
 class Eligibility extends Component {
-  state = {
-    showdl: this.props.showdl,
-    showhc: this.props.showhc,
-    showopc: this.props.showopc
-  };
-
   render() {
     return (
       <React.Fragment>
-        <Address showdl={this.props.showdl} showhc={this.props.showhc} />
+        <Address
+          showdl={this.props.showdl}
+          showhc={this.props.showhc}
+          showopc={this.props.showopc}
+        />
       </React.Fragment>
     );
   }

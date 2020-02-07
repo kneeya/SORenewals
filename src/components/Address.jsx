@@ -12,7 +12,7 @@ class Address extends Component {
     super(props);
     this.goBack = this.goBack.bind(this);
     this.handleNo = this.handleNo.bind(this);
-    this.handleNo = this.handleYes.bind(this);
+    this.handleYes = this.handleYes.bind(this);
   }
   state = {
     // no: false,
@@ -29,22 +29,22 @@ class Address extends Component {
     } else {
       this.setState({ fail: false });
     }
+    if (this.state.no === false) {
+      console.log("noswag");
+    }
+    if (this.state.yes === true) {
+      console.log("yesswag");
+    }
   }
 
   handleNo = () => {
     let nochecked = !this.state.no;
-    this.setState({ no: true, yes: false });
-    if (this.state.no === true) {
-      console.log("swag");
-    }
+    this.setState({ no: true, yes: false, fail: false });
   };
 
   handleYes = () => {
     let yeschecked = !this.state.yes;
-    this.setState({ yes: yeschecked, no: false });
-    if (this.state.no === true) {
-      console.log("swag");
-    }
+    this.setState({ yes: true, no: false, fail: false });
   };
 
   render() {
@@ -57,7 +57,7 @@ class Address extends Component {
           ) : (
             ""
           )}
-          <Container>
+          <Container className={this.state.fail ? "error-content" : ""}>
             <Row>
               <h2>
                 <strong>
@@ -74,7 +74,9 @@ class Address extends Component {
                 <Radio value="No" onClick={() => this.handleNo()} />
               </Col>
             </Row>
-            {this.state.no ? (
+            {!this.state.no && !this.state.yes ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            ) : this.state.no ? (
               this.props.showdl ? (
                 <Link to="/vision" onClick={() => this.onSubmit()}>
                   <Button>Next</Button>

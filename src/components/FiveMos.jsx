@@ -29,8 +29,10 @@ class FiveMos extends Component {
             </p>
           </Row>
           <Row>
-            <Radio value="Yes"></Radio>
-            <Radio value="No"></Radio>
+            <Col>
+              <Radio value="Yes"></Radio>
+              <Radio value="No"></Radio>
+            </Col>
           </Row>
           <Link to="/contact">
             <Button>Next</Button>
