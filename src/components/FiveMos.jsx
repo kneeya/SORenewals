@@ -34,9 +34,15 @@ class FiveMos extends Component {
               <Radio value="No"></Radio>
             </Col>
           </Row>
-          <Link to="/contact">
-            <Button>Next</Button>
-          </Link>
+          {this.props.showdl ? (
+            <Link to="/med-con">
+              <Button>Next</Button>
+            </Link>
+          ) : (
+            <Link to="/med-con">
+              <Button>Next</Button>
+            </Link>
+          )}
         </Container>
       </React.Fragment>
     );

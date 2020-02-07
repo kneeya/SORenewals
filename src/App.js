@@ -82,16 +82,13 @@ export default class App extends Component {
               <Route
                 exact
                 path="/step2"
-                render={() =>
-                  this.state.showhc ? (
-                    <Step2 /* sending the state of app.js to step.jsx as properties*/
-                      hc={this.state.showhc}
-                      dl={this.state.showdl}
-                    />
-                  ) : (
-                    <Redirect to="/elig" />
-                  )
-                }
+                render={() => (
+                  <Step2 /* sending the state of app.js to step.jsx as properties*/
+                    showhc={this.state.showhc}
+                    showdl={this.state.showdl}
+                    showopc={this.state.showopc}
+                  />
+                )}
               />
               <Route exact path="/postal" component={Postal} />
               {/* <Route
@@ -129,15 +126,42 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route path="/vision" component={Vision} />
+              <Route
+                path="/vision"
+                render={() => (
+                  <Vision
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
               <Route
                 path="/med-con"
                 render={() => <MedCon showhc={this.state.showhc} />}
               />
-              <Route path="/five-mos" component={FiveMos} />
+              <Route
+                path="/five-mos"
+                render={() => (
+                  <FiveMos
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
               <Route path="/ineligible" component={Ineligible} />
               <Route path="/contact" component={Contact} />
-              <Route path="/notify-so" component={Notify} />
+              <Route
+                path="/notify-so"
+                render={() => (
+                  <Notify
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />{" "}
             </Switch>
           </BrowserRouter>
         </div>

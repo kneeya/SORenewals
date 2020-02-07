@@ -25,10 +25,20 @@ class Step2 extends Component {
             </p>
             <p className="prompt">Health Card number</p>
             <Input />
+            {this.props.showdl ? (
+              <Link to="/step1">
+                <Button>Next</Button>
+              </Link>
+            ) : this.props.showopc ? (
+              <Link to="/pc-input">
+                <Button>Next</Button>
+              </Link>
+            ) : (
+              <Link to="/postal">
+                <Button>Next</Button>
+              </Link>
+            )}
           </Row>
-          <Link to="/postal">
-            <Button>Next</Button>
-          </Link>
         </Container>
       </React.Fragment>
     );
