@@ -65,7 +65,7 @@ class ByP extends Component {
           </Form>
 
           {this.state.acknowledge ? (
-            <Link onClick={() => this.onSubmit()} to="/step1">
+            <Link onClick={() => this.onSubmit()} to="/elig">
               <Button>Next</Button>
             </Link>
           ) : (

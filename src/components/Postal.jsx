@@ -38,7 +38,7 @@ class Postal extends Component {
               <Input />
             </Col>
           </Row>
-          <Link to="/elig">
+          <Link to="/contact">
             <Button>Next</Button>
           </Link>
         </Container>

@@ -77,12 +77,16 @@ class Address extends Component {
             {!this.state.no && !this.state.yes ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : this.state.no ? (
-              this.props.showdl ? (
-                <Link to="/vision" onClick={() => this.onSubmit()}>
+              this.props.showhc ? (
+                <Link to="/five-mos" onClick={() => this.onSubmit()}>
+                  <Button>Next</Button>
+                </Link>
+              ) : this.props.showdl ? (
+                <Link to="/med-con" onClick={() => this.onSubmit()}>
                   <Button>Next</Button>
                 </Link>
               ) : (
-                <Link to="/five-mos" onClick={() => this.onSubmit()}>
+                <Link to="/pc-input" onClick={() => this.onSubmit()}>
                   <Button>Next</Button>
                 </Link>
               )
