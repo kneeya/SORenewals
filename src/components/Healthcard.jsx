@@ -20,6 +20,15 @@ class Healthcard extends Component {
         <Container>
           <React.Fragment>
             <Row>
+              <h2 className="sub-header">Before you proceed</h2>
+            </Row>
+            <Row>
+              <p>
+                You need to have a valid driver's license or photo card to renew
+                your health card.
+              </p>
+            </Row>
+            <Row>
               <p className="prompt">Driver's License Information</p>
               <p className="prompt">
                 Please input your driver's license information below

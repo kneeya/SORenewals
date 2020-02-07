@@ -30,7 +30,7 @@ class Contact extends Component {
               <p>For example 5194562343</p>
               <Input />
               <p>
-                We may call you to confirm thaty you live in Ontario, or to
+                We may call you to confirm that you live in Ontario, or to
                 resolve an issue with your renewal.
               </p>
             </Col>

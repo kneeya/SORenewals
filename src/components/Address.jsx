@@ -33,7 +33,7 @@ class Address extends Component {
 
   handleNo = () => {
     let nochecked = !this.state.no;
-    this.setState({ no: nochecked, yes: false });
+    this.setState({ no: true, yes: false });
     if (this.state.no === true) {
       console.log("swag");
     }
