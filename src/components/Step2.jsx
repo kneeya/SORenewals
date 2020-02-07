@@ -20,11 +20,17 @@ class Step2 extends Component {
         <Container>
           <Row>
             <p className="prompt">Health Card Information</p>
+          </Row>
+          <Row>
             <p className="prompt">
               Please input your Health Card information below
             </p>
+          </Row>
+          <Row>
             <p className="prompt">Health Card number</p>
-            <Input />
+          </Row>
+          <Input />
+          <Row>
             {this.props.showdl ? (
               <Link to="/step1">
                 <Button>Next</Button>
@@ -34,7 +40,7 @@ class Step2 extends Component {
                 <Button>Next</Button>
               </Link>
             ) : (
-              <Link to="/postal">
+              <Link to="/healthcard">
                 <Button>Next</Button>
               </Link>
             )}

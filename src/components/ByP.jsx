@@ -47,22 +47,43 @@ class ByP extends Component {
           ) : (
             ""
           )}
-          <Form>
-            <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <p>
-                  I acknowledge and understand that only the full class portion
-                  of my driver's licence can be renewed online.
-                </p>
-              </Col>
-            </Row>
-          </Form>
+
+          {this.props.showhc && !this.state.showdl ? (
+            <Form>
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p>
+                    I acknowledge and understand that I will need a valid
+                    Driver's License or Ontario Photo Card to renew my Health
+                    Card.
+                  </p>
+                </Col>
+              </Row>
+            </Form>
+          ) : (
+            <Form>
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p>
+                    I acknowledge and understand that only the full class
+                    portion of my driver's licence can be renewed online.
+                  </p>
+                </Col>
+              </Row>
+            </Form>
+          )}
 
           {this.state.acknowledge ? (
             <Link onClick={() => this.onSubmit()} to="/elig">

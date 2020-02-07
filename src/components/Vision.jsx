@@ -4,6 +4,8 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import Radio from "./radio/Radio";
+import Error from "./error/Error";
+import ErrorMsg from "./error/ErrorMsg";
 
 class Vision extends Component {
   constructor(props) {
@@ -12,47 +14,43 @@ class Vision extends Component {
     this.handleNo = this.handleNo.bind(this);
     this.handleYes = this.handleYes.bind(this);
   }
-  state = {
-    // no: false,
-    // fail: false,
-    // yes: false
-  };
+  state = {};
   goBack() {
     this.props.history.goBack();
   }
+
   onSubmit() {
     if (!this.state.yes && !this.state.no) {
       this.setState({ fail: true });
     } else {
       this.setState({ fail: false });
     }
-    if (this.state.no === false) {
-      console.log("noswag");
-    }
-    if (this.state.yes === true) {
-      console.log("yesswag");
-    }
   }
 
   handleNo = () => {
-    let nochecked = !this.state.no;
     this.setState({ no: true, yes: false, fail: false });
   };
 
   handleYes = () => {
-    let yeschecked = !this.state.yes;
     this.setState({ yes: true, no: false, fail: false });
   };
+
   render() {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
-        <Container>
+        {this.state.fail ? (
+          <Error bul1="Do you require corrective lenses to drive?" />
+        ) : (
+          ""
+        )}
+        <Container className={this.state.fail ? "error-content" : ""}>
           <Row>
             <h2 className="sub-header">
-              Do you require glasses or contact lenses to drive?
+              Do you require corrective lenses to drive?
             </h2>
           </Row>
+          {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
           <Row>
             <Col>
               <Radio value="Yes" onClick={() => this.handleYes()} />
@@ -61,18 +59,12 @@ class Vision extends Component {
           </Row>
           {!this.state.no && !this.state.yes ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : this.state.no ? (
-            this.props.showhc ? (
-              <Link to="/step2" onClick={() => this.onSubmit()}>
-                <Button>Next</Button>
-              </Link>
-            ) : (
-              <Link to="/step1" onClick={() => this.onSubmit()}>
-                <Button>Next</Button>
-              </Link>
-            )
+          ) : this.props.showhc ? (
+            <Link to="/step2" onClick={() => this.onSubmit()}>
+              <Button>Next</Button>
+            </Link>
           ) : (
-            <Link to="/ineligible" onClick={() => this.onSubmit()}>
+            <Link to="/step1" onClick={() => this.onSubmit()}>
               <Button>Next</Button>
             </Link>
           )}

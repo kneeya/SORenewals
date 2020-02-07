@@ -20,6 +20,7 @@ import Contact from "./components/Contact.jsx";
 import FiveMos from "./components/FiveMos.jsx";
 import Notify from "./components/Notify.jsx";
 import Ineligible from "./components/Ineligible.jsx";
+import OPCinput from "./components/OPCinput.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -65,9 +66,18 @@ export default class App extends Component {
                 exact
                 path="/before-you-proceed"
                 render={() =>
-                  this.state.showdl ? <ByP /> : <Redirect to="/healthcard" />
+                  !this.state.showopc ? (
+                    <ByP
+                      showdl={this.state.showdl}
+                      showhc={this.state.showhc}
+                      showopc={this.state.showopc}
+                    />
+                  ) : (
+                    <Redirect to="/elig" />
+                  )
                 }
               />
+              {/* <Route path="before-you-proceed-hc" component={ByPhc} /> */}
               <Route /* using ? operator and the dl, hc and opc states of App.js to determine if user can proceed*/
                 exact
                 path="/step1"
@@ -90,6 +100,7 @@ export default class App extends Component {
                   />
                 )}
               />
+              <Route path="/pc-input" component={OPCinput} />
               <Route exact path="/postal" component={Postal} />
               {/* <Route
                 exact
