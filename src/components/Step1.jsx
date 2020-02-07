@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactBootstrap from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
-import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
+import { Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 
@@ -26,15 +26,9 @@ class Step1 extends Component {
             <p className="prompt">Driver's license number</p>
             <Input />
           </Row>
-          {this.props.showhc ? (
-            <Link to="/step2">
-              <Button>Next</Button>
-            </Link>
-          ) : (
-            <Link to="/postal">
-              <Button>Next</Button>
-            </Link>
-          )}
+          <Link to="/postal">
+            <Button>Next</Button>
+          </Link>
         </Container>
       </React.Fragment>
     );

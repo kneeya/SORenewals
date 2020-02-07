@@ -38,12 +38,10 @@ class Address extends Component {
   }
 
   handleNo = () => {
-    let nochecked = !this.state.no;
     this.setState({ no: true, yes: false, fail: false });
   };
 
   handleYes = () => {
-    let yeschecked = !this.state.yes;
     this.setState({ yes: true, no: false, fail: false });
   };
 
