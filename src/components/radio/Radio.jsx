@@ -16,12 +16,8 @@ class Radio extends Component {
                 id="1-year-renewal"
                 name="licence-renewal"
                 type="radio"
-                value="1-year"
               />
-              <label
-                class="ontario-label ontario-radios__label"
-                for="1-year-renewal"
-              >
+              <label class="ontario-label ontario-radios__label">
                 <strong>{this.props.value}</strong>
               </label>
             </div>
