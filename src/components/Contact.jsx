@@ -26,10 +26,10 @@ class Contact extends Component {
     this.props.history.goBack();
   }
   checkvoice() {
-    if (this.state.id.voice == "") {
+    if (this.state.id.voice === "") {
       this.setState({ smsdisabled: true });
     }
-    if (!(this.state.id.voice.length == 10)) {
+    if (!(this.state.id.voice.length === 10)) {
       this.setState({ smsdisabled: true });
     } else {
       this.setState({ smsdisabled: false });
