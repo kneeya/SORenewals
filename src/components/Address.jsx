@@ -29,12 +29,6 @@ class Address extends Component {
     } else {
       this.setState({ fail: false });
     }
-    if (this.state.no === false) {
-      console.log("noswag");
-    }
-    if (this.state.yes === true) {
-      console.log("yesswag");
-    }
   }
 
   handleNo = () => {

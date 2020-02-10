@@ -4,8 +4,6 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
-import PhoneInput from "react-phone-number-input/input";
-import "react-phone-number-input/style.css";
 
 class Contact extends Component {
   state = {
@@ -24,10 +22,10 @@ class Contact extends Component {
     this.props.history.goBack();
   }
   checkvoice() {
-    if (this.state.id.voice == "") {
+    if (this.state.id.voice === "") {
       this.setState({ smsdisabled: true });
     }
-    if (!(this.state.id.voice.length == 10)) {
+    if (!(this.state.id.voice.length === 10)) {
       this.setState({ smsdisabled: true });
     } else {
       this.setState({ smsdisabled: false });
