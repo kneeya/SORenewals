@@ -57,12 +57,22 @@ class Address extends Component {
           )}
           <Container className={this.state.fail ? "error-content" : ""}>
             <Row>
-              <h2>
-                <strong>
-                  1. Has your address changed in the last 90 days?
-                </strong>
-                (required)
-              </h2>
+              {this.props.showdl ? (
+                <h2 className="sub-header">
+                  Do you currently live at the address on your driver's license?
+                </h2>
+              ) : this.props.showopc ? (
+                <h2 className="sub-header">
+                  Do you currently live at the address on your Ontario photo
+                  card?
+                </h2>
+              ) : (
+                <h2 className="sub-header">
+                  Do you currently live at the address on your driver's license
+                  or Ontario photo card?
+                </h2>
+              )}
+
               <br />
             </Row>
             {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
@@ -74,7 +84,7 @@ class Address extends Component {
             </Row>
             {!this.state.no && !this.state.yes ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
-            ) : this.state.no ? (
+            ) : this.state.yes ? (
               this.props.showhc ? (
                 <Link to="/five-mos" onClick={() => this.onSubmit()}>
                   <Button>Next</Button>
