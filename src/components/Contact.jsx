@@ -6,6 +6,8 @@ import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import PhoneInput from "react-phone-number-input/input";
 import "react-phone-number-input/style.css";
+import Email from "../Form.js";
+import * as emailjs from "emailjs-com";
 
 class Contact extends Component {
   state = {
@@ -70,20 +72,9 @@ class Contact extends Component {
           </Row>
         </Container>
         <Container>
-          <Row>
-            <Col>
-              <strong>Email (optional)</strong>
-              <p> For example person@example.com</p>
-              <Input />
-              <p>
-                We will email you an electronic receipt and temporary
-                docuemnt(s) for this transaction.
-              </p>
-            </Col>
-          </Row>
-          <Link to="/notify-so">
-            <Button>Next</Button>
-          </Link>
+          <strong>Email (optional)</strong>
+          <p> For example person@example.com</p>
+          <Email env={this.props.env} />
         </Container>
       </React.Fragment>
     );
