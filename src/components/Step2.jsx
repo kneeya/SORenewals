@@ -9,9 +9,29 @@ class Step2 extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
+  state = {
+    hc: ""
+  };
   goBack() {
     this.props.history.goBack();
+  }
+  checkhealth() {
+    if (this.state.hc === "") {
+      this.setState({ healthdisabled: true });
+    } else if (this.state.hc.length === 12) {
+      this.setState({ healthdisabled: true });
+    } else {
+      this.setState({ healthdisabled: false, fail: false });
+    }
+  }
+  onSubmit() {
+    if (this.state.healthdisabled) {
+      this.setState({ fail: true });
+    } else {
+      this.setState({ fail: false });
+    }
   }
   render() {
     return (
@@ -29,7 +49,16 @@ class Step2 extends Component {
           <Row>
             <p className="prompt">Health Card number</p>
           </Row>
-          <Input />
+          <Input
+            ref={input => (this.state.healthy = input)}
+            onChange={() => {
+              let temp = this.state.healthy;
+              temp = parseInt(this.state.healthy.value);
+
+              this.setState({ hc: temp });
+            }}
+            onBlur={() => this.checkhealth()}
+          />
           <Row>
             {this.props.showdl ? (
               <Link to="/step1">

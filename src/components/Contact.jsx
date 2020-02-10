@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import ReactBootstrap from "react-bootstrap";
-import { Container, Row, Form, Button, Col } from "react-bootstrap";
-import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
+import { Container, Row, Button, Col } from "react-bootstrap";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import PhoneInput from "react-phone-number-input/input";
 import "react-phone-number-input/style.css";
 import Email from "../Form.js";
 import * as emailjs from "emailjs-com";
+import Error from "./error/Error";
+import ErrorMsg from "./error/ErrorMsg";
 
 class Contact extends Component {
   state = {
@@ -16,33 +18,62 @@ class Contact extends Component {
       number: "",
       voice: ""
     },
-    smsdisabled: false
+    voicedisabled: false,
+    fail: false
   };
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
+    this.checkvoice = this.checkvoice.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   goBack() {
     this.props.history.goBack();
   }
-  checkvoice() {
-    if (this.state.id.voice === "") {
-      this.setState({ smsdisabled: true });
-    }
-    if (!(this.state.id.voice.length === 10)) {
-      this.setState({ smsdisabled: true });
+
+  handleSubmit(e) {
+    // const { email } = this.state;
+    // let templateParams = {
+    //   to_name: email
+    // };
+    // emailjs.send(
+    //   "gmail",
+    //   "template_RLG3E76r",
+    //   templateParams,
+    //   "user_u3p3HFlbdGyXe6PNlzFis"
+    // );
+  }
+  handleChange = (param, e) => {
+    this.setState({ [param]: e.target.value });
+  };
+
+  componentDidMount() {
+    this.checkvoice();
+  }
+  onSubmit() {
+    if (this.state.voicedisabled && this.props.showhc) {
+      this.setState({ fail: true });
     } else {
-      this.setState({ smsdisabled: false });
+      this.setState({ fail: false });
     }
-    if (!this.state.smsdisabled) {
-      console.log("swag");
+  }
+  checkvoice() {
+    if (this.state.id.voice === "" && this.props.showhc) {
+      this.setState({ voicedisabled: true });
+    }
+    if (!(this.state.id.voice.length === 10) && this.props.showhc) {
+      this.setState({ voicedisabled: true });
+    } else {
+      this.setState({ voicedisabled: false, fail: false });
     }
   }
   render() {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
-        <Container>
+        {this.state.fail ? <Error bul1="Phone number" /> : ""}
+        <Container className={this.state.fail ? "error-content" : ""}>
           <Row>
             <h2 className="sub-header">Contact information</h2>
           </Row>
@@ -51,8 +82,16 @@ class Contact extends Component {
           </Row>
           <Row>
             <Col>
-              <strong>Phone number (optional)</strong>
+              <strong>
+                Phone number {!this.props.showhc ? "optional" : ""}
+              </strong>
+              {this.state.fail ? (
+                <ErrorMsg msg="Please provide a phone number" />
+              ) : (
+                ""
+              )}
               <p>For example 5194562343</p>
+
               <Input
                 ref={input => (this.state.voice = input)}
                 onChange={() => {
@@ -61,8 +100,6 @@ class Contact extends Component {
                   this.setState({ id: temp });
                 }}
                 onBlur={() => this.checkvoice()}
-                country="CA"
-                className="email"
               />
               <p>
                 We may call you to confirm that you live in Ontario, or to
@@ -74,7 +111,39 @@ class Contact extends Component {
         <Container>
           <strong>Email (optional)</strong>
           <p> For example person@example.com</p>
-          <Email env={this.props.env} />
+          <Form onSubmit={this.handleSubmit.bind(this)}>
+            <FormGroup controlId="formBasicEmail">
+              <Input
+                type="email"
+                name="email"
+                value={this.state.id.email}
+                className="text-primary"
+                onChange={this.handleChange.bind(this, "email")}
+                placeholder="Enter email"
+                onBlur={() => this.checkemail()}
+              />
+            </FormGroup>
+            <p>
+              We will email you an electronic receipt and temporary document(s)
+              for this transaction.
+            </p>
+            {/* <Link to="/notify-so">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={this.handleSubmit()}
+            >
+              Next
+            </Button>
+          </Link> */}
+            {this.state.voicedisabled && this.props.showhc ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            ) : (
+              <Link to="/notify-so">
+                <Button>Next</Button>
+              </Link>
+            )}
+          </Form>
         </Container>
       </React.Fragment>
     );
