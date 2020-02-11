@@ -65,18 +65,13 @@ class Contact extends Component {
     }
   }
   checkvoice() {
-    if (
-      this.state.voice === "" ||
-      !(this.state.voice.length === 10)
-      // && this.props.showhc
-    ) {
-      this.setState({ voicedisabled: true });
-    } else {
+    var regex = /^[(]?\d{3}[)]?[ -]?\d{3}[ -]?\d{4}$/;
+    var match = regex.exec(this.state.voice);
+    //if (this.props.showhc) {
+    if (match) {
       this.setState({ voicedisabled: false, fail: false });
-    }
-
-    if (this.state.voicedisabled) {
-      console.log("swag");
+    } else {
+      this.setState({ voicedisabled: true });
     }
   }
   render() {
@@ -103,7 +98,7 @@ class Contact extends Component {
               )}
               <p>For example 5194562343</p>
 
-              <Input
+              <input
                 ref={input => (this.state.voicey = input)}
                 onChange={() => {
                   let temp = this.state.voicey;
@@ -139,7 +134,6 @@ class Contact extends Component {
               for this transaction.
             </p>
             {this.state.voicedisabled ? (
-              //&& this.props.showhc
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
               <Link to="/notify-so">
