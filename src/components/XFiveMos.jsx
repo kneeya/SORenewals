@@ -49,7 +49,7 @@ class IneligibleFiveMos extends Component {
                 By continuing, you will only be renewing your driver's licence.
               </h3>
               <br />
-              <Link to="/step1">
+              <Link to="/med-con2">
                 <Button>Continue to only renew your driver's licence</Button>
               </Link>
             </React.Fragment>
