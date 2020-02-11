@@ -30,16 +30,22 @@ class Contact extends Component {
   }
 
   handleSubmit(e) {
-    // const { email } = this.state;
-    // let templateParams = {
-    //   to_name: email
-    // };
-    // emailjs.send(
-    //   "gmail",
-    //   "template_RLG3E76r",
-    //   templateParams,
-    //   "user_u3p3HFlbdGyXe6PNlzFis"
-    // );
+    // e.preventDefault();
+    const { email } = this.state;
+    let templateParams = {
+      to_name: email
+    };
+    emailjs.send(
+      "gmail",
+      "template_RLG3E76r",
+      templateParams,
+      "user_u3p3HFlbdGyXe6PNlzFis"
+    );
+  }
+  sendEmail(email, e) {
+    if (email !== "") {
+      this.handleSubmit(e);
+    }
   }
   handleChange = (param, e) => {
     this.setState({ [param]: e.target.value });
@@ -125,28 +131,25 @@ class Contact extends Component {
                 className="text-primary"
                 onChange={this.handleChange.bind(this, "email")}
                 placeholder="Enter email"
-                onBlur={() => this.checkemail()}
+                // onBlur={() => this.checkemail()}
               />
             </FormGroup>
             <p>
               We will email you an electronic receipt and temporary document(s)
               for this transaction.
             </p>
-            {/* <Link to="/notify-so">
-            <Button
-              variant="primary"
-              type="submit"
-              onClick={this.handleSubmit()}
-            >
-              Next
-            </Button>
-          </Link> */}
             {this.state.voicedisabled ? (
               //&& this.props.showhc
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
               <Link to="/notify-so">
-                <Button>Next</Button>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  onClick={this.sendEmail()}
+                >
+                  Next
+                </Button>
               </Link>
             )}
           </Form>
