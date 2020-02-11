@@ -23,13 +23,25 @@ class Postal extends Component {
   }
 
   checkpostal() {
-    let postallength = this.state.postal.length;
-    if (this.state.postal === "") {
-      this.setState({ postaldisabled: true });
-    } else if (postallength === 6) {
-      this.setState({ postaldisabled: true });
+    var regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+
+    var match = regex.exec(this.state.postal);
+    if (match) {
+      if (
+        (this.state.postal.indexOf("-") !== -1 ||
+          this.state.postal.indexOf(" ") !== -1) &&
+        this.state.postal.length == 7
+      ) {
+        this.setState({ postaldisabled: false, fail: false });
+      } else if (
+        (this.state.postal.indexOf("-") == -1 ||
+          this.state.postal.indexOf(" ") == -1) &&
+        this.state.postal.length == 6
+      ) {
+        this.setState({ postaldisabled: false, fail: false });
+      }
     } else {
-      this.setState({ postaldisabled: false, fail: false });
+      this.setState({ postaldisabled: true });
     }
   }
 
@@ -61,15 +73,15 @@ class Postal extends Component {
               <p>Enter your postal code</p>
             </Col>
           </Row>
-          {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
+          {this.state.fail ? <ErrorMsg msg="Enter your postal code" /> : ""}
           <Row>
             <Col>
               <p>For example ANA NAN</p>
-              <Input
-                ref={input => (this.state.posty = input)}
+              <input
+                id="postal"
+                ref={input => (this.postal = input)}
                 onChange={() => {
-                  let temp = this.state.posty;
-                  temp = parseInt(this.state.posty.value);
+                  let temp = this.postal.value;
 
                   this.setState({ postal: temp });
                 }}
