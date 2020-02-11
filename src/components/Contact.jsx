@@ -14,9 +14,7 @@ class Contact extends Component {
     email: "",
     number: "",
     voice: "",
-
-    voicedisabled: false,
-    fail: false
+    voicedisabled: false
   };
   constructor(props) {
     super(props);
@@ -30,17 +28,16 @@ class Contact extends Component {
   }
 
   handleSubmit(e) {
-    // e.preventDefault();
-    const { email } = this.state;
-    let templateParams = {
-      to_name: email
-    };
-    emailjs.send(
-      "gmail",
-      "template_RLG3E76r",
-      templateParams,
-      "user_u3p3HFlbdGyXe6PNlzFis"
-    );
+    // const { email } = this.state;
+    // let templateParams = {
+    //   to_name: email
+    // };
+    // emailjs.send(
+    //   "gmail",
+    //   "template_RLG3E76r",
+    //   templateParams,
+    //   "user_u3p3HFlbdGyXe6PNlzFis"
+    // );
   }
   sendEmail(email, e) {
     if (email !== "") {
@@ -49,6 +46,9 @@ class Contact extends Component {
   }
   handleChange = (param, e) => {
     this.setState({ [param]: e.target.value });
+    if (this.state.email) {
+      this.setState({ emailfail: false });
+    }
   };
 
   componentDidMount() {
@@ -56,17 +56,25 @@ class Contact extends Component {
   }
   onSubmit() {
     if (this.state.voicedisabled && this.props.showhc) {
-      this.setState({ fail: true });
+      this.setState({ voicefail: true });
     } else {
-      this.setState({ fail: false });
+      this.setState({ voicefail: false });
     }
+
+    if (!this.state.email) {
+      this.setState({ emailfail: true });
+    } else {
+      this.setState({ emialfail: false });
+    }
+    //sending email and phone number to app.js to use in notify and review details page
+    this.props.sendEmail(this.state.email, this.state.voice);
   }
   checkvoice() {
     var regex = /^[(]?\d{3}[)]?[ -]?\d{3}[ -]?\d{4}$/;
     var match = regex.exec(this.state.voice);
     if (this.props.showhc) {
       if (match) {
-        this.setState({ voicedisabled: false, fail: false });
+        this.setState({ voicedisabled: false, voicefail: false });
       } else {
         this.setState({ voicedisabled: true });
       }
@@ -76,8 +84,16 @@ class Contact extends Component {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
-        {this.state.fail ? <Error bul1="Phone number" /> : ""}
-        <Container className={this.state.fail ? "error-content" : ""}>
+        {this.state.voicefail && this.state.emailfail ? (
+          <Error bul1="Phone number" bul2="Email" />
+        ) : this.state.emailfail && !this.state.voicefail ? (
+          <Error bul1="Email" />
+        ) : this.state.voicefail && !this.state.emailfail ? (
+          <Error bul1="Phone number" />
+        ) : (
+          ""
+        )}
+        <Container className={this.state.voicefail ? "error-content" : ""}>
           <Row>
             <h2 className="sub-header">Contact information</h2>
           </Row>
@@ -89,7 +105,7 @@ class Contact extends Component {
               <strong>
                 Phone number {!this.props.showhc ? "(optional)" : ""}
               </strong>
-              {this.state.fail ? (
+              {this.state.voicefail ? (
                 <ErrorMsg msg="Please provide a phone number" />
               ) : (
                 ""
@@ -113,9 +129,15 @@ class Contact extends Component {
             </Col>
           </Row>
         </Container>
-        <Container>
-          <strong>Email (optional)</strong>
+        <Container className={this.state.emailfail ? "error-content" : ""}>
+          <strong>Email</strong>
+          {this.state.emailfail ? (
+            <ErrorMsg msg="Please provide an email" />
+          ) : (
+            ""
+          )}
           <p> For example person@example.com</p>
+
           <Form onSubmit={this.handleSubmit.bind(this)}>
             <FormGroup controlId="formBasicEmail">
               <Input
@@ -131,7 +153,8 @@ class Contact extends Component {
               We will email you an electronic receipt and temporary document(s)
               for this transaction.
             </p>
-            {this.state.voicedisabled && this.props.showhc ? (
+            {(this.state.voicedisabled && this.props.showhc) ||
+            !this.state.email ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
               <Link to="/notify-so">
