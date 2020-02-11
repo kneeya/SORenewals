@@ -162,19 +162,6 @@ class Step2 extends Component {
               <Button>Next</Button>
             </Link>
           )}
-          {/* {this.props.showdl ? (
-              <Link to="/step1">
-                <Button>Next</Button>
-              </Link>
-            ) : this.props.showopc ? (
-              <Link to="/pc-input">
-                <Button>Next</Button>
-              </Link>
-            ) : (
-              <Link to="/healthcard">
-                <Button>Next</Button>
-              </Link>
-            )} */}
         </Container>
       </React.Fragment>
     );

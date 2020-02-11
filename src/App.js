@@ -190,9 +190,9 @@ export default class App extends Component {
         <div class="footer">
           <Footer />
         </div>
-        <div className="App">
+        {/* <div className="App">
           <PDFViewer />
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }
