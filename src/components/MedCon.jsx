@@ -70,7 +70,7 @@ class MedCon extends Component {
               <Button>Next</Button>
             </Link>
           ) : (
-            <Link to="/ineligible">
+            <Link to="/ineligible3">
               <Button>Next</Button>
             </Link>
           )}

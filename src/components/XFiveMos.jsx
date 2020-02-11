@@ -6,7 +6,7 @@ import "rc-checkbox/assets/index.css";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 
-class Ineligible extends Component {
+class IneligibleFiveMos extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
@@ -29,15 +29,37 @@ class Ineligible extends Component {
           </Row>
           <Row>
             <ul>
-              {this.props.showhc ? <li>health card</li> : ""}
-              {this.props.showopc ? <li>photo card</li> : ""}
-              {this.props.showdl ? <li>driver's licence</li> : ""}
+              <li>health card</li>
             </ul>
           </Row>
+          {this.props.showopc ? (
+            <React.Fragment>
+              <h3>By continuing, you will only be renewing your photo card.</h3>
+              <br />
+              <Link to="/pc-input">
+                <Button>Continue to only renew your photo card</Button>
+              </Link>
+            </React.Fragment>
+          ) : (
+            ""
+          )}
+          {this.props.showdl ? (
+            <React.Fragment>
+              <h3>
+                By continuing, you will only be renewing your driver's licence.
+              </h3>
+              <br />
+              <Link to="/step1">
+                <Button>Continue to only renew your driver's licence</Button>
+              </Link>
+            </React.Fragment>
+          ) : (
+            ""
+          )}
         </Container>
       </React.Fragment>
     );
   }
 }
 
-export default withRouter(Ineligible);
+export default withRouter(IneligibleFiveMos);
