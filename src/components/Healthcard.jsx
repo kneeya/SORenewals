@@ -13,6 +13,8 @@ class Healthcard extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
+    this.checkdriver = this.checkdriver.bind(this);
+    this.checktrill = this.checktrill.bind(this);
   }
   state = { dl: "", trill: "", opc: "", nchar: "" };
   goBack() {
@@ -27,23 +29,19 @@ class Healthcard extends Component {
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;
     var match = regex.exec(this.state.opc);
-    if (this.state.opcchecked) {
-      if (match) {
-        this.setState({ photodisabled: false, opcfail: false });
-      } else {
-        this.setState({ photodisabled: true });
-      }
+    if (match) {
+      this.setState({ photodisabled: false, opcfail: false });
+    } else {
+      this.setState({ photodisabled: true });
     }
   }
   checkninechar() {
     var regex = /^[A-Za-z][A-Za-z]\d{7}$/;
     var match = regex.exec(this.state.nchar);
-    if (this.state.opcchecked) {
-      if (match) {
-        this.setState({ chardisabled: false, charfail: false });
-      } else {
-        this.setState({ chardisabled: true });
-      }
+    if (match) {
+      this.setState({ chardisabled: false, charfail: false });
+    } else {
+      this.setState({ chardisabled: true });
     }
   }
   onSubmit() {
@@ -77,43 +75,63 @@ class Healthcard extends Component {
   checktrill() {
     var regex = /^(\d{7})$/;
     var match = regex.exec(this.state.trill);
-    if (this.state.dlchecked) {
-      if (match) {
-        this.setState({ trilldisabled: false, trillfail: false });
-      } else {
-        this.setState({ trilldisabled: true });
-      }
+
+    if (match) {
+      this.setState({ trilldisabled: false, trillfail: false });
+    } else {
+      this.setState({ trilldisabled: true });
     }
   }
   checkdriver() {
     var check1 = parseInt(this.state.dl.substring(13, 15));
     var check2 = parseInt(this.state.dl.substring(15, 17));
-    if (this.state.dlchecked) {
-      if (this.state.dl === "") {
-        this.setState({ driverdisabled: true });
-      } else if (
-        ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
-        check2 < 1 ||
-        check2 > 31
-      ) {
-        this.setState({ driverdisabled: true });
-      } else {
-        this.setState({ driverdisabled: false, dlfail: false });
-      }
+
+    if (this.state.dl === "") {
+      this.setState({ driverdisabled: true });
+    } else if (
+      ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
+      check2 < 1 ||
+      check2 > 31
+    ) {
+      this.setState({ driverdisabled: true });
+    } else {
+      this.setState({ driverdisabled: false, dlfail: false });
     }
   }
 
   handleDl() {
-    this.setState({ dlchecked: true });
-    this.setState({ opcchecked: false });
+    this.setState({
+      dlchecked: true,
+      trilldisabled: true,
+      driverdisabled: true
+    });
+    this.setState({
+      opcchecked: false,
+      chardisabled: false,
+      photodisabled: false
+    });
     this.setState({ fail: false });
     this.setState({ dlfail: false, trillfail: false });
+
+    //this.checkdriver();
+    //this.checktrill();
   }
 
   handleOpc() {
-    this.setState({ dlchecked: false });
-    this.setState({ opcchecked: true });
+    this.setState({
+      dlchecked: false,
+      trilldisabled: false,
+      driverdisabled: false
+    });
+    this.setState({
+      opcchecked: true,
+      chardisabled: true,
+      photodisabled: true
+    });
     this.setState({ fail: false, opcfail: false, charfail: false });
+
+    //this.checkphoto();
+    //this.checkninechar();
   }
 
   render() {
