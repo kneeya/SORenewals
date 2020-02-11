@@ -21,6 +21,7 @@ import FiveMos from "./components/FiveMos.jsx";
 import Notify from "./components/Notify.jsx";
 import Ineligible from "./components/Ineligible.jsx";
 import OPCinput from "./components/OPCinput.jsx";
+import PDFViewer from "./components/PDFViewer/PDFViewer";
 
 export default class App extends Component {
   constructor(props) {
@@ -188,6 +189,9 @@ export default class App extends Component {
         <div class="clearfooter"></div>
         <div class="footer">
           <Footer />
+        </div>
+        <div className="App">
+          <PDFViewer />
         </div>
       </React.Fragment>
     );
