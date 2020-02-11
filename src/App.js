@@ -40,6 +40,10 @@ export default class App extends Component {
     this.setState(showThis);
   };
 
+  getContact = (uemail, uphone) => {
+    this.setState({ email: uemail, phone: uphone });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -217,6 +221,7 @@ export default class App extends Component {
                     showdl={this.state.showdl}
                     showhc={this.state.showhc}
                     showopc={this.state.showopc}
+                    sendContact={this.getContact.bind(this)}
                   />
                 )}
               />

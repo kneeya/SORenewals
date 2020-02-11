@@ -35,6 +35,11 @@ class Home extends Component {
     ) {
       this.setState({ fail: false });
     }
+    if (this.state.dlcheck && !this.state.photocheck) {
+      this.setState({ opcdlfail: true });
+    } else {
+      this.setState({ opcdlfail: false });
+    }
   };
 
   handleOpcChecked = () => {
@@ -46,6 +51,12 @@ class Home extends Component {
       !this.state.photocheck
     ) {
       this.setState({ fail: false });
+    }
+    //removing the fail state if user removes check
+    if (!this.state.dlcheck && this.state.photocheck) {
+      this.setState({ opcdlfail: true });
+    } else {
+      this.setState({ opcdlfail: false });
     }
   };
 
@@ -78,6 +89,12 @@ class Home extends Component {
     } else {
       this.setState({ fail: false });
     }
+    //to prevent both dl adn opc renewal using opcdlfail state
+    if (this.state.dlcheck && this.state.photocheck) {
+      this.setState({ opcdlfail: true });
+    } else {
+      this.setState({ opcdlfail: false });
+    }
   };
 
   render() {
@@ -85,17 +102,23 @@ class Home extends Component {
       <React.Fragment>
         <Back onClick={this.goBack} />
 
-        {this.state.fail ? (
+        {this.state.fail || this.state.opcdlfail ? (
           <Error bul1="Choose the card(s) you want to renew (select at least one)" />
         ) : (
           ""
         )}
-        <Container className={this.state.fail ? "error-content" : ""}>
+        <Container
+          className={
+            this.state.fail || this.state.opcdlfail ? "error-content" : ""
+          }
+        >
           <h2 class="sub-header">Choose the card(s) you want to renew</h2>
           <p>(select at least one)</p>
           {//this prop is a state in App.js, when true it shows this error msg
           this.state.fail ? (
             <ErrorMsg msg="You must select one or more card(s)" />
+          ) : this.state.opcdlfail ? (
+            <ErrorMsg msg="You can only renew one. Please choose driver's licence or photo card." />
           ) : (
             ""
           )}
@@ -134,9 +157,12 @@ class Home extends Component {
               </Col>
             </Row>
             {/*this ? operator determines whether to let the user proceed or not based on their selection */}
-            {this.state.dlcheck ||
-            this.state.healthcheck ||
-            this.state.photocheck ? (
+            {(!this.state.dlcheck &&
+              !this.state.healthcheck &&
+              !this.state.photocheck) ||
+            (this.state.dlcheck && this.state.photocheck) ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            ) : (
               <Link to="/before-you-proceed">
                 <Button
                   onClick={() =>
@@ -150,8 +176,6 @@ class Home extends Component {
                   Next
                 </Button>
               </Link>
-            ) : (
-              <Button onClick={() => this.onSubmit()}>Next</Button>
             )}
           </Form>
         </Container>
