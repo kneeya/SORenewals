@@ -20,6 +20,8 @@ import Contact from "./components/Contact.jsx";
 import FiveMos from "./components/FiveMos.jsx";
 import Notify from "./components/Notify.jsx";
 import Ineligible from "./components/Ineligible.jsx";
+import IneligibleFiveMos from "./components/XFiveMos.jsx";
+import Ineligible3 from "./components/XMedCon.jsx";
 import OPCinput from "./components/OPCinput.jsx";
 import PDFViewer from "./components/PDFViewer/PDFViewer";
 
@@ -162,7 +164,36 @@ export default class App extends Component {
                   />
                 )}
               />
-              <Route path="/ineligible" component={Ineligible} />
+              <Route
+                path="/ineligible"
+                render={() => (
+                  <Ineligible
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
+              <Route
+                path="/ineligible2"
+                render={() => (
+                  <IneligibleFiveMos
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
+              <Route
+                path="/ineligible3"
+                render={() => (
+                  <Ineligible3
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
               <Route
                 path="/contact"
                 render={() => (
@@ -190,9 +221,9 @@ export default class App extends Component {
         <div class="footer">
           <Footer />
         </div>
-        <div className="App">
+        {/* <div className="App">
           <PDFViewer />
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

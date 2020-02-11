@@ -74,7 +74,7 @@ class FiveMos extends Component {
               </Link>
             )
           ) : (
-            <Link to="/ineligible" onClick={() => this.onSubmit()}>
+            <Link to="/ineligible2" onClick={() => this.onSubmit()}>
               <Button>Next</Button>
             </Link>
           )}

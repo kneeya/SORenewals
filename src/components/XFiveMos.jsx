@@ -6,7 +6,7 @@ import "rc-checkbox/assets/index.css";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 
-class Ineligible extends Component {
+class IneligibleFiveMos extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
@@ -29,9 +29,7 @@ class Ineligible extends Component {
           </Row>
           <Row>
             <ul>
-              {this.props.showhc ? <li>health card</li> : ""}
-              {this.props.showopc ? <li>photo card</li> : ""}
-              {this.props.showdl ? <li>driver's licence</li> : ""}
+              <li>health card</li>
             </ul>
           </Row>
         </Container>
@@ -40,4 +38,4 @@ class Ineligible extends Component {
   }
 }
 
-export default withRouter(Ineligible);
+export default withRouter(IneligibleFiveMos);
