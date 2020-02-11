@@ -32,6 +32,30 @@ class IneligibleFiveMos extends Component {
               <li>health card</li>
             </ul>
           </Row>
+          {this.props.showopc ? (
+            <React.Fragment>
+              <h3>By continuing, you will only be renewing your photo card.</h3>
+              <br />
+              <Link to="/pc-input">
+                <Button>Continue to only renew your photo card</Button>
+              </Link>
+            </React.Fragment>
+          ) : (
+            ""
+          )}
+          {this.props.showdl ? (
+            <React.Fragment>
+              <h3>
+                By continuing, you will only be renewing your driver's licence.
+              </h3>
+              <br />
+              <Link to="/step1">
+                <Button>Continue to only renew your driver's licence</Button>
+              </Link>
+            </React.Fragment>
+          ) : (
+            ""
+          )}
         </Container>
       </React.Fragment>
     );
