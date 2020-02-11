@@ -38,19 +38,18 @@ class Step1 extends Component {
   }
 
   checktrill() {
-    if (this.state.trill === "") {
-      this.setState({ trilldisabled: true });
-    } else if (this.state.trill.length === 7) {
-      this.setState({ trilldisabled: true });
-    } else {
+    var regex = /^(\d{7})$/;
+    var match = regex.exec(this.state.trill);
+    if (match) {
       this.setState({ trilldisabled: false, trillfail: false });
+    } else {
+      this.setState({ trilldisabled: true });
     }
   }
   checkdriver() {
     var check1 = parseInt(this.state.dl.substring(13, 15));
     var check2 = parseInt(this.state.dl.substring(15, 17));
 
-    // console.log(this.state.dl);
     if (this.state.dl === "") {
       this.setState({ driverdisabled: true });
     } else if (
@@ -165,12 +164,11 @@ class Step1 extends Component {
           <Row>
             <Col>
               <p>For example 0237452</p>
-              <Input
-                ref={input => (this.state.trilly = input)}
+              <input
+                id="trill"
+                ref={input => (this.trill = input)}
                 onChange={() => {
-                  let temp = this.state.trilly;
-                  temp = parseInt(this.state.trilly.value);
-
+                  let temp = this.trill.value;
                   this.setState({ trill: temp });
                 }}
                 onBlur={() => this.checktrill()}

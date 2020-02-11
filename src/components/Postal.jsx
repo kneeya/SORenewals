@@ -82,7 +82,6 @@ class Postal extends Component {
                 ref={input => (this.postal = input)}
                 onChange={() => {
                   let temp = this.postal.value;
-
                   this.setState({ postal: temp });
                 }}
                 onBlur={() => this.checkpostal()}
