@@ -13,11 +13,10 @@ import ErrorMsg from "./error/ErrorMsg";
 
 class Contact extends Component {
   state = {
-    id: {
-      email: "",
-      number: "",
-      voice: ""
-    },
+    email: "",
+    number: "",
+    voice: "",
+
     voicedisabled: false,
     fail: false
   };
@@ -52,20 +51,28 @@ class Contact extends Component {
     this.checkvoice();
   }
   onSubmit() {
-    if (this.state.voicedisabled && this.props.showhc) {
+    if (
+      this.state.voicedisabled
+      //&& this.props.showhc
+    ) {
       this.setState({ fail: true });
     } else {
       this.setState({ fail: false });
     }
   }
   checkvoice() {
-    if (this.state.id.voice === "" && this.props.showhc) {
-      this.setState({ voicedisabled: true });
-    }
-    if (!(this.state.id.voice.length === 10) && this.props.showhc) {
+    if (
+      this.state.voice === "" ||
+      !(this.state.voice.length === 10)
+      // && this.props.showhc
+    ) {
       this.setState({ voicedisabled: true });
     } else {
       this.setState({ voicedisabled: false, fail: false });
+    }
+
+    if (this.state.voicedisabled) {
+      console.log("swag");
     }
   }
   render() {
@@ -83,7 +90,7 @@ class Contact extends Component {
           <Row>
             <Col>
               <strong>
-                Phone number {!this.props.showhc ? "optional" : ""}
+                Phone number {!this.props.showhc ? "(optional)" : ""}
               </strong>
               {this.state.fail ? (
                 <ErrorMsg msg="Please provide a phone number" />
@@ -93,11 +100,11 @@ class Contact extends Component {
               <p>For example 5194562343</p>
 
               <Input
-                ref={input => (this.state.voice = input)}
+                ref={input => (this.state.voicey = input)}
                 onChange={() => {
-                  let temp = { ...this.state.id };
-                  temp.voice = parseInt(this.state.voice.value);
-                  this.setState({ id: temp });
+                  let temp = this.state.voicey;
+                  temp = parseInt(this.state.voicey.value);
+                  this.setState({ voice: temp });
                 }}
                 onBlur={() => this.checkvoice()}
               />
@@ -116,7 +123,7 @@ class Contact extends Component {
               <Input
                 type="email"
                 name="email"
-                value={this.state.id.email}
+                value={this.state.email}
                 className="text-primary"
                 onChange={this.handleChange.bind(this, "email")}
                 placeholder="Enter email"
@@ -136,7 +143,8 @@ class Contact extends Component {
               Next
             </Button>
           </Link> */}
-            {this.state.voicedisabled && this.props.showhc ? (
+            {this.state.voicedisabled ? (
+              //&& this.props.showhc
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
               <Link to="/notify-so">
