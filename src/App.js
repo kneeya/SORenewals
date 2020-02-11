@@ -15,7 +15,9 @@ import Postal from "./components/Postal.jsx";
 import TnC from "./components/TnC.jsx";
 import ByP from "./components/ByP.jsx";
 import Vision from "./components/Vision.jsx";
+import Vision2 from "./components/Vision2";
 import MedCon from "./components/MedCon.jsx";
+import MedCon2 from "./components/MedCon2.jsx";
 import Contact from "./components/Contact.jsx";
 import FiveMos from "./components/FiveMos.jsx";
 import Notify from "./components/Notify.jsx";
@@ -151,8 +153,22 @@ export default class App extends Component {
                 )}
               />
               <Route
+                path="/vision2"
+                render={() => (
+                  <Vision2
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
+              <Route
                 path="/med-con"
                 render={() => <MedCon showhc={this.state.showhc} />}
+              />
+              <Route
+                path="/med-con2"
+                render={() => <MedCon2 showhc={this.state.showhc} />}
               />
               <Route
                 path="/five-mos"
