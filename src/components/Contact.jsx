@@ -4,8 +4,6 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
-import PhoneInput from "react-phone-number-input/input";
-import "react-phone-number-input/style.css";
 import Email from "../Form.js";
 import * as emailjs from "emailjs-com";
 

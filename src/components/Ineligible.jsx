@@ -22,7 +22,7 @@ class Ineligible extends Component {
         <Back onClick={this.goBack} />
         <Container>
           <Row>
-            <h2 className="sub-header">Ineligibile bro</h2>
+            <h2 className="sub-header">Ineligible</h2>
           </Row>
         </Container>
       </React.Fragment>
