@@ -25,23 +25,25 @@ class Step1 extends Component {
   }
   onSubmit() {
     if (this.state.driverdisabled) {
-      this.setState({ fail: true });
+      this.setState({ dlfail: true });
     } else {
-      this.setState({ fail: false });
+      this.setState({ dlfail: false });
+    }
+
+    if (this.state.trilldisabled) {
+      this.setState({ trillfail: true });
+    } else {
+      this.setState({ trillfail: false });
     }
   }
 
   checktrill() {
     if (this.state.trill === "") {
-      this.setState({ driverdisabled: true });
-    }
-    if (!(this.state.trill.length === 10)) {
-      this.setState({ driverdisable: true });
+      this.setState({ trilldisabled: true });
+    } else if (this.state.trill.length === 7) {
+      this.setState({ trilldisabled: true });
     } else {
-      this.setState({ driverdisabled: false });
-    }
-    if (!this.state.smsdisabled) {
-      console.log("swag");
+      this.setState({ trilldisabled: false, trillfail: false });
     }
   }
   checkdriver() {
@@ -58,7 +60,7 @@ class Step1 extends Component {
     ) {
       this.setState({ driverdisabled: true });
     } else {
-      this.setState({ driverdisabled: false, fail: false });
+      this.setState({ driverdisabled: false, dlfail: false });
     }
   }
 
@@ -71,7 +73,7 @@ class Step1 extends Component {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
-        {this.state.fail ? (
+        {this.state.dlfail && this.state.trillfail ? (
           <Error
             bul1="Driver's license number"
             bul2="7 number sequence on card"
@@ -79,16 +81,30 @@ class Step1 extends Component {
         ) : (
           ""
         )}
-        <Container className={this.state.fail ? "error-content" : ""}>
+        {this.state.dlfail && !this.state.trillfail ? (
+          <Error bul1="Driver's license number" />
+        ) : this.state.trillfail && !this.state.dlfail ? (
+          <Error bul1="7 number sequence on card" />
+        ) : (
+          ""
+        )}
+        <Container>
           <Row>
             <h2 className="sub-header">Driver's License Information</h2>
           </Row>
           <Row>
             <p className="prompt">Enter your license information</p>
           </Row>
+        </Container>
+        <Container className={this.state.dlfail ? "error-content" : ""}>
           <Row>
             <strong>Driver's license number</strong>
           </Row>
+          {this.state.dlfail ? (
+            <ErrorMsg msg="Enter your driver's licence number." />
+          ) : (
+            ""
+          )}
           <Row>
             <Col>
               <p>For example A1234 12345 12345</p>
@@ -131,7 +147,7 @@ class Step1 extends Component {
           </Row>
           {/* input card img*/}
         </Container>
-        <Container className={this.state.fail ? "error-content" : ""}>
+        <Container className={this.state.trillfail ? "error-content" : ""}>
           <Row>
             <strong>7 number sequence on card</strong>
           </Row>
@@ -141,7 +157,7 @@ class Step1 extends Component {
               the back of your card.
             </p>
           </Row>
-          {this.state.fail ? (
+          {this.state.trillfail ? (
             <ErrorMsg msg="Enter your driver's license 7 number sequence" />
           ) : (
             ""
@@ -168,7 +184,7 @@ class Step1 extends Component {
           </Row>
           {/* input card img*/}
 
-          {this.state.driverdisabled ? (
+          {this.state.driverdisabled || this.state.trilldisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : (
             <Link to="/postal">

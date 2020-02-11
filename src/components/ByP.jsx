@@ -48,7 +48,7 @@ class ByP extends Component {
             ""
           )}
 
-          {this.props.showhc && !this.state.showdl ? (
+          {!this.props.showdl && this.props.showhc ? (
             <Form>
               <Row>
                 <Col xs={1}>

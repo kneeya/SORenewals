@@ -162,7 +162,16 @@ export default class App extends Component {
                 )}
               />
               <Route path="/ineligible" component={Ineligible} />
-              <Route path="/contact" component={Contact} />
+              <Route
+                path="/contact"
+                render={() => (
+                  <Contact
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
               <Route
                 path="/notify-so"
                 render={() => (
