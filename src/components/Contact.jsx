@@ -55,10 +55,7 @@ class Contact extends Component {
     this.checkvoice();
   }
   onSubmit() {
-    if (
-      this.state.voicedisabled
-      //&& this.props.showhc
-    ) {
+    if (this.state.voicedisabled && this.props.showhc) {
       this.setState({ fail: true });
     } else {
       this.setState({ fail: false });
@@ -67,11 +64,12 @@ class Contact extends Component {
   checkvoice() {
     var regex = /^[(]?\d{3}[)]?[ -]?\d{3}[ -]?\d{4}$/;
     var match = regex.exec(this.state.voice);
-    //if (this.props.showhc) {
-    if (match) {
-      this.setState({ voicedisabled: false, fail: false });
-    } else {
-      this.setState({ voicedisabled: true });
+    if (this.props.showhc) {
+      if (match) {
+        this.setState({ voicedisabled: false, fail: false });
+      } else {
+        this.setState({ voicedisabled: true });
+      }
     }
   }
   render() {
@@ -99,10 +97,11 @@ class Contact extends Component {
               <p>For example 5194562343</p>
 
               <input
-                ref={input => (this.state.voicey = input)}
+                id="voicey"
+                ref={input => (this.voicey = input)}
                 onChange={() => {
-                  let temp = this.state.voicey;
-                  temp = parseInt(this.state.voicey.value);
+                  let temp = this.voicey;
+                  temp = this.voicey.value;
                   this.setState({ voice: temp });
                 }}
                 onBlur={() => this.checkvoice()}
@@ -126,14 +125,13 @@ class Contact extends Component {
                 className="text-primary"
                 onChange={this.handleChange.bind(this, "email")}
                 placeholder="Enter email"
-                // onBlur={() => this.checkemail()}
               />
             </FormGroup>
             <p>
               We will email you an electronic receipt and temporary document(s)
               for this transaction.
             </p>
-            {this.state.voicedisabled ? (
+            {this.state.voicedisabled && this.props.showhc ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
               <Link to="/notify-so">

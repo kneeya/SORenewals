@@ -19,11 +19,15 @@ class OPCinput extends Component {
         <Back onClick={this.goBack} />
         <Container>
           <Row>
-            <p className="prompt">Photo Card Information</p>
-            <p className="prompt">
-              Please input your Ontario Photo Card information below
-            </p>
-            <p className="prompt">Ontario Photo Card number</p>
+            <h2 className="sub-header">Photo Card Information</h2>
+          </Row>
+          <Row>
+            <p className="prompt">Enter your Ontario Photo Card information</p>
+          </Row>
+          <Row>
+            <strong>Ontario Photo Card number</strong>
+          </Row>
+          <Row>
             <Input />
           </Row>
           <Link to="/postal">
