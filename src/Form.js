@@ -19,12 +19,14 @@ class Email extends Component {
     let templateParams = {
       to_name: email
     };
-    emailjs.send(
-      "gmail",
-      "template_RLG3E76r",
-      templateParams,
-      "user_u3p3HFlbdGyXe6PNlzFis"
-    );
+    if (email !== "") {
+      emailjs.send(
+        "gmail",
+        "template_RLG3E76r",
+        templateParams,
+        "user_u3p3HFlbdGyXe6PNlzFis"
+      );
+    }
   }
   handleChange = (param, e) => {
     this.setState({ [param]: e.target.value });
