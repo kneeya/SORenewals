@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
+    "error-ex": "git+https://github.com/Qix-/node-error-ex.git",
     "font-awesome": "^4.7.0",
     "rc-checkbox": "^2.1.8",
     "react": "^16.12.0",

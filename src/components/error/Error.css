@@ -36,7 +36,7 @@ ul {
   list-style: none;
 }
 
-ul li::before {
+ul .li-error::before {
   color: black;
   content: "\2022";
   display: inline-block;

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,500,600,700&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
 
 html {
   position: relative;
@@ -57,34 +57,8 @@ body {
   margin: 0.2rem 0 0.2rem 1rem;
 }
 
-.landing-header {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 3rem;
-  line-height: 48px;
-  /* or 120% */
-
-  letter-spacing: 0.64px;
-}
-
-.sub-header {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 2rem;
-  line-height: 48px;
-  /* or 120% */
-
-  letter-spacing: 0.64px;
-}
-
 hr {
-  margin: 1rem 1rem;
-}
-
-.landing-body {
-  margin: 5%;
+  margin: 2rem 0 2rem 0;
 }
 
 .btn-primary {
@@ -92,6 +66,8 @@ hr {
   background-color: #0066cc;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 input[type="checkbox"] {
@@ -238,3 +214,80 @@ input[type="checkbox"] {
   margin-right: 0;
 }
 
+/* DESIGN CSS ADDITIONS */
+
+.landing-body {
+  margin: 6%;
+  padding-bottom: 2rem;
+}
+
+h1 {
+  font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 40x;
+  font-weight: 700;
+  line-height: 1.29;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  letter-spacing: 0.03rem;
+}
+
+h2 {
+  font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 27x;
+  font-weight: 700;
+  line-height: 1.37;
+  color: #1a1a1a;
+  letter-spacing: 0.03rem;
+}
+
+h3 {
+  font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 23x;
+  font-weight: 700;
+  line-height: 1.37;
+  color: #1a1a1a;
+  letter-spacing: 0.02rem;
+}
+
+.lead-text {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4;
+  color: #000000;
+}
+
+.section {
+  margin: 2rem 0 2rem 0;
+}
+
+a {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+p {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000000;
+}
+
+ul {
+  list-style-type: disc;
+  margin-top: -0.5rem;
+}
+
+li {
+  margin: 0.3rem 0 0.3 rem;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000000;
+}
