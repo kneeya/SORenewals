@@ -19,13 +19,16 @@ class IneligibleFiveMos extends Component {
   render() {
     return (
       <React.Fragment>
-        <Back onClick={this.goBack} />
-        <Container>
+        <div class="landing-body">
+          <Back onClick={this.goBack} />
           <Row>
-            <h2 className="sub-header">
-              You are not eligible to renew online at this time.
+            <h2 class="ineligible-text" style={{ marginLeft: 1 + "rem" }}>
+              You are <strong>not </strong>eligible to renew online at this
+              time.
             </h2>
-            <h3>You must visit a ServiceOntario centre to renew your:</h3>
+            <p style={{ marginLeft: 1 + "rem" }}>
+              Your address must be updated before you can renew your:
+            </p>
           </Row>
           <Row>
             <ul>
@@ -56,7 +59,14 @@ class IneligibleFiveMos extends Component {
           ) : (
             ""
           )}
-        </Container>
+          <Row>
+            <p style={{ marginLeft: 1 + "rem" }}>
+              Please visit a ServiceOntario centre to update your address and
+              renew in-person.
+            </p>
+          </Row>
+          <Button>Find your nearest ServiceOntario</Button>
+        </div>
       </React.Fragment>
     );
   }

@@ -84,25 +84,25 @@ class Step1 extends Component {
           <Back onClick={this.goBack} />
           {this.state.dlfail && this.state.trillfail ? (
             <Error
-              bul1="Driver's license number"
+              bul1="Driver's licence number"
               bul2="7 number sequence on card"
             />
           ) : (
             ""
           )}
           {this.state.dlfail && !this.state.trillfail ? (
-            <Error bul1="Driver's license number" />
+            <Error bul1="Driver's licence number" />
           ) : this.state.trillfail && !this.state.dlfail ? (
             <Error bul1="7 number sequence on card" />
           ) : (
             ""
           )}
-          <h3>Driver's License Information</h3>
-          <p>Enter your license information</p>
+          <h3>Driver's Licence Information</h3>
+          <p>Enter your licence information</p>
           <div class="section">
             <div className={this.state.dlfail ? "error-content" : ""}>
               <p>
-                <strong>Driver's license number</strong>{" "}
+                <strong>Driver's licence number</strong>{" "}
               </p>
               {this.state.dlfail ? (
                 <ErrorMsg msg="Enter your driver's licence number." />
@@ -140,7 +140,7 @@ class Step1 extends Component {
                   /[A-Za-z0-9]/
                 ]}
               />
-              <p>You can find your driver's license number here:</p>
+              <p>You can find your driver's licence number here:</p>
               <img class="card-photo" src="/DLFront.png"></img>
             </div>
           </div>
@@ -154,7 +154,7 @@ class Step1 extends Component {
                 of your card.
               </p>
               {this.state.trillfail ? (
-                <ErrorMsg msg="Enter your driver's license 7 number sequence" />
+                <ErrorMsg msg="Enter your driver's licence 7 number sequence" />
               ) : (
                 ""
               )}

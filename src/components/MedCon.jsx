@@ -49,9 +49,9 @@ class MedCon extends Component {
           ) : (
             ""
           )}
-          <Container className={this.state.fail ? "error-content" : ""}>
+          <div className={this.state.fail ? "error-content" : ""}>
             <Row>
-              <h3>
+              <h3 style={{ marginLeft: 1 + "rem" }}>
                 Since you last renewed your driver's licence, have you had any
                 medical conditions that may affect your ability to drive, or has
                 a doctor told you not to drive?
@@ -79,7 +79,7 @@ class MedCon extends Component {
                 <Button>Next</Button>
               </Link>
             )}
-          </Container>
+          </div>
         </div>
       </React.Fragment>
     );

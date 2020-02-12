@@ -44,15 +44,15 @@ class FiveMos extends Component {
           ) : (
             ""
           )}
-          <Container className={this.state.fail ? "error-content" : ""}>
+          <div className={this.state.fail ? "error-content" : ""}>
             <Row>
-              <h3>
+              <h3 style={{ marginLeft: 1 + "rem" }}>
                 In the past year, have you lived in Ontario for at least 5
                 months?
               </h3>
             </Row>
             <Row>
-              <p>
+              <p style={{ marginLeft: 1 + "rem" }}>
                 The Ministry of Health may contact you for further verification.
               </p>
             </Row>
@@ -87,7 +87,7 @@ class FiveMos extends Component {
                 <Button>Next</Button>
               </Link>
             )}
-          </Container>
+          </div>
         </div>
       </React.Fragment>
     );
