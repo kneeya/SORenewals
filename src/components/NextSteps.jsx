@@ -35,7 +35,7 @@ class NextSteps extends Component {
           <div className="success-container">
             <img src="/success.png" alt="success symbol" />
             <div className="success-header">
-              Success! You renewed your driver’s licence and health card.
+              Success! You renewed your cards.
             </div>
             <p style={{ marginBottom: "0rem" }}>
               We have sent your receipt and temporary document(s) by email to:{" "}
@@ -45,10 +45,7 @@ class NextSteps extends Component {
             <h3 style={{ marginBottom: "1rem" }}>What to do next:</h3>
             <ul>
               <li>keep your receipt</li>
-              <li>
-                print and carry your temporary driver’s licence and health card
-                with you
-              </li>
+              <li>print and carry your temporary licences with you</li>
               <li>
                 confirm that you've signed up for digital reminders for next
                 time
