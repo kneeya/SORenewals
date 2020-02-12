@@ -6,6 +6,9 @@ import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import Checkbox from "rc-checkbox";
 import "rc-checkbox/assets/index.css";
+
+import AppStyles from "../App.css";
+
 class Notify extends Component {
   state = {
     voicedisabled: false,
@@ -120,114 +123,119 @@ class Notify extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        <Container>
-          <Row>
-            <h2 className="sub-header">Sign up for reminders</h2>
-          </Row>
-          <Row>
-            <p>
-              How would you like to get reminders when it's time to renew again?
-            </p>
-          </Row>
-          <br />
-          <Row>Choose the reminders you want to get:</Row>
-          <Form>
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          <Container>
             <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleEmailChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <strong> Email</strong>
-              </Col>
+              <h3>Sign up for reminders</h3>
             </Row>
-            {this.state.emailcheck ? (
-              <React.Fragment>
-                <p> For example person@example.com</p>
-                <FormGroup initialstate={this.state.email}>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={this.state.email}
-                    className="text-primary"
-                    placeholder="Enter email"
-                    onChange={this.handleChange}
-                  />
-                </FormGroup>
-              </React.Fragment>
-            ) : (
-              ""
-            )}
             <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleSmsChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <strong> Text message</strong>
-              </Col>
+              <p>
+                How would you like to get reminders when it's time to renew
+                again?
+              </p>
+              <p>Choose the reminders you want to get:</p>
             </Row>
-            {this.state.smscheck ? (
-              <React.Fragment>
-                <p> For example odslab@ontario.ca</p>
-
-                <FormGroup initialstate={this.state.phone}>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={this.state.phone}
-                    className="text-primary"
-                    placeholder="Enter phone number"
-                    onChange={this.handlePChange}
-                  />
-                </FormGroup>
-              </React.Fragment>
-            ) : (
-              ""
-            )}
-            <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleVoiceChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <strong>Automated phone call</strong>
-              </Col>
-            </Row>
-            {this.state.voicecheck ? (
-              <React.Fragment>
-                <p> For example odslab@ontario.ca</p>
-
-                <FormGroup initialstate={this.state.voice}>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={this.state.voice}
-                    className="text-primary"
-                    placeholder="Enter phone number"
-                    onChange={this.handleVChange}
-                  />
-                </FormGroup>
-              </React.Fragment>
-            ) : (
-              ""
-            )}
-          </Form>
-        </Container>
-        <Container>
-          <Link to="/review">
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          </Link>
-        </Container>
-      </React.Fragment>
+            <Form>
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleEmailChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    {" "}
+                    <strong>Email</strong>
+                  </p>
+                </Col>
+              </Row>
+              {this.state.emailcheck ? (
+                <React.Fragment>
+                  <div class="reminder-indent">
+                    <p> For example person@example.com</p>
+                    <FormGroup initialstate={this.state.email}>
+                      <input
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                      />
+                    </FormGroup>
+                  </div>
+                </React.Fragment>
+              ) : (
+                ""
+              )}
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleSmsChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    <strong>Text message</strong>
+                  </p>
+                </Col>
+              </Row>
+              {this.state.smscheck ? (
+                <React.Fragment>
+                  <div class="reminder-indent">
+                    <p> For example odslab@ontario.ca</p>{" "}
+                    <FormGroup initialstate={this.state.phone}>
+                      <input
+                        type="email"
+                        name="email"
+                        value={this.state.phone}
+                        onChange={this.handlePChange}
+                      />
+                    </FormGroup>
+                  </div>
+                </React.Fragment>
+              ) : (
+                ""
+              )}
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleVoiceChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    <strong>Automated phone call</strong>
+                  </p>
+                </Col>
+              </Row>
+              {this.state.voicecheck ? (
+                <React.Fragment>
+                  <div class="reminder-indent">
+                    <p> For example odslab@ontario.ca</p>
+                    <FormGroup initialstate={this.state.voice}>
+                      <input
+                        type="email"
+                        name="email"
+                        value={this.state.voice}
+                        onChange={this.handleVChange}
+                      />
+                    </FormGroup>
+                  </div>
+                </React.Fragment>
+              ) : (
+                ""
+              )}
+            </Form>
+          </Container>
+        </React.Fragment>
+        <Link to="/review">
+          <Button onClick={() => this.onSubmit()}>Next</Button>
+        </Link>
+      </div>
     );
   }
 }
