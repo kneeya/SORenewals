@@ -100,17 +100,20 @@ class Contact extends Component {
           ) : (
             ""
           )}
-          <Container className={this.state.emailfail ? "error-content" : ""}>
-            <Row>
-              <h3>Contact information</h3>
-            </Row>
-            <Row>
-              <p>Enter your contact information below</p>
-            </Row>
-            <Row>
-              <strong style={{ paddingRight: 50 + "rem" }}>Email</strong>
+          <div className={this.state.emailfail ? "error-content" : ""}>
+            <h3>Contact information</h3>
+            <p>Enter your contact information below</p>
+
+            <div class="section">
+              <div style={{ marginBottom: "1rem" }}>
+                <strong style={{ paddingRight: 50 + "rem" }}>Email</strong>
+              </div>
+
               {this.state.emailfail ? (
-                <ErrorMsg msg="Please provide a valid email" />
+                <div>
+                  <ErrorMsg msg="" />
+                  <p class="weird-one-line-err">Please provide a valid email</p>
+                </div>
               ) : (
                 ""
               )}
@@ -127,38 +130,46 @@ class Contact extends Component {
                 onBlur={() => this.checkemail()}
               />
               {/* </FormGroup> */}
-              <p>
+              <p style={{ marginBottom: "-1rem" }}>
                 We will email you an electronic receipt and temporary
                 document(s) for this transaction.
               </p>
               <br></br>
-            </Row>
-          </Container>
+            </div>
+          </div>
           <div className={this.state.voicefail ? "error-content" : ""}>
-            <strong>
-              Phone number {!this.props.showhc ? "(optional)" : ""}
-            </strong>
-            {this.state.voicefail ? (
-              <ErrorMsg msg="Please provide a phone number" />
-            ) : (
-              ""
-            )}
-            <p>For example 226 808 3813</p>
+            <div class="section">
+              <div style={{ marginBottom: "1rem" }}>
+                <strong>
+                  Phone number {!this.props.showhc ? "(optional)" : ""}
+                </strong>
+              </div>
+              {this.state.voicefail ? (
+                <ErrorMsg msg="Please provide a phone number" />
+              ) : (
+                ""
+              )}
+              <p>For example 226 808 3813</p>
 
-            <input
-              id="voicey"
-              ref={input => (this.voicey = input)}
-              onChange={() => {
-                let temp = this.voicey;
-                temp = this.voicey.value;
-                this.setState({ voice: temp });
-              }}
-              onBlur={() => this.checkvoice()}
-            />
-            <p>
-              We may call you to confirm that you live in Ontario, or to resolve
-              an issue with your renewal.
-            </p>
+              <input
+                id="voicey"
+                ref={input => (this.voicey = input)}
+                onChange={() => {
+                  let temp = this.voicey;
+                  temp = this.voicey.value;
+                  this.setState({ voice: temp });
+                }}
+                onBlur={() => this.checkvoice()}
+              />
+              <p>
+                We may call you to confirm that you live in Ontario, or to
+                resolve an issue with your renewal.{" "}
+                {/* <strong>
+                  If contacted by ServiceOntario, you have 30 days to respond to
+                  keep your health coverage.
+                </strong> */}
+              </p>
+            </div>
 
             {(this.state.voicedisabled && this.props.showhc) ||
             this.state.emaildisabled ? (
