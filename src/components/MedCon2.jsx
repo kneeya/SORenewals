@@ -62,12 +62,14 @@ class MedCon2 extends Component {
             ) : (
               ""
             )}
-            <Row>
-              <Col>
-                <Radio value="Yes" onClick={() => this.handleYes()} />
-                <Radio value="No" onClick={() => this.handleNo()} />
-              </Col>
-            </Row>
+            <div class="radio-margins">
+              <Row>
+                <Col>
+                  <Radio value="Yes" onClick={() => this.handleYes()} />
+                  <Radio value="No" onClick={() => this.handleNo()} />
+                </Col>
+              </Row>
+            </div>
             {!this.state.yes && !this.state.no ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : this.state.no ? (

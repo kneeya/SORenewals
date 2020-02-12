@@ -4,6 +4,7 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import "./success/success.css";
+import "../App.css";
 
 class Review extends Component {
   state = {
@@ -33,84 +34,117 @@ class Review extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        <Container>
-          <Row>
-            <h1>Review your details</h1>
-          </Row>
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          <h3>Review your details</h3>
+          <div class="section">
+            <strong>Card information</strong>
+            {this.props.dl ? (
+              <p>
+                Driver's licence number: <br />
+                {this.props.dl}
+              </p>
+            ) : (
+              ""
+            )}
+            {this.props.opc ? (
+              <p>
+                Photo card number: <br />
+                {this.props.opc}
+              </p>
+            ) : (
+              ""
+            )}
+            {this.props.hc ? (
+              <p>
+                Health card number: <br />
+                {this.props.hc}
+              </p>
+            ) : (
+              ""
+            )}
+          </div>
 
-          <br />
-          <Row style={{ borderBottom: "2px solid grey" }}>
-            <Col>
-              <strong>Card information</strong>
+          <hr />
 
-              {this.props.dl ? (
-                <p>Driver's licence number: {this.props.dl}</p>
+          <div class="section">
+            <strong>Contact Information</strong>
+            <p>
+              Email: <br /> {this.props.email}
+            </p>
+            {this.props.phone ? (
+              <p>
+                Phone number: <br />
+                {this.props.phone}
+              </p>
+            ) : (
+              ""
+            )}
+          </div>
+
+          <hr />
+
+          {this.props.remail || this.props.rphone || this.props.rvoice ? (
+            <div class="section">
+              <strong>Reminder information</strong>
+              {this.props.remail ? (
+                <p>
+                  Email: <br />
+                  {this.props.remail}
+                </p>
               ) : (
                 ""
               )}
-              {this.props.opc ? <p>Photo card number: {this.props.opc}</p> : ""}
-              {this.props.hc ? <p>Health card number: {this.props.hc}</p> : ""}
-            </Col>
-          </Row>
-          <br />
-          <Row style={{ borderBottom: "2px solid grey" }}>
-            <Col>
-              <strong>Contact Information</strong>
-              <p>Email: {this.props.email}</p>
-              {this.props.phone ? <p>Phone number: {this.props.phone}</p> : ""}
-            </Col>
-          </Row>
-          {this.props.remail || this.props.rphone || this.props.rvoice ? (
-            <Row style={{ borderBottom: "2px solid grey" }}>
-              <Col>
-                <strong>Reminder information</strong>
-                {this.props.remail ? <p>Email: {this.props.remail}</p> : ""}
-                {this.props.rphone ? (
-                  <p>Phone number: {this.props.rphone}</p>
-                ) : (
-                  ""
-                )}
-                {this.props.rvoice ? (
-                  <p>Phone number: {this.props.rvoice}</p>
-                ) : (
-                  ""
-                )}
-              </Col>
-            </Row>
+              {this.props.rphone ? (
+                <p>
+                  Phone number: <br />
+                  {this.props.rphone}
+                </p>
+              ) : (
+                ""
+              )}
+              {this.props.rvoice ? (
+                <p>
+                  Phone number: <br />
+                  {this.props.rvoice}
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
           ) : (
             ""
           )}
-          <Row style={{ borderBottom: "2px solid grey" }}>
-            <Col>
-              <strong>Mailing Address</strong>
 
-              <p>
-                Your new card(s) will be sent to the mailing address on file. We
-                are unable to share that address for proivacy and security
-                reasons.
-                <br />
-                If your address has changed, visit a ServiceOntario location to
-                update your address and renew your card(s).
-              </p>
+          <hr />
+
+          <div class="section">
+            <strong>Mailing Address</strong>
+            <p>
+              Your new card(s) will be sent to the mailing address on file. We
+              are unable to share that address for privacy and security reasons.
               <br />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <p>
-                By clicking to next, you confirm that, to the best of your
-                knowledge, the details you are providing are correct.
-              </p>
-            </Col>
-          </Row>
+              <br />
+              If your address has changed, visit a ServiceOntario location to
+              update your address and renew your card(s).
+            </p>
+          </div>
+
+          <hr />
+
+          <div class="section">
+            <p>
+              By clicking to next, you confirm that, to the best of your
+              knowledge, the details you are providing are correct.
+            </p>
+          </div>
 
           <Link to="/next-steps" onClick={() => this.onSubmit()}>
             <Button>Next</Button>
           </Link>
-        </Container>
-      </React.Fragment>
+        </React.Fragment>
+      </div>
     );
   }
 }

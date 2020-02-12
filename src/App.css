@@ -349,3 +349,7 @@ input:focus {
   margin-left: 2.9rem;
   margin-bottom: -0.2rem;
 }
+
+.radio-margins {
+  margin: 0 0 2rem 0;
+}

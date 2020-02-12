@@ -37,7 +37,6 @@ class Ineligible3 extends Component {
               </ul>
             </Row>
           </Container>
-        </div>
           {this.props.showhc ? (
             <Link to="/step2">
               <Button>Continue to renew only your health card</Button>
@@ -45,7 +44,7 @@ class Ineligible3 extends Component {
           ) : (
             ""
           )}
-        </Container>
+        </div>
       </React.Fragment>
     );
   }
