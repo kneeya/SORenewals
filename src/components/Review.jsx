@@ -26,9 +26,7 @@ class Review extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.hc);
-    console.log(this.props.opc);
-    console.log(this.props.dl);
+    window.scrollTo(0, 0);
   }
 
   render() {

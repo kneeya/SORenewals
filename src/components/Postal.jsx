@@ -47,6 +47,7 @@ class Postal extends Component {
 
   componentDidMount() {
     this.checkpostal();
+    window.scrollTo(0, 0);
   }
 
   onSubmit() {

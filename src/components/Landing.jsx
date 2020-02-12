@@ -6,6 +6,9 @@ import "rc-checkbox/assets/index.css";
 import { Link } from "react-router-dom";
 
 class Landing extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <React.Fragment>

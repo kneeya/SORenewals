@@ -25,6 +25,7 @@ class Healthcard extends Component {
     this.checkninechar();
     this.checkdriver();
     this.checktrill();
+    window.scrollTo(0, 0);
   }
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;
@@ -112,9 +113,6 @@ class Healthcard extends Component {
     });
     this.setState({ fail: false });
     this.setState({ dlfail: false, trillfail: false });
-
-    //this.checkdriver();
-    //this.checktrill();
   }
   onClick = () => {
     this.sendOPC();

@@ -45,24 +45,11 @@ class Contact extends Component {
       console.log("sent");
     }
   };
-  // sendEmail = (email, e) => {
-  //   if (email !== "") {
-  //     this.handleSubmit(e);
-  //     //sending email and phone number to app.js to use in notify and review details page
-  //     this.props.sendContact(this.state.email, this.state.voice);
-  //   }
-  // };
-
-  // handleChange = (param, e) => {
-  //   this.setState({ [param]: e.target.value });
-  //   if (this.state.email !== "") {
-  //     this.setState({ emailfail: false });
-  //   }
-  // };
 
   componentDidMount() {
     this.checkvoice();
     this.checkemail();
+    window.scrollTo(0, 0);
   }
 
   onSubmit() {

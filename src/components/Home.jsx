@@ -72,6 +72,10 @@ class Home extends Component {
       this.setState({ fail: false });
     }
   };
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   //this fct is the getInfo fct in App.js and is being called on as a property to be used in this component
   onSubmit = () => {
     // sending states of Home.jsx to App.js using this fct
