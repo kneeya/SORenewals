@@ -46,7 +46,34 @@ export default class App extends Component {
     let setContact = this.state;
     setContact = { email: uemail, phone: uphone };
     this.setState(setContact);
-    console.log("sgot it");
+  };
+  getRContact = (remail, rphone, rvoice) => {
+    let reminder = this.state;
+    reminder = { remail: remail, rphone: rphone, rvoice: rvoice };
+    this.setState(reminder);
+    console.log(
+      "rphone: " + this.state.rphone + "rvoice: " + this.state.rvoice
+    );
+  };
+  getDL = udl => {
+    let dlNum = this.state;
+    dlNum = { dl: udl };
+    this.setState(dlNum);
+    console.log(this.state.dl);
+  };
+
+  getHC = uhc => {
+    let hcNum = this.state;
+    hcNum = { hc: uhc };
+    this.setState(hcNum);
+    console.log(this.state.hc);
+  };
+
+  getOPC = uopc => {
+    let opcNum = this.state;
+    opcNum = { opc: uopc };
+    this.setState(opcNum);
+    console.log(this.state.opc);
   };
 
   render() {
@@ -101,6 +128,7 @@ export default class App extends Component {
                     showhc={this.state.showhc}
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
+                    sendDL={this.getDL.bind(this)}
                   />
                 )}
               />
@@ -112,10 +140,14 @@ export default class App extends Component {
                     showhc={this.state.showhc}
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
+                    sendHC={this.getHC.bind(this)}
                   />
                 )}
               />
-              <Route path="/pc-input" component={OPCinput} />
+              <Route
+                path="/pc-input"
+                render={() => <OPCinput sendOPC={this.getOPC.bind(this)} />}
+              />
               <Route exact path="/postal" component={Postal} />
               <Route
                 exact
@@ -128,6 +160,8 @@ export default class App extends Component {
                       dl={this.state.showdl}
                       hc={this.state.showhc}
                       opc={this.state.showopc}
+                      sendDL={this.getDL.bind(this)}
+                      sendOPC={this.getOPC.bind(this)}
                     />
                   ) : (
                     <Redirect to="/step2" />
@@ -225,16 +259,25 @@ export default class App extends Component {
               <Route
                 path="/notify-so"
                 render={() => (
-                  <Notify email={this.state.email} phone={this.state.phone} />
+                  <Notify
+                    email={this.state.email}
+                    phone={this.state.phone}
+                    sendRContact={this.getRContact.bind(this)}
+                  />
                 )}
               />{" "}
               <Route
                 path="/review"
                 render={() => (
                   <Review
-                    showdl={this.state.showdl}
-                    showhc={this.state.showhc}
-                    showopc={this.state.showopc}
+                    phone={this.state.phone}
+                    email={this.state.email}
+                    dl={this.state.dl}
+                    hc={this.state.hc}
+                    opc={this.state.opc}
+                    remail={this.state.remail}
+                    rphone={this.state.rphone}
+                    rvoice={this.state.rvoice}
                   />
                 )}
               />

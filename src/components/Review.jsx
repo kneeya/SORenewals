@@ -25,45 +25,87 @@ class Review extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log(this.props.hc);
+    console.log(this.props.opc);
+    console.log(this.props.dl);
+  }
+
   render() {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
         <Container>
-          <h1>Review your details</h1>
+          <Row>
+            <h1>Review your details</h1>
+          </Row>
+
           <br />
-          <h2>
-            <strong>Card information</strong>
-          </h2>
+          <Row style={{ borderBottom: "2px solid grey" }}>
+            <Col>
+              <strong>Card information</strong>
+
+              {this.props.dl ? (
+                <p>Driver's licence number: {this.props.dl}</p>
+              ) : (
+                ""
+              )}
+              {this.props.opc ? <p>Photo card number: {this.props.opc}</p> : ""}
+              {this.props.hc ? <p>Health card number: {this.props.hc}</p> : ""}
+            </Col>
+          </Row>
           <br />
-          {this.props.showhc ? <h3>Health card number:</h3> : ""}
-          {this.props.showdl ? <h3>Driver's licence number:</h3> : ""}
-          {this.props.showopc ? <h3>Photo card number:</h3> : ""}
-          <h3>Sex:</h3>
-          <hr />
-          <h2>
-            <strong>Contact Information</strong>
-          </h2>
-          <h3>Email:</h3>
-          <h3>Phone number:</h3>
-          <hr />
-          <h2>
-            <strong>Reminder information</strong>
-          </h2>
-          <h3>Email:</h3>
-          <hr />
-          <h2>
-            <strong>Mailing Address</strong>
-          </h2>
-          <p>
-            Your card(s) will be sent to the mailing address on file. To change
-            it, please visit your nearest ServiceOntario centre.
-          </p>
-          <hr />
-          <p>
-            By clicking to pay, you confirm that, to the best of your knowledge,
-            the details you are providing are correct.
-          </p>
+          <Row style={{ borderBottom: "2px solid grey" }}>
+            <Col>
+              <strong>Contact Information</strong>
+              <p>Email: {this.props.email}</p>
+              {this.props.phone ? <p>Phone number: {this.props.phone}</p> : ""}
+            </Col>
+          </Row>
+          {this.props.remail || this.props.rphone || this.props.rvoice ? (
+            <Row style={{ borderBottom: "2px solid grey" }}>
+              <Col>
+                <strong>Reminder information</strong>
+                {this.props.remail ? <p>Email: {this.props.remail}</p> : ""}
+                {this.props.rphone ? (
+                  <p>Phone number: {this.props.rphone}</p>
+                ) : (
+                  ""
+                )}
+                {this.props.rvoice ? (
+                  <p>Phone number: {this.props.rvoice}</p>
+                ) : (
+                  ""
+                )}
+              </Col>
+            </Row>
+          ) : (
+            ""
+          )}
+          <Row style={{ borderBottom: "2px solid grey" }}>
+            <Col>
+              <strong>Mailing Address</strong>
+
+              <p>
+                Your new card(s) will be sent to the mailing address on file. We
+                are unable to share that address for proivacy and security
+                reasons.
+                <br />
+                If your address has changed, visit a ServiceOntario location to
+                update your address and renew your card(s).
+              </p>
+              <br />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <p>
+                By clicking to next, you confirm that, to the best of your
+                knowledge, the details you are providing are correct.
+              </p>
+            </Col>
+          </Row>
+
           <Link to="/next-steps" onClick={() => this.onSubmit()}>
             <Button>Next</Button>
           </Link>

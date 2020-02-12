@@ -66,13 +66,66 @@ class Notify extends Component {
     this.setState({ voicecheck });
   }
 
-  onSubmit() {
-    if (this.state.voicedisabled && this.props.showhc) {
-      this.setState({ fail: true });
-    } else {
-      this.setState({ fail: false });
+  onSubmit = () => {
+    let none = "";
+    if (this.state.emailcheck && this.state.smscheck && this.state.voicecheck) {
+      this.props.sendRContact(
+        this.state.email,
+        this.state.phone,
+        this.state.voice
+      );
     }
-  }
+    if (
+      this.state.emailcheck &&
+      !this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, none, none);
+    }
+
+    if (
+      !this.state.emailcheck &&
+      this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, this.state.phone, none);
+    }
+    if (
+      !this.state.emailcheck &&
+      !this.state.smscheck &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, none, this.state.voice);
+    }
+    if (
+      this.state.emailcheck &&
+      this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, this.state.phone, none);
+    }
+    if (
+      this.state.emailcheck &&
+      !this.state.smscheck &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, none, this.state.voice);
+    }
+    if (
+      !this.state.emailcheck &&
+      this.state.smscheck &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, this.state.phone, this.state.voice);
+    }
+    if (
+      !this.state.emailcheck &&
+      !this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, none, none);
+    }
+  };
 
   render() {
     return (
@@ -178,13 +231,10 @@ class Notify extends Component {
               ""
             )}
           </Form>
-          <Link to="/review" onClick={() => this.onSubmit()}>
-            <Button>Next</Button>
-          </Link>
         </Container>
         <Container>
-          <Link to="/review-your-details">
-            <Button>Next</Button>
+          <Link to="/review">
+            <Button onClick={() => this.onSubmit()}>Next</Button>
           </Link>
         </Container>
       </React.Fragment>
