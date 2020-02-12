@@ -116,6 +116,17 @@ class Healthcard extends Component {
     //this.checkdriver();
     //this.checktrill();
   }
+  onClick = () => {
+    this.sendOPC();
+    this.sendDL();
+  };
+  sendOPC = () => {
+    this.props.sendOPC(this.state.opc);
+  };
+
+  sendDL = () => {
+    this.props.sendDL(this.state.dl);
+  };
 
   handleOpc() {
     this.setState({
@@ -378,7 +389,7 @@ class Healthcard extends Component {
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : (
             <Link to="/postal">
-              <Button>Next</Button>
+              <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           )}
         </Container>

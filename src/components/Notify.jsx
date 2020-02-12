@@ -66,13 +66,13 @@ class Notify extends Component {
     this.setState({ voicecheck });
   }
 
-  onSubmit() {
-    if (this.state.voicedisabled && this.props.showhc) {
-      this.setState({ fail: true });
-    } else {
-      this.setState({ fail: false });
-    }
-  }
+  onSubmit = () => {
+    this.props.sendRContact(
+      this.state.email,
+      this.state.phone,
+      this.state.voice
+    );
+  };
 
   render() {
     return (
@@ -166,26 +166,86 @@ class Notify extends Component {
                   <React.Fragment>
                     <p> For example person@example.com</p>
 
-                    <FormGroup initialstate={this.state.voice}>
-                      <input
-                        type="email"
-                        name="email"
-                        value={this.state.voice}
-                        onChange={this.handleVChange}
-                      />
-                    </FormGroup>
-                  </React.Fragment>
-                </div>
-              ) : (
-                ""
-              )}
-            </Form>
-          </div>
-          <Link to="/review" onClick={() => this.onSubmit()}>
-            <Button>Next</Button>
+                <FormGroup initialstate={this.state.email}>
+                  <Input
+                    type="email"
+                    name="email"
+                    value={this.state.email}
+                    className="text-primary"
+                    placeholder="Enter email"
+                    onChange={this.handleChange}
+                  />
+                </FormGroup>
+              </React.Fragment>
+            ) : (
+              ""
+            )}
+            <Row>
+              <Col xs={1}>
+                <Checkbox
+                  class="checkbox"
+                  onClick={() => this.handleSmsChecked()}
+                ></Checkbox>
+              </Col>
+              <Col>
+                <strong> Text message</strong>
+              </Col>
+            </Row>
+            {this.state.smscheck ? (
+              <React.Fragment>
+                <p> For example person@example.com</p>
+
+                <FormGroup initialstate={this.state.phone}>
+                  <Input
+                    type="email"
+                    name="email"
+                    value={this.state.phone}
+                    className="text-primary"
+                    placeholder="Enter phone number"
+                    onChange={this.handlePChange}
+                  />
+                </FormGroup>
+              </React.Fragment>
+            ) : (
+              ""
+            )}
+            <Row>
+              <Col xs={1}>
+                <Checkbox
+                  class="checkbox"
+                  onClick={() => this.handleVoiceChecked()}
+                ></Checkbox>
+              </Col>
+              <Col>
+                <strong>Automated phone call</strong>
+              </Col>
+            </Row>
+            {this.state.voicecheck ? (
+              <React.Fragment>
+                <p> For example person@example.com</p>
+
+                <FormGroup initialstate={this.state.voice}>
+                  <Input
+                    type="email"
+                    name="email"
+                    value={this.state.voice}
+                    className="text-primary"
+                    placeholder="Enter phone number"
+                    onChange={this.handleVChange}
+                  />
+                </FormGroup>
+              </React.Fragment>
+            ) : (
+              ""
+            )}
+          </Form>
+        </Container>
+        <Container>
+          <Link to="/review">
+            <Button onClick={() => this.onSubmit()}>Next</Button>
           </Link>
-        </React.Fragment>
-      </div>
+        </Container>
+      </React.Fragment>
     );
   }
 }
