@@ -329,3 +329,8 @@ input:focus {
   -webkit-transition: box-shadow 0.1s ease-in-out;
   transition: box-shadow 0.1s ease-in-out;
 }
+
+.reminder-indent {
+  margin-left: 2.9rem;
+  margin-bottom: -0.2rem;
+}
