@@ -1,7 +1,8 @@
 .error-msg {
-  color: red;
+  color: #cd0000;
   font-weight: 700;
-  margin: 0;
+  margin-top: -2.2rem;
+  margin-left: 3rem;
 }
 
 .error-symbol {
@@ -17,34 +18,26 @@
   font-family: Open Sans;
   font-style: normal;
   font-weight: bold;
-  font-size: 2rem;
-  padding-top: 2px;
+  font-size: 22px;
+  padding-top: 12px;
 }
 
 .error-container {
+  padding-left: 1rem;
+  margin-bottom: 2rem;
   background-color: #fff0f1;
   border-left: 5px solid #cd0000;
-  margin-bottom: 1rem;
 }
 
 .error-list {
   color: #cd0000;
+  font-size: 16px;
+  font-weight: 600;
   text-decoration: underline;
-}
-
-ul {
-  list-style: none;
-}
-
-ul .li-error::before {
-  color: black;
-  content: "\2022";
-  display: inline-block;
-  font-weight: bold;
-  width: 1rem;
-  margin-left: -1.5em;
 }
 
 .error-content {
   border-left: 5px solid #cd0000;
+  padding-left: 1rem;
+  margin-bottom: 3rem;
 }
