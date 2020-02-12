@@ -26,6 +26,8 @@ import IneligibleFiveMos from "./components/XFiveMos.jsx";
 import Ineligible3 from "./components/XMedCon.jsx";
 import OPCinput from "./components/OPCinput.jsx";
 import PDFViewer from "./components/PDFViewer/PDFViewer";
+import Review from "./components/Review.jsx";
+import NextSteps from "./components/NextSteps.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -224,6 +226,26 @@ export default class App extends Component {
                 path="/notify-so"
                 render={() => (
                   <Notify email={this.state.email} phone={this.state.phone} />
+                )}
+              />{" "}
+              <Route
+                path="/review"
+                render={() => (
+                  <Review
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
+              <Route
+                path="/next-steps"
+                render={() => (
+                  <NextSteps
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
                 )}
               />
             </Switch>

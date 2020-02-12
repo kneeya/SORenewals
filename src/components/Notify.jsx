@@ -8,6 +8,10 @@ import Checkbox from "rc-checkbox";
 import "rc-checkbox/assets/index.css";
 
 class Notify extends Component {
+  state = {
+    voicedisabled: false,
+    fail: false
+  };
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
@@ -60,6 +64,14 @@ class Notify extends Component {
     //show phone call input on click
     let voicecheck = !this.state.voicecheck;
     this.setState({ voicecheck });
+  }
+
+  onSubmit() {
+    if (this.state.voicedisabled && this.props.showhc) {
+      this.setState({ fail: true });
+    } else {
+      this.setState({ fail: false });
+    }
   }
 
   render() {
@@ -166,6 +178,9 @@ class Notify extends Component {
               ""
             )}
           </Form>
+          <Link to="/review" onClick={() => this.onSubmit()}>
+            <Button>Next</Button>
+          </Link>
         </Container>
         <Container>
           <Link to="/review-your-details">

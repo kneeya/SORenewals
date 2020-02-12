@@ -106,7 +106,7 @@ class Step1 extends Component {
           )}
           <Row>
             <Col>
-              <p>For example A1234 12345 12345</p>
+              <p>For example A1111 11111 11111</p>
               <MaskedInput
                 ref={input => (this.driver = input)}
                 onChange={() => {
