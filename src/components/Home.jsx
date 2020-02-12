@@ -36,7 +36,7 @@ class Home extends Component {
     ) {
       this.setState({ fail: false });
     }
-    if (this.state.dlcheck && !this.state.photocheck) {
+    if (!this.state.dlcheck && this.state.photocheck) {
       this.setState({ opcdlfail: true });
     } else {
       this.setState({ opcdlfail: false });
@@ -54,7 +54,7 @@ class Home extends Component {
       this.setState({ fail: false });
     }
     //removing the fail state if user removes check
-    if (!this.state.dlcheck && this.state.photocheck) {
+    if (this.state.dlcheck && !this.state.photocheck) {
       this.setState({ opcdlfail: true });
     } else {
       this.setState({ opcdlfail: false });

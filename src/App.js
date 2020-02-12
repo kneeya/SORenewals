@@ -26,6 +26,8 @@ import IneligibleFiveMos from "./components/XFiveMos.jsx";
 import Ineligible3 from "./components/XMedCon.jsx";
 import OPCinput from "./components/OPCinput.jsx";
 import PDFViewer from "./components/PDFViewer/PDFViewer";
+import Review from "./components/Review.jsx";
+import NextSteps from "./components/NextSteps.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -41,7 +43,10 @@ export default class App extends Component {
   };
 
   getContact = (uemail, uphone) => {
-    this.setState({ email: uemail, phone: uphone });
+    let setContact = this.state;
+    setContact = { email: uemail, phone: uphone };
+    this.setState(setContact);
+    console.log("sgot it");
   };
 
   render() {
@@ -56,6 +61,7 @@ export default class App extends Component {
               <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
             </Row>
           </div>
+
           <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
           >
             <Switch>
@@ -111,13 +117,6 @@ export default class App extends Component {
               />
               <Route path="/pc-input" component={OPCinput} />
               <Route exact path="/postal" component={Postal} />
-              {/* <Route
-                exact
-                path="/hc"
-                render={() =>
-                  this.state.showhc ? <Step2 /> : <Redirect to="/elig" />
-                }
-              /> */}
               <Route
                 exact
                 path="/healthcard"
@@ -218,9 +217,7 @@ export default class App extends Component {
                 path="/contact"
                 render={() => (
                   <Contact
-                    showdl={this.state.showdl}
                     showhc={this.state.showhc}
-                    showopc={this.state.showopc}
                     sendContact={this.getContact.bind(this)}
                   />
                 )}
@@ -228,13 +225,29 @@ export default class App extends Component {
               <Route
                 path="/notify-so"
                 render={() => (
-                  <Notify
+                  <Notify email={this.state.email} phone={this.state.phone} />
+                )}
+              />{" "}
+              <Route
+                path="/review"
+                render={() => (
+                  <Review
                     showdl={this.state.showdl}
                     showhc={this.state.showhc}
                     showopc={this.state.showopc}
                   />
                 )}
-              />{" "}
+              />
+              <Route
+                path="/next-steps"
+                render={() => (
+                  <NextSteps
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
             </Switch>
           </BrowserRouter>
         </div>

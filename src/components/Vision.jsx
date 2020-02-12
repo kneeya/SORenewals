@@ -38,37 +38,41 @@ class Vision extends Component {
   render() {
     return (
       <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.fail ? (
-          <Error bul1="Do you require corrective lenses to drive?" />
-        ) : (
-          ""
-        )}
-        <Container className={this.state.fail ? "error-content" : ""}>
-          <Row>
-            <h2 className="sub-header">
-              Do you require corrective lenses to drive?
-            </h2>
-          </Row>
-          {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
-          <Row>
-            <Col>
-              <Radio value="Yes" onClick={() => this.handleYes()} />
-              <Radio value="No" onClick={() => this.handleNo()} />
-            </Col>
-          </Row>
-          {!this.state.no && !this.state.yes ? (
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : this.props.showhc ? (
-            <Link to="/step2" onClick={() => this.onSubmit()}>
-              <Button>Next</Button>
-            </Link>
+        <div class="landing-body">
+          <Back onClick={this.goBack} />
+          {this.state.fail ? (
+            <Error bul1="Do you require corrective lenses to drive?" />
           ) : (
-            <Link to="/step1" onClick={() => this.onSubmit()}>
-              <Button>Next</Button>
-            </Link>
+            ""
           )}
-        </Container>
+          <Container className={this.state.fail ? "error-content" : ""}>
+            <Row>
+              <h3>Do you require corrective lenses to drive?</h3>
+            </Row>
+            {this.state.fail ? (
+              <ErrorMsg msg="You must choose one answer on this page and click next to continue." />
+            ) : (
+              ""
+            )}
+            <Row>
+              <Col>
+                <Radio value="Yes" onClick={() => this.handleYes()} />
+                <Radio value="No" onClick={() => this.handleNo()} />
+              </Col>
+            </Row>
+            {!this.state.no && !this.state.yes ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            ) : this.props.showhc ? (
+              <Link to="/step2" onClick={() => this.onSubmit()}>
+                <Button>Next</Button>
+              </Link>
+            ) : (
+              <Link to="/step1" onClick={() => this.onSubmit()}>
+                <Button>Next</Button>
+              </Link>
+            )}
+          </Container>
+        </div>
       </React.Fragment>
     );
   }

@@ -27,16 +27,41 @@ class Ineligible extends Component {
               time.
             </h2>
             <p style={{ marginLeft: 1 + "rem" }}>
-              You must visit a ServiceOntario centre to renew your:
+              Your address must be updated before you can renew your:
             </p>
           </Row>
           <Row>
             <ul>
-              {this.props.showhc ? <li>health card</li> : ""}
-              {this.props.showopc ? <li>photo card</li> : ""}
-              {this.props.showdl ? <li>driver's licence</li> : ""}
+              {this.props.showhc ? (
+                <li>
+                  <strong>health card</strong>
+                </li>
+              ) : (
+                ""
+              )}
+              {this.props.showopc ? (
+                <li>
+                  <strong>photo card</strong>
+                </li>
+              ) : (
+                ""
+              )}
+              {this.props.showdl ? (
+                <li>
+                  <strong>driver's licence</strong>
+                </li>
+              ) : (
+                ""
+              )}
             </ul>
           </Row>
+          <Row>
+            <p style={{ marginLeft: 1 + "rem" }}>
+              Please visit a ServiceOntario centre to update your address and
+              renew in-person.
+            </p>
+          </Row>
+          <Button>Find your nearest ServiceOntario</Button>
         </div>
       </React.Fragment>
     );

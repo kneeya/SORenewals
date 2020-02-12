@@ -1,0 +1,50 @@
+.success-msg {
+  color: #2b8737;
+  font-weight: 700;
+  margin: 0;
+}
+
+.success-symbol {
+  padding: 10px;
+}
+
+.success-symbol-sm {
+  padding: 10px;
+  padding-top: 0px;
+}
+
+.success-header {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  padding-top: 2px;
+}
+
+.success-container {
+  background-color: #d9eee3;
+  border-left: 5px solid #2b8737;
+  margin-bottom: 1rem;
+}
+
+.success-list {
+  color: #2b8737;
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li::before {
+  color: black;
+  content: "\2022";
+  display: inline-block;
+  font-weight: bold;
+  width: 1rem;
+  margin-left: -1.5em;
+}
+
+.success-content {
+  border-left: 5px solid #2b8737;
+}
