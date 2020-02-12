@@ -102,94 +102,95 @@ class Contact extends Component {
   render() {
     return (
       <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.voicefail && this.state.emailfail ? (
-          <Error bul1="Phone number" bul2="Email" />
-        ) : this.state.emailfail && !this.state.voicefail ? (
-          <Error bul1="Email" />
-        ) : this.state.voicefail && !this.state.emailfail ? (
-          <Error bul1="Phone number" />
-        ) : (
-          ""
-        )}
-        <Container className={this.state.voicefail ? "error-content" : ""}>
-          <Row>
-            <h2 className="sub-header">Contact information</h2>
-          </Row>
-          <Row>
-            <p>Enter your contact information below</p>
-          </Row>
-          <Row>
-            <Col>
-              <strong>
-                Phone number {!this.props.showhc ? "(optional)" : ""}
-              </strong>
-              {this.state.voicefail ? (
-                <ErrorMsg msg="Please provide a phone number" />
-              ) : (
-                ""
-              )}
-              <p>For example 5194562343</p>
-
-              <input
-                id="voicey"
-                ref={input => (this.voicey = input)}
-                onChange={() => {
-                  let temp = this.voicey;
-                  temp = this.voicey.value;
-                  this.setState({ voice: temp });
-                }}
-                onBlur={() => this.checkvoice()}
-              />
-              <p>
-                We may call you to confirm that you live in Ontario, or to
-                resolve an issue with your renewal.
-              </p>
-            </Col>
-          </Row>
-        </Container>
-        <Container className={this.state.emailfail ? "error-content" : ""}>
-          <strong>Email</strong>
-          {this.state.emailfail ? (
-            <ErrorMsg msg="Please provide a valid email" />
+        <div class="landing-body">
+          <Back onClick={this.goBack} />
+          {this.state.voicefail && this.state.emailfail ? (
+            <Error bul1="Phone number" bul2="Email" />
+          ) : this.state.emailfail && !this.state.voicefail ? (
+            <Error bul1="Email" />
+          ) : this.state.voicefail && !this.state.emailfail ? (
+            <Error bul1="Phone number" />
           ) : (
             ""
           )}
-          <p> For example person@example.com</p>
-
-          {/* <Form onSubmit={this.handleSubmit.bind(this)}>
+          <Container className={this.state.voicefail ? "error-content" : ""}>
+            <Row>
+              <h2 className="sub-header">Contact information</h2>
+            </Row>
+            <Row>
+              <p>Enter your contact information below</p>
+            </Row>
+            <Row>
+              <strong style={{ paddingRight: 5 + "rem" }}>Email</strong>
+              {this.state.emailfail ? (
+                <ErrorMsg msg="Please provide a valid email" />
+              ) : (
+                ""
+              )}
+              <p>For example odslab@ontario.ca</p>
+              {/* <Form onSubmit={this.handleSubmit.bind(this)}>
             <FormGroup controlId="formBasicEmail"> */}
-          <input
-            ref={input => (this.email = input)}
-            className="text-primary"
-            onChange={() => {
-              let temp = this.email;
-              temp = this.email.value;
-              this.setState({ email: temp });
-            }}
-            onBlur={() => this.checkemail()}
-          />
-          {/* </FormGroup> */}
-          <p>
-            We will email you an electronic receipt and temporary document(s)
-            for this transaction.
-          </p>
-          {(this.state.voicedisabled && this.props.showhc) ||
-          this.state.emaildisabled ? (
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : (
-            <Link to="/notify-so">
-              <Button
-                variant="primary"
-                type="submit"
-                onClick={() => this.handleSubmit()}
-              >
-                Next
-              </Button>
-            </Link>
-          )}
-          {/* </Form> */}
-        </Container>
+              <input
+                ref={input => (this.email = input)}
+                className="text-primary"
+                onChange={() => {
+                  let temp = this.email;
+                  temp = this.email.value;
+                  this.setState({ email: temp });
+                }}
+                onBlur={() => this.checkemail()}
+              />
+              {/* </FormGroup> */}
+              <p>
+                We will email you an electronic receipt and temporary
+                document(s) for this transaction.
+              </p>
+              <br></br>
+            </Row>
+          </Container>
+          <div className={this.state.emailfail ? "error-content" : ""}>
+            <strong>
+              Phone number {!this.props.showhc ? "(optional)" : ""}
+            </strong>
+            {this.state.voicefail ? (
+              <ErrorMsg msg="Please provide a phone number" />
+            ) : (
+              ""
+            )}
+            <p>For example 226 808 3813</p>
+
+            <input
+              id="voicey"
+              ref={input => (this.voicey = input)}
+              onChange={() => {
+                let temp = this.voicey;
+                temp = this.voicey.value;
+                this.setState({ voice: temp });
+              }}
+              onBlur={() => this.checkvoice()}
+            />
+            <p>
+              We may call you to confirm that you live in Ontario, or to resolve
+              an issue with your renewal.
+            </p>
+
+            {(this.state.voicedisabled && this.props.showhc) ||
+            this.state.emaildisabled ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            ) : (
+              <Link to="/notify-so">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  onClick={() => this.handleSubmit()}
+                >
+                  Next
+                </Button>
+              </Link>
+            )}
+            {/* </Form> */}
+          </div>
+        </div>
       </React.Fragment>
     );
   }

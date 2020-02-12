@@ -66,7 +66,7 @@ class Postal extends Component {
           <div className={this.state.fail ? "error-content" : ""}>
             <Row>
               <Col>
-                <h2 className="sub-header">Postal code</h2>
+                <h3>Postal code</h3>
               </Col>
             </Row>
             <Row>
