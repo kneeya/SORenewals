@@ -66,6 +66,8 @@ hr {
   background-color: #0066cc;
   margin-bottom: 1rem;
   margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 input[type="checkbox"] {
@@ -216,6 +218,7 @@ input[type="checkbox"] {
 
 .landing-body {
   margin: 6%;
+  padding-bottom: 2rem;
 }
 
 h1 {
@@ -226,6 +229,7 @@ h1 {
   line-height: 1.29;
   color: #1a1a1a;
   margin-bottom: 2rem;
+  letter-spacing: 0.03rem;
 }
 
 h2 {
@@ -235,6 +239,17 @@ h2 {
   font-weight: 700;
   line-height: 1.37;
   color: #1a1a1a;
+  letter-spacing: 0.03rem;
+}
+
+h3 {
+  font-family: "Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+  font-size: 23x;
+  font-weight: 700;
+  line-height: 1.37;
+  color: #1a1a1a;
+  letter-spacing: 0.02rem;
 }
 
 .lead-text {
