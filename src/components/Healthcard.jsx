@@ -25,6 +25,7 @@ class Healthcard extends Component {
     this.checkninechar();
     this.checkdriver();
     this.checktrill();
+    window.scrollTo(0, 0);
   }
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;
@@ -112,10 +113,18 @@ class Healthcard extends Component {
     });
     this.setState({ fail: false });
     this.setState({ dlfail: false, trillfail: false });
-
-    //this.checkdriver();
-    //this.checktrill();
   }
+  onClick = () => {
+    this.sendOPC();
+    this.sendDL();
+  };
+  sendOPC = () => {
+    this.props.sendOPC(this.state.opc);
+  };
+
+  sendDL = () => {
+    this.props.sendDL(this.state.dl);
+  };
 
   handleOpc() {
     this.setState({
@@ -136,253 +145,245 @@ class Healthcard extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.fail ? <Error bul1="Before you proceed" /> : ""}
-        <Container className={this.state.fail ? "error-content" : ""}>
-          <React.Fragment>
-            <Row>
-              <h2 className="sub-header">Verify your identity</h2>
-            </Row>
-            <Row>
-              <p>
-                You need to have a valid driver's licence or photo card to renew
-                your health card
-              </p>
-            </Row>
-            {this.state.dlchecked ? (
-              this.state.dlfail && this.state.trillfail ? (
-                <Error
-                  bul1="Driver's license number"
-                  bul2="7 number sequence on card"
-                />
-              ) : this.state.dlfail && !this.state.trillfail ? (
-                <Error bul1="Driver's license number" />
-              ) : this.state.trillfail && !this.state.dlfail ? (
-                <Error bul1="7 number sequence on card" />
+      <div className="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          {this.state.fail ? <Error bul1="Before you proceed" /> : ""}
+          <div className={this.state.fail ? "error-content" : ""}>
+            <React.Fragment>
+              <div>
+                <h2 className="sub-header">Verify your identity</h2>
+              </div>
+              <div>
+                <p>
+                  You need to have a valid driver's licence or photo card to
+                  renew your health card
+                </p>
+              </div>
+              {this.state.dlchecked ? (
+                this.state.dlfail && this.state.trillfail ? (
+                  <Error
+                    bul1="Driver's license number"
+                    bul2="7 number sequence on card"
+                  />
+                ) : this.state.dlfail && !this.state.trillfail ? (
+                  <Error bul1="Driver's license number" />
+                ) : this.state.trillfail && !this.state.dlfail ? (
+                  <Error bul1="7 number sequence on card" />
+                ) : (
+                  ""
+                )
               ) : (
                 ""
-              )
-            ) : (
-              ""
-            )}
-            {this.state.opcchecked ? (
-              this.state.opcfail && this.state.charfail ? (
-                <Error
-                  bul1="Ontario photo card number"
-                  bul2="9 character sequence on card"
-                />
-              ) : this.state.opcfail && !this.state.charfail ? (
-                <Error bul1="Ontario photo card number" />
-              ) : this.state.charfail && !this.state.opcfail ? (
-                <Error bul1="9 character sequence on card" />
+              )}
+              {this.state.opcchecked ? (
+                this.state.opcfail && this.state.charfail ? (
+                  <Error
+                    bul1="Ontario photo card number"
+                    bul2="9 character sequence on card"
+                  />
+                ) : this.state.opcfail && !this.state.charfail ? (
+                  <Error bul1="Ontario photo card number" />
+                ) : this.state.charfail && !this.state.opcfail ? (
+                  <Error bul1="9 character sequence on card" />
+                ) : (
+                  ""
+                )
               ) : (
                 ""
-              )
-            ) : (
-              ""
-            )}
-            <Row>
-              <p>Select one:</p>
-            </Row>
-            {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
-            <Row>
-              <Radio value="Driver's licence" onClick={() => this.handleDl()} />
-            </Row>
-            {this.state.dlchecked ? (
-              <React.Fragment>
-                <Container className={this.state.dlfail ? "error-content" : ""}>
-                  <Row>
-                    <strong>Driver's license number</strong>
-                  </Row>
-                  {this.state.dlfail ? (
-                    <ErrorMsg msg="Enter your driver's licence number." />
-                  ) : (
-                    ""
-                  )}
-                  <Row>
-                    <Col>
-                      <p>For example A1234 12345 12345</p>
-                      <MaskedInput
-                        ref={input => (this.driver = input)}
-                        onChange={() => {
-                          let temp = this.driver.textMaskInputElement.state
-                            .previousConformedValue;
+              )}
+              <div>
+                <p>Select one:</p>
+              </div>
+              {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
+              <div>
+                <Radio
+                  value="Driver's licence"
+                  onClick={() => this.handleDl()}
+                />
+              </div>
+              {this.state.dlchecked ? (
+                <React.Fragment>
+                  <div className={this.state.dlfail ? "error-content" : ""}>
+                    <div>
+                      <strong>Driver's license number</strong>
+                    </div>
+                    {this.state.dlfail ? (
+                      <ErrorMsg msg="Enter your driver's licence number." />
+                    ) : (
+                      ""
+                    )}
+                    <div>
+                      <div>
+                        <p>For example D6101 50707 51120</p>
+                        <MaskedInput
+                          ref={input => (this.driver = input)}
+                          onChange={() => {
+                            let temp = this.driver.textMaskInputElement.state
+                              .previousConformedValue;
 
-                          this.setState({ dl: temp });
-                        }}
-                        onBlur={() => this.checkdriver()}
-                        mask={[
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          " ",
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          " ",
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
-                          /[A-Za-z0-9]/,
+                            this.setState({ dl: temp });
+                          }}
+                          onBlur={() => this.checkdriver()}
+                          mask={[
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            " ",
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            " ",
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
+                            /[A-Za-z0-9]/,
 
-                          /[A-Za-z0-9]/
-                        ]}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-                <Container>
-                  <Row>
+                            /[A-Za-z0-9]/
+                          ]}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
                     <p>You can find your driver's license number here:</p>
-                  </Row>
-                  {/* input card img*/}
-                </Container>
-                <Container
-                  className={this.state.trillfail ? "error-content" : ""}
-                >
-                  <Row>
-                    <strong>7 number sequence on card</strong>
-                  </Row>
-                  <Row>
-                    <p>
-                      Your 7 number sequence is found in between the asterisks
-                      (*) on the back of your card.
-                    </p>
-                  </Row>
-                  {this.state.trillfail ? (
-                    <ErrorMsg msg="Enter your driver's license 7 number sequence" />
-                  ) : (
-                    ""
-                  )}
-                  <Row>
-                    <Col>
-                      <p>For example 0237452</p>
-                      <input
-                        id="trill"
-                        ref={input => (this.trill = input)}
-                        onChange={() => {
-                          let temp = this.trill.value;
-                          this.setState({ trill: temp });
-                        }}
-                        onBlur={() => this.checktrill()}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-                <Container>
-                  <Row>
-                    <p>You can find your 7 number sequence here:</p>
-                  </Row>
-                  {/* input card img*/}
-                </Container>
-              </React.Fragment>
-            ) : (
-              ""
-            )}
-            <Row>
-              <Radio
-                value="Ontario photo card"
-                onClick={() => this.handleOpc()}
-              />
-            </Row>
-            {this.state.opcchecked ? (
-              <React.Fragment>
-                <Container
-                  className={this.state.opcfail ? "error-content" : ""}
-                >
-                  <Row>
-                    <strong>Ontario Photo Card number</strong>
-                  </Row>
-                  {this.state.opcfail ? (
-                    <ErrorMsg msg="Enter your Ontario photo card number." />
-                  ) : (
-                    ""
-                  )}
-                  <Row>
-                    <Col>
-                      <p>For example 123 PD34 12345</p>
-                      <input
-                        id="pics"
-                        ref={input => (this.pics = input)}
-                        onChange={() => {
-                          let temp = this.pics;
-                          temp = this.pics.value;
 
-                          this.setState({ opc: temp });
-                        }}
-                        onBlur={() => this.checkphoto()}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-                <Container>
-                  <Row>
+                    <img class="card-photo" src="/DLFront.png"></img>
+                  </div>
+                  <div className={this.state.trillfail ? "error-content" : ""}>
+                    <div>
+                      <strong>7 number sequence on card</strong>
+                    </div>
+                    <div>
+                      <p>
+                        Your 7 number sequence is found in between the asterisks
+                        (*) on the back of your card.
+                      </p>
+                    </div>
+                    {this.state.trillfail ? (
+                      <ErrorMsg msg="Enter your driver's license 7 number sequence" />
+                    ) : (
+                      ""
+                    )}
+                    <div>
+                      <div>
+                        <p>For example 0237452</p>
+                        <input
+                          id="trill"
+                          ref={input => (this.trill = input)}
+                          onChange={() => {
+                            let temp = this.trill.value;
+                            this.setState({ trill: temp });
+                          }}
+                          onBlur={() => this.checktrill()}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <p>You can find your 7 number sequence here:</p>
+                    <img class="card-photo" src="/DLBack.png"></img>
+                  </div>
+                </React.Fragment>
+              ) : (
+                ""
+              )}
+              <div>
+                <Radio
+                  value="Ontario photo card"
+                  onClick={() => this.handleOpc()}
+                />
+              </div>
+              {this.state.opcchecked ? (
+                <React.Fragment>
+                  <div className={this.state.opcfail ? "error-content" : ""}>
+                    <div>
+                      <strong>Ontario Photo Card number</strong>
+                    </div>
+                    {this.state.opcfail ? (
+                      <ErrorMsg msg="Enter your Ontario photo card number." />
+                    ) : (
+                      ""
+                    )}
+                    <div>
+                      <div>
+                        <p>For example 123 PD34 12345</p>
+                        <input
+                          id="pics"
+                          ref={input => (this.pics = input)}
+                          onChange={() => {
+                            let temp = this.pics;
+                            temp = this.pics.value;
+
+                            this.setState({ opc: temp });
+                          }}
+                          onBlur={() => this.checkphoto()}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
                     <p>You can find your Ontario photo card number here:</p>
-                  </Row>
-                  {/* input card img*/}
-                </Container>
-                <Container
-                  className={this.state.charfail ? "error-content" : ""}
-                >
-                  <Row>
-                    <strong>9 character sequence on card</strong>
-                  </Row>
-                  <Row>
+
+                    <img class="card-photo" src="/OPCNum.png"></img>
+                  </div>
+                  <div className={this.state.charfail ? "error-content" : ""}>
+                    <p>
+                      <strong>9 character sequence on card</strong>
+                    </p>
                     <p>
                       Your 9 character sequence is found in the box on the back
                       of your card.
                     </p>
-                  </Row>
-                  {this.state.charfail ? (
-                    <ErrorMsg msg="Enter your Ontario photo card 9 character sequence" />
-                  ) : (
-                    ""
-                  )}
-                  <Row>
-                    <Col>
-                      <p>For example MD0237452</p>
-                      <input
-                        id="nchar"
-                        ref={input => (this.nchar = input)}
-                        onChange={() => {
-                          let temp = this.nchar;
-                          temp = this.nchar.value;
-                          this.setState({ nchar: temp });
-                        }}
-                        onBlur={() => this.checkninechar()}
-                      />
-                    </Col>
-                  </Row>
-                </Container>
-                <Container>
-                  <Row>
+
+                    {this.state.charfail ? (
+                      <ErrorMsg msg="Enter your Ontario photo card 9 character sequence" />
+                    ) : (
+                      ""
+                    )}
+                    <div>
+                      <div>
+                        <p>For example MD0237452</p>
+                        <input
+                          id="nchar"
+                          ref={input => (this.nchar = input)}
+                          onChange={() => {
+                            let temp = this.nchar;
+                            temp = this.nchar.value;
+                            this.setState({ nchar: temp });
+                          }}
+                          onBlur={() => this.checkninechar()}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
                     <p>You can find your 9 character sequence here:</p>
-                  </Row>
-                  {/* input card img*/}
-                </Container>
-              </React.Fragment>
+                    <img class="card-photo" src="/OPCSeq.png"></img>
+                  </div>
+                </React.Fragment>
+              ) : (
+                ""
+              )}
+            </React.Fragment>
+            {(!this.state.dlchecked && !this.state.opcchecked) ||
+            this.state.driverdisabled ||
+            this.state.trilldisabled ||
+            this.state.chardisabled ||
+            this.state.photodisabled ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
-              ""
+              <Link to="/postal">
+                <Button onClick={() => this.onClick()}>Next</Button>
+              </Link>
             )}
-          </React.Fragment>
-          {(!this.state.dlchecked && !this.state.opcchecked) ||
-          this.state.driverdisabled ||
-          this.state.trilldisabled ||
-          this.state.chardisabled ||
-          this.state.photodisabled ? (
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : (
-            <Link to="/postal">
-              <Button>Next</Button>
-            </Link>
-          )}
-        </Container>
-      </React.Fragment>
+          </div>
+        </React.Fragment>
+      </div>
     );
   }
 }

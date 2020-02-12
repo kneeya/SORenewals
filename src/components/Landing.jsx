@@ -6,6 +6,9 @@ import "rc-checkbox/assets/index.css";
 import { Link } from "react-router-dom";
 
 class Landing extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <React.Fragment>
@@ -30,9 +33,10 @@ class Landing extends Component {
             <p>You will need:</p>
             <ul>
               <li>
-                your current card(s) or card details including card number
+                your driver’s licence, Ontario photo card, and/or health card
               </li>
               <li>10-15 minutes to complete the application all at once</li>
+              <li>a valid email address</li>
             </ul>
           </div>
           <div class="section">
@@ -51,7 +55,7 @@ class Landing extends Component {
               details to renew your health card, for example your:
             </p>
             <ul>
-              <li>driver's licence</li>
+              <li>driver's licence or</li>
               <li>photo card</li>
             </ul>
           </div>

@@ -6,6 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import Error from "./error/Error";
 import ErrorMsg from "./error/ErrorMsg";
+import "../App.css";
 
 class OPCinput extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class OPCinput extends Component {
   componentDidMount() {
     this.checkphoto();
     this.checkninechar();
+    window.scrollTo(0, 0);
   }
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;
@@ -53,44 +55,45 @@ class OPCinput extends Component {
       this.setState({ charfail: false });
     }
   }
+  onClick = () => {
+    this.sendOPC();
+  };
+  sendOPC = () => {
+    this.props.sendOPC(this.state.opc);
+  };
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.opcfail && this.state.charfail ? (
-          <Error
-            bul1="Health card number and version code"
-            bul2="9 character sequence on card"
-          />
-        ) : (
-          ""
-        )}
-        {this.state.opcfail && !this.state.charfail ? (
-          <Error bul1="Ontario photo card" />
-        ) : this.state.charfail && !this.state.opcfail ? (
-          <Error bul1="9 character sequence on card" />
-        ) : (
-          ""
-        )}
-        <Container>
-          <Row>
-            <h2 className="sub-header">Photo Card Information</h2>
-          </Row>
-          <Row>
-            <p className="prompt">Enter your Ontario Photo Card information</p>
-          </Row>
-        </Container>
-        <Container className={this.state.opcfail ? "error-content" : ""}>
-          <Row>
-            <strong>Ontario Photo Card number</strong>
-          </Row>
-          {this.state.opcfail ? (
-            <ErrorMsg msg="Enter your Ontario photo card number." />
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          {this.state.opcfail && this.state.charfail ? (
+            <Error
+              bul1="Health card number and version code"
+              bul2="9 character sequence on card"
+            />
           ) : (
             ""
           )}
-          <Row>
-            <Col>
+          {this.state.opcfail && !this.state.charfail ? (
+            <Error bul1="Ontario photo card" />
+          ) : this.state.charfail && !this.state.opcfail ? (
+            <Error bul1="9 character sequence on card" />
+          ) : (
+            ""
+          )}
+          <h3>Photo Card Information</h3>
+          <p>Enter your Ontario Photo Card information</p>
+          <div class="section">
+            <div className={this.state.opcfail ? "error-content" : ""}>
+              <p>
+                {" "}
+                <strong>Ontario Photo Card number</strong>
+              </p>
+              {this.state.opcfail ? (
+                <ErrorMsg msg="Enter your Ontario photo card number." />
+              ) : (
+                ""
+              )}
               <p>For example 123 PD34 12345</p>
               <input
                 id="pics"
@@ -103,32 +106,24 @@ class OPCinput extends Component {
                 }}
                 onBlur={() => this.checkphoto()}
               />
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <p>You can find your Ontario photo card number here:</p>
-          </Row>
-          {/* input card img*/}
-        </Container>
-        <Container className={this.state.charfail ? "error-content" : ""}>
-          <Row>
-            <strong>9 character sequence on card</strong>
-          </Row>
-          <Row>
-            <p>
-              Your 9 character sequence is found in the box on the back of your
-              card.
-            </p>
-          </Row>
-          {this.state.charfail ? (
-            <ErrorMsg msg="Enter your Ontario photo card 9 character sequence" />
-          ) : (
-            ""
-          )}
-          <Row>
-            <Col>
+              <p>You can find your Ontario photo card number here:</p>
+              <img class="card-photo" src="/OPCNum.png"></img>
+            </div>
+          </div>
+          <div class="section">
+            <div className={this.state.charfail ? "error-content" : ""}>
+              <p>
+                <strong>9 character sequence on card</strong>
+              </p>
+              <p>
+                Your 9 character sequence is found in the box on the back of
+                your card.
+              </p>
+              {this.state.charfail ? (
+                <ErrorMsg msg="Enter your Ontario photo card 9 character sequence" />
+              ) : (
+                ""
+              )}
               <p>For example MD0237452</p>
               <input
                 id="nchar"
@@ -140,25 +135,19 @@ class OPCinput extends Component {
                 }}
                 onBlur={() => this.checkninechar()}
               />
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <p>You can find your 9 character sequence here:</p>
-          </Row>
-          {/* input card img*/}
-        </Container>
-        <Container>
+              <p>You can find your 9 character sequence here:</p>
+              <img class="card-photo" src="/OPCSeq.png"></img>
+            </div>
+          </div>
           {this.state.chardisabled || this.state.photodisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : (
             <Link to="/postal">
-              <Button>Next</Button>
+              <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           )}
-        </Container>
-      </React.Fragment>
+        </React.Fragment>
+      </div>
     );
   }
 }

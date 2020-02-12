@@ -13,7 +13,9 @@ class TnC extends Component {
   goBack() {
     this.props.history.goBack();
   }
-
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <React.Fragment>
@@ -49,6 +51,10 @@ class TnC extends Component {
                   <a href="https://ontario.ca" target="_blank">
                     Ontario privacy policy
                   </a>
+                </li>
+                <li>
+                  ServiceOntario may contact me to confirm my information,
+                  including residency in Ontario
                 </li>
               </ul>
             </Row>

@@ -26,6 +26,8 @@ import IneligibleFiveMos from "./components/XFiveMos.jsx";
 import Ineligible3 from "./components/XMedCon.jsx";
 import OPCinput from "./components/OPCinput.jsx";
 import PDFViewer from "./components/PDFViewer/PDFViewer";
+import Review from "./components/Review.jsx";
+import NextSteps from "./components/NextSteps.jsx";
 
 export default class App extends Component {
   constructor(props) {
@@ -41,7 +43,37 @@ export default class App extends Component {
   };
 
   getContact = (uemail, uphone) => {
-    this.setState({ email: uemail, phone: uphone });
+    let setContact = this.state;
+    setContact = { email: uemail, phone: uphone };
+    this.setState(setContact);
+  };
+  getRContact = (remail, rphone, rvoice) => {
+    let reminder = this.state;
+    reminder = { remail: remail, rphone: rphone, rvoice: rvoice };
+    this.setState(reminder);
+    console.log(
+      "rphone: " + this.state.rphone + "rvoice: " + this.state.rvoice
+    );
+  };
+  getDL = udl => {
+    let dlNum = this.state;
+    dlNum = { dl: udl };
+    this.setState(dlNum);
+    console.log(this.state.dl);
+  };
+
+  getHC = uhc => {
+    let hcNum = this.state;
+    hcNum = { hc: uhc };
+    this.setState(hcNum);
+    console.log(this.state.hc);
+  };
+
+  getOPC = uopc => {
+    let opcNum = this.state;
+    opcNum = { opc: uopc };
+    this.setState(opcNum);
+    console.log(this.state.opc);
   };
 
   render() {
@@ -56,6 +88,7 @@ export default class App extends Component {
               <img width="225" height="55" src="/logoSO.png" alt="SO-logo" />
             </Row>
           </div>
+
           <BrowserRouter /*using react-router to manage links and navigation of pages based on user interaction*/
           >
             <Switch>
@@ -95,6 +128,7 @@ export default class App extends Component {
                     showhc={this.state.showhc}
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
+                    sendDL={this.getDL.bind(this)}
                   />
                 )}
               />
@@ -106,18 +140,15 @@ export default class App extends Component {
                     showhc={this.state.showhc}
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
+                    sendHC={this.getHC.bind(this)}
                   />
                 )}
               />
-              <Route path="/pc-input" component={OPCinput} />
+              <Route
+                path="/pc-input"
+                render={() => <OPCinput sendOPC={this.getOPC.bind(this)} />}
+              />
               <Route exact path="/postal" component={Postal} />
-              {/* <Route
-                exact
-                path="/hc"
-                render={() =>
-                  this.state.showhc ? <Step2 /> : <Redirect to="/elig" />
-                }
-              /> */}
               <Route
                 exact
                 path="/healthcard"
@@ -129,6 +160,8 @@ export default class App extends Component {
                       dl={this.state.showdl}
                       hc={this.state.showhc}
                       opc={this.state.showopc}
+                      sendDL={this.getDL.bind(this)}
+                      sendOPC={this.getOPC.bind(this)}
                     />
                   ) : (
                     <Redirect to="/step2" />
@@ -218,9 +251,7 @@ export default class App extends Component {
                 path="/contact"
                 render={() => (
                   <Contact
-                    showdl={this.state.showdl}
                     showhc={this.state.showhc}
-                    showopc={this.state.showopc}
                     sendContact={this.getContact.bind(this)}
                   />
                 )}
@@ -229,12 +260,37 @@ export default class App extends Component {
                 path="/notify-so"
                 render={() => (
                   <Notify
+                    email={this.state.email}
+                    phone={this.state.phone}
+                    sendRContact={this.getRContact.bind(this)}
+                  />
+                )}
+              />{" "}
+              <Route
+                path="/review"
+                render={() => (
+                  <Review
+                    phone={this.state.phone}
+                    email={this.state.email}
+                    dl={this.state.dl}
+                    hc={this.state.hc}
+                    opc={this.state.opc}
+                    remail={this.state.remail}
+                    rphone={this.state.rphone}
+                    rvoice={this.state.rvoice}
+                  />
+                )}
+              />
+              <Route
+                path="/next-steps"
+                render={() => (
+                  <NextSteps
                     showdl={this.state.showdl}
                     showhc={this.state.showhc}
                     showopc={this.state.showopc}
                   />
                 )}
-              />{" "}
+              />
             </Switch>
           </BrowserRouter>
         </div>

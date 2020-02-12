@@ -36,8 +36,8 @@ class Home extends Component {
     ) {
       this.setState({ fail: false });
     }
-    if (this.state.dlcheck && !this.state.photocheck) {
-      this.setState({ opcdlfail: true });
+    if (!this.state.dlcheck && this.state.photocheck) {
+      this.setState({ opcdisabled: true });
     } else {
       this.setState({ opcdlfail: false });
     }
@@ -54,8 +54,8 @@ class Home extends Component {
       this.setState({ fail: false });
     }
     //removing the fail state if user removes check
-    if (!this.state.dlcheck && this.state.photocheck) {
-      this.setState({ opcdlfail: true });
+    if (this.state.dlcheck && !this.state.photocheck) {
+      this.setState({ opcdisabled: true });
     } else {
       this.setState({ opcdlfail: false });
     }
@@ -72,6 +72,10 @@ class Home extends Component {
       this.setState({ fail: false });
     }
   };
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   //this fct is the getInfo fct in App.js and is being called on as a property to be used in this component
   onSubmit = () => {
     // sending states of Home.jsx to App.js using this fct
@@ -92,7 +96,7 @@ class Home extends Component {
     }
     //to prevent both dl adn opc renewal using opcdlfail state
     if (this.state.dlcheck && this.state.photocheck) {
-      this.setState({ opcdlfail: true });
+      this.setState({ opcdisabled: true, opcdlfail: true });
     } else {
       this.setState({ opcdlfail: false });
     }

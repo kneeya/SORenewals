@@ -1,0 +1,33 @@
+.success-msg {
+  color: #2b8737;
+  font-weight: 700;
+  margin: 0;
+}
+
+.success-header {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  padding-top: 12px;
+
+  margin-top: -2.9rem;
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+}
+
+.success-container {
+  padding: 1rem;
+  background-color: #d9eee3;
+  border-left: 5px solid #2b8737;
+  margin-bottom: 1rem;
+}
+
+.success-list {
+  color: #2b8737;
+  text-decoration: underline;
+}
+
+.success-content {
+  border-left: 5px solid #2b8737;
+}

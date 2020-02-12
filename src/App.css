@@ -68,6 +68,7 @@ hr {
   margin-top: 1rem;
   font-size: 1.125rem;
   font-weight: 600;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 input[type="checkbox"] {
@@ -260,6 +261,15 @@ h3 {
   color: #000000;
 }
 
+.ineligible-text {
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 1.4;
+  letter-spacing: 0.02rem;
+  color: #000000;
+}
+
 .section {
   margin: 2rem 0 2rem 0;
 }
@@ -313,9 +323,40 @@ input {
   transition: box-shadow 0.1s ease-in-out;
 }
 
+.input {
+  border: 2px solid #1a1a1a;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #1a1a1a;
+  font-size: 1rem;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0 0 2rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  -webkit-transition: box-shadow 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
 input:focus {
   box-shadow: 0 0 0 4px #009adb;
   outline: 4px solid transparent;
   -webkit-transition: box-shadow 0.1s ease-in-out;
   transition: box-shadow 0.1s ease-in-out;
+}
+
+.reminder-indent {
+  margin-left: 2.9rem;
+  margin-bottom: -0.2rem;
+}
+
+.radio-margins {
+  margin: 0 0 2rem 0;
+}
+
+.weird-one-line-err {
+  color: #cd0000;
+  font-weight: 700;
+  margin-top: -2.2rem;
+  margin-left: 2rem;
 }
