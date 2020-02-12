@@ -38,43 +38,49 @@ class MedCon extends Component {
   render() {
     return (
       <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.fail ? (
-          <Error
-            bul1="In the last 5 years, have you had any medical conditions that may
-          affect your ability to drive or has the doctor told you not to
-          drive?"
-          />
-        ) : (
-          ""
-        )}
-        <Container className={this.state.fail ? "error-content" : ""}>
-          <Row>
-            <h2 className="sub-header">
-              In the last 5 years, have you had any medical conditions that may
-              affect your ability to drive or has the doctor told you not to
-              drive?
-            </h2>
-          </Row>
-          {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
-          <Row>
-            <Col>
-              <Radio value="Yes" onClick={() => this.handleYes()} />
-              <Radio value="No" onClick={() => this.handleNo()} />
-            </Col>
-          </Row>
-          {!this.state.yes && !this.state.no ? (
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : this.state.no ? (
-            <Link to="/vision">
-              <Button>Next</Button>
-            </Link>
+        <div class="landing-body">
+          <Back onClick={this.goBack} />
+          {this.state.fail ? (
+            <Error
+              bul1="Since you last renewed your driver's licence, have you had any
+              medical conditions that may affect your ability to drive, or has
+              a doctor told you not to drive?"
+            />
           ) : (
-            <Link to="/ineligible3">
-              <Button>Next</Button>
-            </Link>
+            ""
           )}
-        </Container>
+          <div className={this.state.fail ? "error-content" : ""}>
+            <Row>
+              <h3 style={{ marginLeft: 1 + "rem" }}>
+                Since you last renewed your driver's licence, have you had any
+                medical conditions that may affect your ability to drive, or has
+                a doctor told you not to drive?
+              </h3>
+            </Row>
+            {this.state.fail ? (
+              <ErrorMsg msg="You must choose one answer on this page and click next to continue." />
+            ) : (
+              ""
+            )}
+            <Row>
+              <Col>
+                <Radio value="Yes" onClick={() => this.handleYes()} />
+                <Radio value="No" onClick={() => this.handleNo()} />
+              </Col>
+            </Row>
+            {!this.state.yes && !this.state.no ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            ) : this.state.no ? (
+              <Link to="/vision">
+                <Button>Next</Button>
+              </Link>
+            ) : (
+              <Link to="/ineligible3">
+                <Button>Next</Button>
+              </Link>
+            )}
+          </div>
+        </div>
       </React.Fragment>
     );
   }

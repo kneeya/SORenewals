@@ -37,30 +37,40 @@ class FiveMos extends Component {
   render() {
     return (
       <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.fail ? (
-          <Error bul1="Have you lived in Ontario for 5 months in the past year?" />
-        ) : (
-          ""
-        )}
-        <Container className={this.state.fail ? "error-content" : ""}>
-          <Row>
-            <h2 className="sub-header">
-              Have you lived in Ontario for 5 months in the past year?
-            </h2>
-          </Row>
-          <Row>
-            <p>
-              The Ministry of Health may contact you for further verification
-            </p>
-          </Row>
-          {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
-          <Row>
-            <Col>
-              <Radio value="Yes" onClick={() => this.handleYes()} />
-              <Radio value="No" onClick={() => this.handleNo()} />
-            </Col>
-          </Row>
+        <div class="landing-body">
+          <Back onClick={this.goBack} />
+          {this.state.fail ? (
+            <Error bul1="In the past year, have you lived in Ontario for at least 5 months?" />
+          ) : (
+            ""
+          )}
+          <div className={this.state.fail ? "error-content" : ""}>
+            <Row>
+              <h3 style={{ marginLeft: 1 + "rem" }}>
+                In the past year, have you lived in Ontario for at least 5
+                months?
+              </h3>
+            </Row>
+            <Row>
+              <p style={{ marginLeft: 1 + "rem" }}>
+                The Ministry of Health may contact you for further verification.
+              </p>
+            </Row>
+            {this.state.fail ? (
+              <ErrorMsg
+                msg="You must choose one answer on this page and click next to continue.
+"
+              />
+            ) : (
+              ""
+            )}
+            <Row>
+              <Col>
+                <Radio value="Yes" onClick={() => this.handleYes()} />
+                <Radio value="No" onClick={() => this.handleNo()} />
+              </Col>
+            </Row>
+          </div>
           {!this.state.yes && !this.state.no ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : this.state.yes ? (
@@ -78,7 +88,7 @@ class FiveMos extends Component {
               <Button>Next</Button>
             </Link>
           )}
-        </Container>
+        </div>
       </React.Fragment>
     );
   }

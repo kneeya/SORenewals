@@ -4,6 +4,7 @@ import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import Checkbox from "rc-checkbox";
 import "rc-checkbox/assets/index.css";
 import { Link, withRouter } from "react-router-dom";
+import "../App.css";
 import Back from "./Back";
 import Error from "./error/Error";
 import ErrorMsg from "./error/ErrorMsg";
@@ -99,87 +100,97 @@ class Home extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
 
-        {this.state.fail || this.state.opcdlfail ? (
-          <Error bul1="Choose the card(s) you want to renew (select at least one)" />
-        ) : (
-          ""
-        )}
-        <Container
-          className={
-            this.state.fail || this.state.opcdlfail ? "error-content" : ""
-          }
-        >
-          <h2 class="sub-header">Choose the card(s) you want to renew</h2>
-          <p>(select at least one)</p>
-          {//this prop is a state in App.js, when true it shows this error msg
-          this.state.fail ? (
-            <ErrorMsg msg="You must select one or more card(s)" />
-          ) : this.state.opcdlfail ? (
-            <ErrorMsg msg="You can only renew one. Please choose driver's licence or photo card." />
+          {this.state.fail || this.state.opcdlfail ? (
+            <Error bul1="Choose the card(s) you want to renew (select at least one)" />
           ) : (
             ""
           )}
-          <Form>
-            <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleDlChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <p> Driver's Licence</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleOpcChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <p> Ontario Photo Card</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleHcChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <p>Health Card</p>
-              </Col>
-            </Row>
-            {/*this ? operator determines whether to let the user proceed or not based on their selection */}
-            {(!this.state.dlcheck &&
-              !this.state.healthcheck &&
-              !this.state.photocheck) ||
-            (this.state.dlcheck && this.state.photocheck) ? (
-              <Button onClick={() => this.onSubmit()}>Next</Button>
+          <div
+            className={
+              this.state.fail || this.state.opcdlfail ? "error-content" : ""
+            }
+          >
+            <h2>Choose the card(s) you want to renew</h2>
+            <p>(select at least one)</p>
+            {//this prop is a state in App.js, when true it shows this error msg
+            this.state.fail ? (
+              <ErrorMsg msg="You must choose one or more card(s) on this page and click next to continue." />
+            ) : this.state.opcdlfail ? (
+              <ErrorMsg msg="You can only renew one. Please choose driver's licence or photo card." />
             ) : (
-              <Link to="/before-you-proceed">
-                <Button
-                  onClick={() =>
-                    this.onSubmit(
-                      this.state.dlcheck,
-                      this.state.healthcheck,
-                      this.state.photocheck
-                    )
-                  }
-                >
-                  Next
-                </Button>
-              </Link>
+              ""
             )}
-          </Form>
-        </Container>
-      </React.Fragment>
+            <Form>
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleDlChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    {" "}
+                    Driver's Licence
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleOpcChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    {" "}
+                    Ontario Photo Card
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleHcChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    Health Card
+                  </p>
+                </Col>
+              </Row>
+            </Form>
+          </div>
+          {/*this ? operator determines whether to let the user proceed or not based on their selection */}
+          {(!this.state.dlcheck &&
+            !this.state.healthcheck &&
+            !this.state.photocheck) ||
+          (this.state.dlcheck && this.state.photocheck) ? (
+            <Button onClick={() => this.onSubmit()}>Next</Button>
+          ) : (
+            <Link to="/before-you-proceed">
+              <Button
+                onClick={() =>
+                  this.onSubmit(
+                    this.state.dlcheck,
+                    this.state.healthcheck,
+                    this.state.photocheck
+                  )
+                }
+              >
+                Next
+              </Button>
+            </Link>
+          )}
+        </React.Fragment>
+      </div>
     );
   }
 }

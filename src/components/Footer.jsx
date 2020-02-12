@@ -6,25 +6,28 @@ export default class Footer extends Component {
   render() {
     return (
       <React.Fragment>
-        <Container style={{ background: "#ededed" }}>
+        <Container
+          style={{ background: "#ededed", padding: "1.5rem 0 2em 2rem" }}
+        >
+          {" "}
           <Row>
-            <p>Contact Us</p>
+            <a>Contact Us</a>
           </Row>
           <Row>
-            <p>About Ontario</p>
+            <a>About Ontario</a>
           </Row>
           <Row>
-            <p>Accessibility</p>
+            <a>Accessibility</a>
           </Row>
           <Row>
-            <p>Privacy</p>
+            <a>Privacy</a>
           </Row>
           <Row>
-            <p>Terms of use</p>
+            <a>Terms of use</a>
           </Row>
           <Row></Row>
           <Row style={{ paddingTop: "1.5rem" }}>
-            <p>(c) Queen's Printer for Ontario</p>
+            <a>(c) Queen's Printer for Ontario</a>
           </Row>
         </Container>
       </React.Fragment>

@@ -19,19 +19,25 @@ class Ineligible3 extends Component {
   render() {
     return (
       <React.Fragment>
-        <Back onClick={this.goBack} />
-        <Container>
-          <Row>
-            <h2 className="sub-header">
-              You are not eligible to renew online at this time.
-            </h2>
-            <h3>You must visit a ServiceOntario centre to renew your:</h3>
-          </Row>
-          <Row>
-            <ul>
-              <li>driver's licence</li>
-            </ul>
-          </Row>
+        <div class="landing-body">
+          <Back onClick={this.goBack} />
+          <Container>
+            <Row>
+              <h2 class="ineligible-text">
+                You are <strong>not </strong>eligible to renew online at this
+                time.
+              </h2>
+              <p>Your address must be updated before you can renew your:</p>
+            </Row>
+            <Row>
+              <ul>
+                <li>
+                  <strong>driver's licence </strong>
+                </li>
+              </ul>
+            </Row>
+          </Container>
+        </div>
           {this.props.showhc ? (
             <Link to="/step2">
               <Button>Continue to renew only your health card</Button>

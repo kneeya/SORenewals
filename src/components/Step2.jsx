@@ -64,42 +64,36 @@ class Step2 extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.hcfail && this.state.charfail ? (
-          <Error
-            bul1="Health card number and version code"
-            bul2="9 number sequence on card"
-          />
-        ) : (
-          ""
-        )}
-        {this.state.hcfail && !this.state.charfail ? (
-          <Error bul1="Health card number and version code" />
-        ) : this.state.charfail && !this.state.hcfail ? (
-          <Error bul1="9 number sequence on card" />
-        ) : (
-          ""
-        )}
-        <Container>
-          <Row>
-            <h2 className="sub-header">Health Card Information</h2>
-          </Row>
-          <Row>
-            <p>Enter your card information</p>
-          </Row>
-        </Container>
-        <Container className={this.state.hcfail ? "error-content" : ""}>
-          <Row>
-            <strong>Health Card number and version code</strong>
-          </Row>
-          {this.state.hcfail ? (
-            <ErrorMsg msg="Enter your health card number and version code." />
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          {this.state.hcfail && this.state.charfail ? (
+            <Error
+              bul1="Health card number and version code"
+              bul2="9 number sequence on card"
+            />
           ) : (
             ""
           )}
-          <Row>
-            <Col>
+          {this.state.hcfail && !this.state.charfail ? (
+            <Error bul1="Health card number and version code" />
+          ) : this.state.charfail && !this.state.hcfail ? (
+            <Error bul1="9 number sequence on card" />
+          ) : (
+            ""
+          )}
+          <h3>Health Card Information</h3>
+          <p>Enter your card information</p>
+          <div class="section">
+            <div className={this.state.hcfail ? "error-content" : ""}>
+              <p>
+                <strong>Health Card number and version code</strong>
+              </p>
+              {this.state.hcfail ? (
+                <ErrorMsg msg="Enter your health card number and version code." />
+              ) : (
+                ""
+              )}
               <p>For example 1234 123 421 AA</p>
               <input
                 id="healthy"
@@ -112,32 +106,25 @@ class Step2 extends Component {
                 }}
                 onBlur={() => this.checkhealth()}
               />
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <p>You can find your health card information here:</p>
-          </Row>
-          {/* input card img*/}
-        </Container>
-        <Container className={this.state.charfail ? "error-content" : ""}>
-          <Row>
-            <strong>9 character sequence on card</strong>
-          </Row>
-          <Row>
-            <p>
-              Your 9 character sequence is found in the box on the back of your
-              card.
-            </p>
-          </Row>
-          {this.state.charfail ? (
-            <ErrorMsg msg="Enter your 9 character sequence on your health card." />
-          ) : (
-            ""
-          )}
-          <Row>
-            <Col>
+              <p>You can find your health card number and version code here:</p>
+              <img class="card-photo" src="/HCFront.png"></img>
+            </div>
+          </div>
+          <div class="section">
+            <div className={this.state.charfail ? "error-content" : ""}>
+              <p>
+                {" "}
+                <strong>9 character sequence on card</strong>
+              </p>
+              <p>
+                Your 9 character sequence is found in the box on the back of
+                your card.
+              </p>
+              {this.state.charfail ? (
+                <ErrorMsg msg="Enter your 9 character sequence on your health card." />
+              ) : (
+                ""
+              )}
               <p>For example AA1234567</p>
               <input
                 id="nchar"
@@ -150,10 +137,10 @@ class Step2 extends Component {
                 }}
                 onBlur={() => this.checkninechar()}
               />
-            </Col>
-          </Row>
-        </Container>
-        <Container>
+              <p>You can find your 9 character sequence here:</p>
+              <img class="card-photo" src="/HCBack.png"></img>
+            </div>
+          </div>
           {this.state.chardisabled || this.state.healthdisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : this.props.showdl ? (
@@ -169,8 +156,8 @@ class Step2 extends Component {
               <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           )}
-        </Container>
-      </React.Fragment>
+        </React.Fragment>
+      </div>
     );
   }
 }

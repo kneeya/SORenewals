@@ -7,6 +7,7 @@ import Back from "./Back";
 import Error from "./error/Error";
 import ErrorMsg from "./error/ErrorMsg";
 import MaskedInput from "react-text-mask";
+import "../App.css";
 
 class Step1 extends Component {
   constructor(props) {
@@ -78,43 +79,37 @@ class Step1 extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.dlfail && this.state.trillfail ? (
-          <Error
-            bul1="Driver's license number"
-            bul2="7 number sequence on card"
-          />
-        ) : (
-          ""
-        )}
-        {this.state.dlfail && !this.state.trillfail ? (
-          <Error bul1="Driver's license number" />
-        ) : this.state.trillfail && !this.state.dlfail ? (
-          <Error bul1="7 number sequence on card" />
-        ) : (
-          ""
-        )}
-        <Container>
-          <Row>
-            <h2 className="sub-header">Driver's License Information</h2>
-          </Row>
-          <Row>
-            <p className="prompt">Enter your license information</p>
-          </Row>
-        </Container>
-        <Container className={this.state.dlfail ? "error-content" : ""}>
-          <Row>
-            <strong>Driver's license number</strong>
-          </Row>
-          {this.state.dlfail ? (
-            <ErrorMsg msg="Enter your driver's licence number." />
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          {this.state.dlfail && this.state.trillfail ? (
+            <Error
+              bul1="Driver's licence number"
+              bul2="7 number sequence on card"
+            />
           ) : (
             ""
           )}
-          <Row>
-            <Col>
-              <p>For example A1111 11111 11111</p>
+          {this.state.dlfail && !this.state.trillfail ? (
+            <Error bul1="Driver's licence number" />
+          ) : this.state.trillfail && !this.state.dlfail ? (
+            <Error bul1="7 number sequence on card" />
+          ) : (
+            ""
+          )}
+          <h3>Driver's Licence Information</h3>
+          <p>Enter your licence information</p>
+          <div class="section">
+            <div className={this.state.dlfail ? "error-content" : ""}>
+              <p>
+                <strong>Driver's licence number</strong>{" "}
+              </p>
+              {this.state.dlfail ? (
+                <ErrorMsg msg="Enter your driver's licence number." />
+              ) : (
+                ""
+              )}
+              <p>For example D6101 50707 51120</p>
               <MaskedInput
                 ref={input => (this.driver = input)}
                 onChange={() => {
@@ -145,32 +140,24 @@ class Step1 extends Component {
                   /[A-Za-z0-9]/
                 ]}
               />
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <p>You can find your driver's license number here:</p>
-          </Row>
-          {/* input card img*/}
-        </Container>
-        <Container className={this.state.trillfail ? "error-content" : ""}>
-          <Row>
-            <strong>7 number sequence on card</strong>
-          </Row>
-          <Row>
-            <p>
-              Your 7 number sequence is found in between the asterisks (*) on
-              the back of your card.
-            </p>
-          </Row>
-          {this.state.trillfail ? (
-            <ErrorMsg msg="Enter your driver's license 7 number sequence" />
-          ) : (
-            ""
-          )}
-          <Row>
-            <Col>
+              <p>You can find your driver's licence number here:</p>
+              <img class="card-photo" src="/DLFront.png"></img>
+            </div>
+          </div>
+          <div class="section">
+            <div className={this.state.trillfail ? "error-content" : ""}>
+              <p>
+                <strong>7-digit on card</strong>
+              </p>
+              <p>
+                Your 7-digit is found in between the asterisks (*) on the back
+                of your card.
+              </p>
+              {this.state.trillfail ? (
+                <ErrorMsg msg="Enter your driver's licence 7 number sequence" />
+              ) : (
+                ""
+              )}
               <p>For example 0237452</p>
               <input
                 id="trill"
@@ -181,15 +168,10 @@ class Step1 extends Component {
                 }}
                 onBlur={() => this.checktrill()}
               />
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <Row>
-            <p>You can find your 7 number sequence here:</p>
-          </Row>
-          {/* input card img*/}
-
+              <p>You can find your 7-digit number here:</p>
+              <img class="card-photo" src="/DLBack.png"></img>
+            </div>
+          </div>
           {this.state.driverdisabled || this.state.trilldisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : (
@@ -197,8 +179,8 @@ class Step1 extends Component {
               <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           )}
-        </Container>
-      </React.Fragment>
+        </React.Fragment>
+      </div>
     );
   }
 }
