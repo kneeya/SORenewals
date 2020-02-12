@@ -32,7 +32,7 @@ class Contact extends Component {
       //sending email and phone number to app.js to use in notify and review details page
       this.props.sendContact(this.state.email, this.state.voice);
 
-      // const { email } = this.state;
+      //const { email } = this.state;
       // let templateParams = {
       //   to_name: email
       // };
