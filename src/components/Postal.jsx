@@ -60,42 +60,48 @@ class Postal extends Component {
   render() {
     return (
       <React.Fragment>
-        <Back onClick={this.goBack} />
-        {this.state.fail ? <Error bul1="Postal code" /> : ""}
-        <Container className={this.state.fail ? "error-content" : ""}>
-          <Row>
-            <Col>
-              <h2 className="sub-header">Postal code</h2>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <p>Enter your postal code</p>
-            </Col>
-          </Row>
-          {this.state.fail ? <ErrorMsg msg="Enter your postal code" /> : ""}
-          <Row>
-            <Col>
-              <p>For example ANA NAN</p>
-              <input
-                id="postal"
-                ref={input => (this.postal = input)}
-                onChange={() => {
-                  let temp = this.postal.value;
-                  this.setState({ postal: temp });
-                }}
-                onBlur={() => this.checkpostal()}
-              />
-            </Col>
-          </Row>
-          {this.state.postaldisabled ? (
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : (
-            <Link to="/contact">
-              <Button>Next</Button>
-            </Link>
-          )}
-        </Container>
+        <div class="landing-body">
+          <Back onClick={this.goBack} />
+          {this.state.fail ? <Error bul1="Postal code" /> : ""}
+          <div className={this.state.fail ? "error-content" : ""}>
+            <Row>
+              <Col>
+                <h2 className="sub-header">Postal code</h2>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <p>Enter your postal code</p>
+              </Col>
+            </Row>
+            {this.state.fail ? (
+              <ErrorMsg msg="Enter your postal code on this page and click next to continue." />
+            ) : (
+              ""
+            )}
+            <Row>
+              <Col>
+                <p>For example A1A 1A1</p>
+                <input
+                  id="postal"
+                  ref={input => (this.postal = input)}
+                  onChange={() => {
+                    let temp = this.postal.value;
+                    this.setState({ postal: temp });
+                  }}
+                  onBlur={() => this.checkpostal()}
+                />
+              </Col>
+            </Row>
+            {this.state.postaldisabled ? (
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            ) : (
+              <Link to="/contact">
+                <Button>Next</Button>
+              </Link>
+            )}
+          </div>
+        </div>
       </React.Fragment>
     );
   }

@@ -50,6 +50,10 @@ class TnC extends Component {
                     Ontario privacy policy
                   </a>
                 </li>
+                <li>
+                  ServiceOntario may contact me to confirm my information,
+                  including residency in Ontario
+                </li>
               </ul>
             </Row>
             <Row>
