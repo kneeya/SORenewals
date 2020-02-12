@@ -8,6 +8,7 @@ const BackButton = styled.span`
   cursor: pointer;
   font-size: 1.125rem;
   font-weight: 600;
+  margin-bottom: 1rem;
 `;
 
 class Back extends Component {
