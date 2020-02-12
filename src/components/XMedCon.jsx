@@ -32,6 +32,13 @@ class Ineligible3 extends Component {
               <li>driver's licence</li>
             </ul>
           </Row>
+          {this.props.showhc ? (
+            <Link to="/step2">
+              <Button>Continue to renew only your health card</Button>
+            </Link>
+          ) : (
+            ""
+          )}
         </Container>
       </React.Fragment>
     );

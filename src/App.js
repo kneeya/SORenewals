@@ -51,6 +51,9 @@ export default class App extends Component {
     let reminder = this.state;
     reminder = { remail: remail, rphone: rphone, rvoice: rvoice };
     this.setState(reminder);
+    console.log(
+      "rphone: " + this.state.rphone + "rvoice: " + this.state.rvoice
+    );
   };
   getDL = udl => {
     let dlNum = this.state;

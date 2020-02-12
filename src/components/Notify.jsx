@@ -67,11 +67,64 @@ class Notify extends Component {
   }
 
   onSubmit = () => {
-    this.props.sendRContact(
-      this.state.email,
-      this.state.phone,
-      this.state.voice
-    );
+    let none = "";
+    if (this.state.emailcheck && this.state.smscheck && this.state.voicecheck) {
+      this.props.sendRContact(
+        this.state.email,
+        this.state.phone,
+        this.state.voice
+      );
+    }
+    if (
+      this.state.emailcheck &&
+      !this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, none, none);
+    }
+
+    if (
+      !this.state.emailcheck &&
+      this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, this.state.phone, none);
+    }
+    if (
+      !this.state.emailcheck &&
+      !this.state.smscheck &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, none, this.state.voice);
+    }
+    if (
+      this.state.emailcheck &&
+      this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, this.state.phone, none);
+    }
+    if (
+      this.state.emailcheck &&
+      !this.state.smscheck &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, none, this.state.voice);
+    }
+    if (
+      !this.state.emailcheck &&
+      this.state.smscheck &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, this.state.phone, this.state.voice);
+    }
+    if (
+      !this.state.emailcheck &&
+      !this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, none, none);
+    }
   };
 
   render() {
