@@ -66,13 +66,13 @@ class Notify extends Component {
     this.setState({ voicecheck });
   }
 
-  onSubmit() {
-    if (this.state.voicedisabled && this.props.showhc) {
-      this.setState({ fail: true });
-    } else {
-      this.setState({ fail: false });
-    }
-  }
+  onSubmit = () => {
+    this.props.sendRContact(
+      this.state.email,
+      this.state.phone,
+      this.state.voice
+    );
+  };
 
   render() {
     return (
@@ -178,13 +178,10 @@ class Notify extends Component {
               ""
             )}
           </Form>
-          <Link to="/review" onClick={() => this.onSubmit()}>
-            <Button>Next</Button>
-          </Link>
         </Container>
         <Container>
-          <Link to="/review-your-details">
-            <Button>Next</Button>
+          <Link to="/review">
+            <Button onClick={() => this.onSubmit()}>Next</Button>
           </Link>
         </Container>
       </React.Fragment>

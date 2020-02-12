@@ -63,6 +63,14 @@ class Step1 extends Component {
     }
   }
 
+  onClick = () => {
+    this.sendDL();
+  };
+  sendDL = () => {
+    this.props.sendDL(this.state.dl);
+    console.log("swag");
+  };
+
   componentDidMount() {
     this.checkdriver();
     this.checktrill();
@@ -186,7 +194,7 @@ class Step1 extends Component {
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : (
             <Link to="/postal">
-              <Button>Next</Button>
+              <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           )}
         </Container>
