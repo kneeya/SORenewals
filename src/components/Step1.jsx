@@ -101,7 +101,7 @@ class Step1 extends Component {
               ) : (
                 ""
               )}
-              <p>For example A1234 12345 12345</p>
+              <p>For example D6101 50707 51120</p>
               <MaskedInput
                 ref={input => (this.driver = input)}
                 onChange={() => {
