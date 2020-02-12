@@ -353,3 +353,10 @@ input:focus {
 .radio-margins {
   margin: 0 0 2rem 0;
 }
+
+.weird-one-line-err {
+  color: #cd0000;
+  font-weight: 700;
+  margin-top: -2.2rem;
+  margin-left: 2rem;
+}
