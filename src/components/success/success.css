@@ -32,19 +32,6 @@
   text-decoration: underline;
 }
 
-ul {
-  list-style: none;
-}
-
-ul li::before {
-  color: black;
-  content: "\2022";
-  display: inline-block;
-  font-weight: bold;
-  width: 1rem;
-  margin-left: -1.5em;
-}
-
 .success-content {
   border-left: 5px solid #2b8737;
 }

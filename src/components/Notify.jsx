@@ -6,7 +6,6 @@ import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import Checkbox from "rc-checkbox";
 import "rc-checkbox/assets/index.css";
-
 class Notify extends Component {
   state = {
     voicedisabled: false,
@@ -16,7 +15,6 @@ class Notify extends Component {
     super(props);
     this.goBack = this.goBack.bind(this);
   }
-
   state = {
     emailcheck: false,
     smscheck: false,
@@ -25,11 +23,9 @@ class Notify extends Component {
     phone: this.props.phone,
     voice: this.props.phone
   };
-
   goBack() {
     this.props.history.goBack();
   }
-
   handleChange = e => {
     const {
       target: { value }
@@ -53,119 +49,105 @@ class Notify extends Component {
     let emailcheck = !this.state.emailcheck;
     this.setState({ emailcheck });
   }
-
   handleSmsChecked() {
     //show txt msg input on click
     let smscheck = !this.state.smscheck;
     this.setState({ smscheck });
   }
-
   handleVoiceChecked() {
     //show phone call input on click
     let voicecheck = !this.state.voicecheck;
     this.setState({ voicecheck });
   }
-
   onSubmit = () => {
-    this.props.sendRContact(
-      this.state.email,
-      this.state.phone,
-      this.state.voice
-    );
+    let none = "";
+    if (this.state.emailcheck && this.state.smscheck && this.state.voicecheck) {
+      this.props.sendRContact(
+        this.state.email,
+        this.state.phone,
+        this.state.voice
+      );
+    }
+    if (
+      this.state.emailcheck &&
+      !this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, none, none);
+    }
+    if (
+      !this.state.emailcheck &&
+      this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, this.state.phone, none);
+    }
+    if (
+      !this.state.emailcheck &&
+      !this.state.smscheck &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, none, this.state.voice);
+    }
+    if (
+      this.state.emailcheck &&
+      this.state.smscheck &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, this.state.smscheck, none);
+    }
+    if (
+      this.state.emailcheck &&
+      !this.state.smschecked &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(this.state.email, none, this.state.voice);
+    }
+    if (
+      !this.state.emailcheck &&
+      this.state.smschecked &&
+      this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, this.state.phone, this.state.voice);
+    }
+    if (
+      !this.state.emailcheck &&
+      !this.state.smschecked &&
+      !this.state.voicecheck
+    ) {
+      this.props.sendRContact(none, none, none);
+    }
   };
-
   render() {
     return (
-      <div class="landing-body">
-        <React.Fragment>
-          <Back onClick={this.goBack} />
-          <h2 className="sub-header">Sign up for reminders</h2>
-          <p>
-            How would you like to get reminders when it's time to renew again?
-          </p>
-          <p style={{ marginBottom: "2.5rem" }}>
-            Choose the reminders you want to get:
-          </p>
-          <div class="section">
-            <Form>
-              <Row>
-                <Col xs={1}>
-                  <Checkbox
-                    class="checkbox"
-                    onClick={() => this.handleEmailChecked()}
-                  ></Checkbox>
-                </Col>
-                <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    <strong>Email</strong>
-                  </p>
-                </Col>
-              </Row>
-              {this.state.emailcheck ? (
-                <div class="reminder-indent">
-                  <React.Fragment>
-                    <p> For example person@example.com</p>
-                    <FormGroup initialstate={this.state.email}>
-                      <input
-                        type="email"
-                        name="email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                      />
-                    </FormGroup>
-                  </React.Fragment>
-                </div>
-              ) : (
-                ""
-              )}
-              <Row>
-                <Col xs={1}>
-                  <Checkbox
-                    class="checkbox"
-                    onClick={() => this.handleSmsChecked()}
-                  ></Checkbox>
-                </Col>
-                <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    <strong> Text message</strong>
-                  </p>
-                </Col>
-              </Row>
-              {this.state.smscheck ? (
-                <div class="reminder-indent">
-                  <React.Fragment>
-                    <p> For example person@example.com</p>
-                    <FormGroup initialstate={this.state.phone}>
-                      <input
-                        type="email"
-                        name="email"
-                        value={this.state.phone}
-                        onChange={this.handlePChange}
-                      />
-                    </FormGroup>
-                  </React.Fragment>
-                </div>
-              ) : (
-                ""
-              )}
-              <Row>
-                <Col xs={1}>
-                  <Checkbox
-                    class="checkbox"
-                    onClick={() => this.handleVoiceChecked()}
-                  ></Checkbox>
-                </Col>
-                <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    <strong>Automated phone call</strong>
-                  </p>
-                </Col>
-              </Row>
-              {this.state.voicecheck ? (
-                <div class="reminder-indent">
-                  <React.Fragment>
-                    <p> For example person@example.com</p>
-
+      <React.Fragment>
+        <Back onClick={this.goBack} />
+        <Container>
+          <Row>
+            <h2 className="sub-header">Sign up for reminders</h2>
+          </Row>
+          <Row>
+            <p>
+              How would you like to get reminders when it's time to renew again?
+            </p>
+          </Row>
+          <br />
+          <Row>Choose the reminders you want to get:</Row>
+          <Form>
+            <Row>
+              <Col xs={1}>
+                <Checkbox
+                  class="checkbox"
+                  onClick={() => this.handleEmailChecked()}
+                ></Checkbox>
+              </Col>
+              <Col>
+                <strong> Email</strong>
+              </Col>
+            </Row>
+            {this.state.emailcheck ? (
+              <React.Fragment>
+                <p> For example person@example.com</p>
                 <FormGroup initialstate={this.state.email}>
                   <Input
                     type="email"
@@ -194,7 +176,6 @@ class Notify extends Component {
             {this.state.smscheck ? (
               <React.Fragment>
                 <p> For example person@example.com</p>
-
                 <FormGroup initialstate={this.state.phone}>
                   <Input
                     type="email"
@@ -223,7 +204,6 @@ class Notify extends Component {
             {this.state.voicecheck ? (
               <React.Fragment>
                 <p> For example person@example.com</p>
-
                 <FormGroup initialstate={this.state.voice}>
                   <Input
                     type="email"
@@ -249,5 +229,4 @@ class Notify extends Component {
     );
   }
 }
-
 export default withRouter(Notify);

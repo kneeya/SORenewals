@@ -70,24 +70,24 @@ class FiveMos extends Component {
                 <Radio value="No" onClick={() => this.handleNo()} />
               </Col>
             </Row>
-            {!this.state.yes && !this.state.no ? (
-              <Button onClick={() => this.onSubmit()}>Next</Button>
-            ) : this.state.yes ? (
-              this.props.showdl ? (
-                <Link to="/med-con">
-                  <Button>Next</Button>
-                </Link>
-              ) : (
-                <Link to="/step2">
-                  <Button>Next</Button>
-                </Link>
-              )
-            ) : (
-              <Link to="/ineligible2" onClick={() => this.onSubmit()}>
+          </Container>
+          {!this.state.yes && !this.state.no ? (
+            <Button onClick={() => this.onSubmit()}>Next</Button>
+          ) : this.state.yes ? (
+            this.props.showdl ? (
+              <Link to="/med-con">
                 <Button>Next</Button>
               </Link>
-            )}
-          </Container>
+            ) : (
+              <Link to="/step2">
+                <Button>Next</Button>
+              </Link>
+            )
+          ) : (
+            <Link to="/ineligible2" onClick={() => this.onSubmit()}>
+              <Button>Next</Button>
+            </Link>
+          )}
         </div>
       </React.Fragment>
     );
