@@ -6,6 +6,7 @@ import Back from "./Back";
 import Radio from "./radio/Radio";
 import Error from "./error/Error";
 import ErrorMsg from "./error/ErrorMsg";
+import "../App.css";
 
 class Address extends Component {
   constructor(props) {
@@ -42,34 +43,38 @@ class Address extends Component {
   render() {
     return (
       <React.Fragment>
-        <div class="address">
+        <div class="landing-body">
           <Back onClick={this.goBack} />
           {this.state.fail ? (
             <Error bul1="Has your address changed in the last 90 days?" />
           ) : (
             ""
           )}
-          <Container className={this.state.fail ? "error-content" : ""}>
+          <div className={this.state.fail ? "error-content" : ""}>
             <Row>
               {this.props.showdl ? (
-                <h2 className="sub-header">
+                <h3 style={{ marginLeft: 1 + "rem" }}>
                   Do you currently live at the address on your driver's license?
-                </h2>
+                </h3>
               ) : this.props.showopc ? (
-                <h2 className="sub-header">
+                <h3 style={{ marginLeft: 1 + "rem" }}>
                   Do you currently live at the address on your Ontario photo
                   card?
-                </h2>
+                </h3>
               ) : (
-                <h2 className="sub-header">
+                <h3 style={{ marginLeft: 1 + "rem" }}>
                   Do you currently live at the address on your driver's license
                   or Ontario photo card?
-                </h2>
+                </h3>
               )}
 
               <br />
             </Row>
-            {this.state.fail ? <ErrorMsg msg="You must choose one." /> : ""}
+            {this.state.fail ? (
+              <ErrorMsg msg="You must choose one answer on this page and click next to continue." />
+            ) : (
+              ""
+            )}
             <Row>
               <Col>
                 <Radio value="Yes" onClick={() => this.handleYes()} />
@@ -97,7 +102,7 @@ class Address extends Component {
                 <Button>Next</Button>
               </Link>
             )}
-          </Container>
+          </div>
         </div>
       </React.Fragment>
     );
