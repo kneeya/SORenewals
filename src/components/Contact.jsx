@@ -102,7 +102,7 @@ class Contact extends Component {
           )}
           <Container className={this.state.emailfail ? "error-content" : ""}>
             <Row>
-              <h2 className="sub-header">Contact information</h2>
+              <h3>Contact information</h3>
             </Row>
             <Row>
               <p>Enter your contact information below</p>

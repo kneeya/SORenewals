@@ -78,12 +78,14 @@ class Address extends Component {
             ) : (
               ""
             )}
-            <Row>
-              <Col>
-                <Radio value="Yes" onClick={() => this.handleYes()} />
-                <Radio value="No" onClick={() => this.handleNo()} />
-              </Col>
-            </Row>
+            <div class="radio-margins">
+              <Row>
+                <Col>
+                  <Radio value="Yes" onClick={() => this.handleYes()} />
+                  <Radio value="No" onClick={() => this.handleNo()} />
+                </Col>
+              </Row>
+            </div>
             {!this.state.no && !this.state.yes ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : this.state.yes ? (

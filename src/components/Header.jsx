@@ -14,10 +14,11 @@ class Header extends Component {
             <div className="row">
               <div className="col">
                 <a href="/">
+                  {" "}
                   <img
                     src={this.state.imgUrl}
                     alt="logo"
-                    style={{ width: 11 + "rem" }}
+                    style={{ width: 11 + "rem", marginTop: "0.6rem" }}
                   />
                 </a>
               </div>

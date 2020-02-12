@@ -29,44 +29,37 @@ class NextSteps extends Component {
   }
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        <Container className="success-container">
-          <Row>
-            <img
-              className="success-symbol"
-              src="/success.png"
-              alt="success symbol"
-            />
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          <div className="success-container">
+            <img src="/success.png" alt="success symbol" />
             <div className="success-header">
               Success! You renewed your driver’s licence and health card.
             </div>
-          </Row>
-          <Row>
-            <Col>
-              <p>
-                We have sent your receipt and temporary document(s) by email to:{" "}
-              </p>
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <h1>What to do next:</h1>
-          <ul>
-            <li>keep your receipt</li>
-            <li>
-              print and carry your temporary driver’s licence and health card
-              with you
-            </li>
-            <li>
-              confirm that you've signed up for digital reminders for next time
-            </li>
-          </ul>
-          <a href="/ServiceOntario_docs.zip" onClick={() => this.onSubmit()}>
+            <p style={{ marginBottom: "0rem" }}>
+              We have sent your receipt and temporary document(s) by email to:{" "}
+            </p>
+          </div>
+          <div class="section">
+            <h3 style={{ marginBottom: "1rem" }}>What to do next:</h3>
+            <ul>
+              <li>keep your receipt</li>
+              <li>
+                print and carry your temporary driver’s licence and health card
+                with you
+              </li>
+              <li>
+                confirm that you've signed up for digital reminders for next
+                time
+              </li>
+            </ul>
+          </div>
+          <Link to="" onClick={() => this.onSubmit()}>
             <Button>Next</Button>
-          </a>
-        </Container>
-      </React.Fragment>
+          </Link>
+        </React.Fragment>
+      </div>
     );
   }
 }

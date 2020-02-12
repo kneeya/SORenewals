@@ -145,7 +145,7 @@ class Healthcard extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <React.Fragment style={{ margin: "6%", paddingBottom: "2rem" }}>
         <Back onClick={this.goBack} />
         {this.state.fail ? <Error bul1="Before you proceed" /> : ""}
         <Container className={this.state.fail ? "error-content" : ""}>
