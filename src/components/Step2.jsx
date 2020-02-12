@@ -42,6 +42,7 @@ class Step2 extends Component {
   componentDidMount() {
     this.checkhealth();
     this.checkninechar();
+    window.scrollTo(0, 0);
   }
   onSubmit() {
     if (this.state.healthdisabled) {

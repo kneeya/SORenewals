@@ -75,6 +75,7 @@ class Step1 extends Component {
   componentDidMount() {
     this.checkdriver();
     this.checktrill();
+    window.scrollTo(0, 0);
   }
 
   render() {

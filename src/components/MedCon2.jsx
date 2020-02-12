@@ -18,6 +18,9 @@ class MedCon2 extends Component {
   goBack() {
     this.props.history.goBack();
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   onSubmit() {
     if (!this.state.yes && !this.state.no) {

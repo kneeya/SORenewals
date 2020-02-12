@@ -13,7 +13,9 @@ class TnC extends Component {
   goBack() {
     this.props.history.goBack();
   }
-
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
   render() {
     return (
       <React.Fragment>

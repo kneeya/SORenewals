@@ -23,6 +23,7 @@ class OPCinput extends Component {
   componentDidMount() {
     this.checkphoto();
     this.checkninechar();
+    window.scrollTo(0, 0);
   }
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;

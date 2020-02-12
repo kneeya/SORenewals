@@ -15,6 +15,9 @@ class Ineligible3 extends Component {
   goBack() {
     this.props.history.goBack();
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   render() {
     return (
@@ -38,14 +41,13 @@ class Ineligible3 extends Component {
             </Row>
           </Container>
         </div>
-          {this.props.showhc ? (
-            <Link to="/step2">
-              <Button>Continue to renew only your health card</Button>
-            </Link>
-          ) : (
-            ""
-          )}
-        </Container>
+        {this.props.showhc ? (
+          <Link to="/step2">
+            <Button>Continue to renew only your health card</Button>
+          </Link>
+        ) : (
+          ""
+        )}
       </React.Fragment>
     );
   }
