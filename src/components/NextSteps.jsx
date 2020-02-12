@@ -29,14 +29,14 @@ class NextSteps extends Component {
     return (
       <React.Fragment>
         <Back onClick={this.goBack} />
-        <Container className="error-container">
+        <Container className="success-container">
           <Row>
             <img
-              className="error-symbol"
+              className="success-symbol"
               src="/success.png"
-              alt="error symbol"
+              alt="success symbol"
             />
-            <div className="error-header">
+            <div className="success-header">
               Success! You renewed your driver’s licence and health card.
             </div>
           </Row>
