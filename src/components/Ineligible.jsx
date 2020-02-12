@@ -61,7 +61,13 @@ class Ineligible extends Component {
               renew in-person.
             </p>
           </Row>
-          <Button>Find your nearest ServiceOntario</Button>
+          <Button
+            href="https://www.ontario.ca/page/serviceontario-locations-hours-and-contact"
+            target="_blank"
+            style={{ textDecoration: "none" }}
+          >
+            Find your nearest ServiceOntario
+          </Button>
         </div>
       </React.Fragment>
     );

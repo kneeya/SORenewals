@@ -76,34 +76,95 @@ class Notify extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Back onClick={this.goBack} />
-        <Container>
-          <Row>
-            <h2 className="sub-header">Sign up for reminders</h2>
-          </Row>
-          <Row>
-            <p>
-              How would you like to get reminders when it's time to renew again?
-            </p>
-          </Row>
-          <br />
-          <Row>Choose the reminders you want to get:</Row>
-          <Form>
-            <Row>
-              <Col xs={1}>
-                <Checkbox
-                  class="checkbox"
-                  onClick={() => this.handleEmailChecked()}
-                ></Checkbox>
-              </Col>
-              <Col>
-                <strong> Email</strong>
-              </Col>
-            </Row>
-            {this.state.emailcheck ? (
-              <React.Fragment>
-                <p> For example person@example.com</p>
+      <div class="landing-body">
+        <React.Fragment>
+          <Back onClick={this.goBack} />
+          <h2 className="sub-header">Sign up for reminders</h2>
+          <p>
+            How would you like to get reminders when it's time to renew again?
+          </p>
+          <p style={{ marginBottom: "2.5rem" }}>
+            Choose the reminders you want to get:
+          </p>
+          <div class="section">
+            <Form>
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleEmailChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    <strong>Email</strong>
+                  </p>
+                </Col>
+              </Row>
+              {this.state.emailcheck ? (
+                <div class="reminder-indent">
+                  <React.Fragment>
+                    <p> For example person@example.com</p>
+                    <FormGroup initialstate={this.state.email}>
+                      <input
+                        type="email"
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                      />
+                    </FormGroup>
+                  </React.Fragment>
+                </div>
+              ) : (
+                ""
+              )}
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleSmsChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    <strong> Text message</strong>
+                  </p>
+                </Col>
+              </Row>
+              {this.state.smscheck ? (
+                <div class="reminder-indent">
+                  <React.Fragment>
+                    <p> For example person@example.com</p>
+                    <FormGroup initialstate={this.state.phone}>
+                      <input
+                        type="email"
+                        name="email"
+                        value={this.state.phone}
+                        onChange={this.handlePChange}
+                      />
+                    </FormGroup>
+                  </React.Fragment>
+                </div>
+              ) : (
+                ""
+              )}
+              <Row>
+                <Col xs={1}>
+                  <Checkbox
+                    class="checkbox"
+                    onClick={() => this.handleVoiceChecked()}
+                  ></Checkbox>
+                </Col>
+                <Col>
+                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    <strong>Automated phone call</strong>
+                  </p>
+                </Col>
+              </Row>
+              {this.state.voicecheck ? (
+                <div class="reminder-indent">
+                  <React.Fragment>
+                    <p> For example person@example.com</p>
 
                 <FormGroup initialstate={this.state.email}>
                   <Input

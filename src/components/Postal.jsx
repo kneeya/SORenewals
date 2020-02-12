@@ -79,20 +79,16 @@ class Postal extends Component {
             ) : (
               ""
             )}
-            <Row>
-              <Col>
-                <p>For example A1A 1A1</p>
-                <input
-                  id="postal"
-                  ref={input => (this.postal = input)}
-                  onChange={() => {
-                    let temp = this.postal.value;
-                    this.setState({ postal: temp });
-                  }}
-                  onBlur={() => this.checkpostal()}
-                />
-              </Col>
-            </Row>
+            <p>For example N3T 2L7</p>
+            <input
+              id="postal"
+              ref={input => (this.postal = input)}
+              onChange={() => {
+                let temp = this.postal.value;
+                this.setState({ postal: temp });
+              }}
+              onBlur={() => this.checkpostal()}
+            />
             {this.state.postaldisabled ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
