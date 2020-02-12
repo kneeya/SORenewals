@@ -55,6 +55,13 @@ class Step2 extends Component {
       this.setState({ charfail: false });
     }
   }
+  onClick = () => {
+    this.sendHC();
+  };
+
+  sendHC = () => {
+    this.props.sendHC(this.state.hc);
+  };
   render() {
     return (
       <div class="landing-body">
@@ -138,15 +145,15 @@ class Step2 extends Component {
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : this.props.showdl ? (
             <Link to="/step1">
-              <Button>Next</Button>
+              <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           ) : this.props.showopc ? (
             <Link to="/pc-input">
-              <Button>Next</Button>
+              <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           ) : (
             <Link to="/healthcard">
-              <Button>Next</Button>
+              <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           )}
         </React.Fragment>

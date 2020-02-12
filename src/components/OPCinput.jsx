@@ -54,6 +54,12 @@ class OPCinput extends Component {
       this.setState({ charfail: false });
     }
   }
+  onClick = () => {
+    this.sendOPC();
+  };
+  sendOPC = () => {
+    this.props.sendOPC(this.state.opc);
+  };
   render() {
     return (
       <div class="landing-body">
@@ -136,7 +142,7 @@ class OPCinput extends Component {
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : (
             <Link to="/postal">
-              <Button>Next</Button>
+              <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
           )}
         </React.Fragment>
