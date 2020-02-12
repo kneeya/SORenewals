@@ -26,6 +26,9 @@ class MedCon extends Component {
       this.setState({ fail: false });
     }
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   handleNo = () => {
     this.setState({ no: true, yes: false, fail: false });

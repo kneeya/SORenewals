@@ -21,6 +21,9 @@ class ByP extends Component {
   goBack() {
     this.props.history.goBack();
   }
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   handleChecked() {
     let acknowledge = !this.state.acknowledge;

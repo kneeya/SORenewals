@@ -34,6 +34,9 @@ class Vision extends Component {
   handleYes = () => {
     this.setState({ yes: true, no: false, fail: false });
   };
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   render() {
     return (
