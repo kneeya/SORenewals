@@ -323,6 +323,21 @@ input {
   transition: box-shadow 0.1s ease-in-out;
 }
 
+.input {
+  border: 2px solid #1a1a1a;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #1a1a1a;
+  font-size: 1rem;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0 0 2rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  -webkit-transition: box-shadow 0.1s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
 input:focus {
   box-shadow: 0 0 0 4px #009adb;
   outline: 4px solid transparent;

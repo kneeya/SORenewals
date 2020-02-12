@@ -70,7 +70,7 @@ class FiveMos extends Component {
                 <Radio value="No" onClick={() => this.handleNo()} />
               </Col>
             </Row>
-          </Container>
+          </div>
           {!this.state.yes && !this.state.no ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : this.state.yes ? (

@@ -132,7 +132,6 @@ class Contact extends Component {
             <FormGroup controlId="formBasicEmail"> */}
               <input
                 ref={input => (this.email = input)}
-                className="text-primary"
                 onChange={() => {
                   let temp = this.email;
                   temp = this.email.value;
