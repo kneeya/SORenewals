@@ -97,25 +97,25 @@ class Notify extends Component {
       this.state.smscheck &&
       !this.state.voicecheck
     ) {
-      this.props.sendRContact(this.state.email, this.state.smscheck, none);
+      this.props.sendRContact(this.state.email, this.state.phone, none);
     }
     if (
       this.state.emailcheck &&
-      !this.state.smschecked &&
+      !this.state.smscheck &&
       this.state.voicecheck
     ) {
       this.props.sendRContact(this.state.email, none, this.state.voice);
     }
     if (
       !this.state.emailcheck &&
-      this.state.smschecked &&
+      this.state.smscheck &&
       this.state.voicecheck
     ) {
       this.props.sendRContact(none, this.state.phone, this.state.voice);
     }
     if (
       !this.state.emailcheck &&
-      !this.state.smschecked &&
+      !this.state.smscheck &&
       !this.state.voicecheck
     ) {
       this.props.sendRContact(none, none, none);
