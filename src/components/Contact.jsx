@@ -164,10 +164,14 @@ class Contact extends Component {
               <p>
                 We may call you to confirm that you live in Ontario, or to
                 resolve an issue with your renewal.{" "}
-                {/* <strong>
-                  If contacted by ServiceOntario, you have 30 days to respond to
-                  keep your health coverage.
-                </strong> */}
+                {this.props.showhc ? (
+                  <strong>
+                    If contacted by ServiceOntario, you have 30 days to respond
+                    to keep your health coverage.
+                  </strong>
+                ) : (
+                  ""
+                )}
               </p>
             </div>
 

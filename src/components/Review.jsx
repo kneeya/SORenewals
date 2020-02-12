@@ -110,12 +110,11 @@ class Review extends Component {
               ) : (
                 ""
               )}
+              <hr />
             </div>
           ) : (
             ""
           )}
-
-          <hr />
 
           <div class="section">
             <strong>Mailing Address</strong>
