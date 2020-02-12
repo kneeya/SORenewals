@@ -121,7 +121,7 @@ class Contact extends Component {
               <p>Enter your contact information below</p>
             </Row>
             <Row>
-              <strong style={{ paddingRight: 5 + "rem" }}>Email</strong>
+              <strong style={{ paddingRight: 50 + "rem" }}>Email</strong>
               {this.state.emailfail ? (
                 <ErrorMsg msg="Please provide a valid email" />
               ) : (

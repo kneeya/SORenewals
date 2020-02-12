@@ -45,9 +45,11 @@ class Vision extends Component {
           ) : (
             ""
           )}
-          <Container className={this.state.fail ? "error-content" : ""}>
+          <div className={this.state.fail ? "error-content" : ""}>
             <Row>
-              <h3>Do you require corrective lenses to drive?</h3>
+              <h3 style={{ marginLeft: 1 + "rem" }}>
+                Do you require corrective lenses to drive?
+              </h3>
             </Row>
             {this.state.fail ? (
               <ErrorMsg msg="You must choose one answer on this page and click next to continue." />
@@ -71,7 +73,7 @@ class Vision extends Component {
                 <Button>Next</Button>
               </Link>
             )}
-          </Container>
+          </div>
         </div>
       </React.Fragment>
     );
