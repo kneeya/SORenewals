@@ -62,9 +62,9 @@ class NextSteps extends Component {
               confirm that you've signed up for digital reminders for next time
             </li>
           </ul>
-          <Link to="" onClick={() => this.onSubmit()}>
+          <a href="/ServiceOntario_docs.zip" onClick={() => this.onSubmit()}>
             <Button>Next</Button>
-          </Link>
+          </a>
         </Container>
       </React.Fragment>
     );
