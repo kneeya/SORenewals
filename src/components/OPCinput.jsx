@@ -107,7 +107,7 @@ class OPCinput extends Component {
                 onBlur={() => this.checkphoto()}
               />
               <p>You can find your Ontario photo card number here:</p>
-              <img class="card-photo" src="/DLBack.png"></img>
+              <img class="card-photo" src="/OPCNum.png"></img>
             </div>
           </div>
           <div class="section">
@@ -136,7 +136,7 @@ class OPCinput extends Component {
                 onBlur={() => this.checkninechar()}
               />
               <p>You can find your 9 character sequence here:</p>
-              <img class="card-photo" src="/DLBack.png"></img>
+              <img class="card-photo" src="/OPCSeq.png"></img>
             </div>
           </div>
           {this.state.chardisabled || this.state.photodisabled ? (

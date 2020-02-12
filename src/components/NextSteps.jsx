@@ -56,7 +56,7 @@ class NextSteps extends Component {
             </ul>
           </div>
           <Link to="" onClick={() => this.onSubmit()}>
-            <Button>Next</Button>
+            <Button>Download your documents</Button>
           </Link>
         </React.Fragment>
       </div>
