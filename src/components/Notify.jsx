@@ -175,7 +175,8 @@ class Notify extends Component {
             </Row>
             {this.state.smscheck ? (
               <React.Fragment>
-                <p> For example person@example.com</p>
+                <p> For example odslab@ontario.ca</p>
+
                 <FormGroup initialstate={this.state.phone}>
                   <Input
                     type="email"
@@ -203,7 +204,8 @@ class Notify extends Component {
             </Row>
             {this.state.voicecheck ? (
               <React.Fragment>
-                <p> For example person@example.com</p>
+                <p> For example odslab@ontario.ca</p>
+
                 <FormGroup initialstate={this.state.voice}>
                   <Input
                     type="email"
