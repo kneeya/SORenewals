@@ -12,7 +12,6 @@ import ErrorMsg from "./error/ErrorMsg";
 class Contact extends Component {
   state = {
     email: "",
-    number: "",
     voice: "",
     voicedisabled: false
   };
@@ -22,38 +21,50 @@ class Contact extends Component {
     this.checkvoice = this.checkvoice.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    //this.sendEmail = this.sendEmail.bind(this);
   }
   goBack() {
     this.props.history.goBack();
   }
 
-  handleSubmit(e) {
-    // const { email } = this.state;
-    // let templateParams = {
-    //   to_name: email
-    // };
-    // emailjs.send(
-    //   "gmail",
-    //   "template_RLG3E76r",
-    //   templateParams,
-    //   "user_u3p3HFlbdGyXe6PNlzFis"
-    // );
-  }
-  sendEmail(email, e) {
-    if (email !== "") {
-      this.handleSubmit(e);
-    }
-  }
-  handleChange = (param, e) => {
-    this.setState({ [param]: e.target.value });
-    if (this.state.email) {
-      this.setState({ emailfail: false });
+  handleSubmit = e => {
+    if (!this.state.emaildisabled) {
+      //sending email and phone number to app.js to use in notify and review details page
+      this.props.sendContact(this.state.email, this.state.voice);
+
+      // const { email } = this.state;
+      // let templateParams = {
+      //   to_name: email
+      // };
+      // emailjs.send(
+      //   "gmail",
+      //   "template_RLG3E76r",
+      //   templateParams,
+      //   "user_u3p3HFlbdGyXe6PNlzFis"
+      // );
+      console.log("sent");
     }
   };
+  // sendEmail = (email, e) => {
+  //   if (email !== "") {
+  //     this.handleSubmit(e);
+  //     //sending email and phone number to app.js to use in notify and review details page
+  //     this.props.sendContact(this.state.email, this.state.voice);
+  //   }
+  // };
+
+  // handleChange = (param, e) => {
+  //   this.setState({ [param]: e.target.value });
+  //   if (this.state.email !== "") {
+  //     this.setState({ emailfail: false });
+  //   }
+  // };
 
   componentDidMount() {
     this.checkvoice();
+    this.checkemail();
   }
+
   onSubmit() {
     if (this.state.voicedisabled && this.props.showhc) {
       this.setState({ voicefail: true });
@@ -61,13 +72,11 @@ class Contact extends Component {
       this.setState({ voicefail: false });
     }
 
-    if (!this.state.email) {
+    if (this.state.emaildisabled) {
       this.setState({ emailfail: true });
     } else {
-      this.setState({ emialfail: false });
+      this.setState({ emailfail: false });
     }
-    //sending email and phone number to app.js to use in notify and review details page
-    this.props.sendEmail(this.state.email, this.state.voice);
   }
   checkvoice() {
     var regex = /^[(]?\d{3}[)]?[ -]?\d{3}[ -]?\d{4}$/;
@@ -78,6 +87,16 @@ class Contact extends Component {
       } else {
         this.setState({ voicedisabled: true });
       }
+    }
+  }
+
+  checkemail() {
+    var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    var match = regex.exec(this.state.email);
+    if (match) {
+      this.setState({ emaildisabled: false, emailfail: false });
+    } else {
+      this.setState({ emaildisabled: true });
     }
   }
   render() {
@@ -132,42 +151,44 @@ class Contact extends Component {
         <Container className={this.state.emailfail ? "error-content" : ""}>
           <strong>Email</strong>
           {this.state.emailfail ? (
-            <ErrorMsg msg="Please provide an email" />
+            <ErrorMsg msg="Please provide a valid email" />
           ) : (
             ""
           )}
           <p> For example person@example.com</p>
 
-          <Form onSubmit={this.handleSubmit.bind(this)}>
-            <FormGroup controlId="formBasicEmail">
-              <Input
-                type="email"
-                name="email"
-                value={this.state.email}
-                className="text-primary"
-                onChange={this.handleChange.bind(this, "email")}
-                placeholder="Enter email"
-              />
-            </FormGroup>
-            <p>
-              We will email you an electronic receipt and temporary document(s)
-              for this transaction.
-            </p>
-            {(this.state.voicedisabled && this.props.showhc) ||
-            !this.state.email ? (
-              <Button onClick={() => this.onSubmit()}>Next</Button>
-            ) : (
-              <Link to="/notify-so">
-                <Button
-                  variant="primary"
-                  type="submit"
-                  onClick={this.sendEmail()}
-                >
-                  Next
-                </Button>
-              </Link>
-            )}
-          </Form>
+          {/* <Form onSubmit={this.handleSubmit.bind(this)}>
+            <FormGroup controlId="formBasicEmail"> */}
+          <input
+            ref={input => (this.email = input)}
+            className="text-primary"
+            onChange={() => {
+              let temp = this.email;
+              temp = this.email.value;
+              this.setState({ email: temp });
+            }}
+            onBlur={() => this.checkemail()}
+          />
+          {/* </FormGroup> */}
+          <p>
+            We will email you an electronic receipt and temporary document(s)
+            for this transaction.
+          </p>
+          {(this.state.voicedisabled && this.props.showhc) ||
+          this.state.emaildisabled ? (
+            <Button onClick={() => this.onSubmit()}>Next</Button>
+          ) : (
+            <Link to="/notify-so">
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={() => this.handleSubmit()}
+              >
+                Next
+              </Button>
+            </Link>
+          )}
+          {/* </Form> */}
         </Container>
       </React.Fragment>
     );
