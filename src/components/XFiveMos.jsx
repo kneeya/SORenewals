@@ -32,7 +32,8 @@ class IneligibleFiveMos extends Component {
                 time.
               </h2>
               <p style={{ marginLeft: 1 + "rem" }}>
-                You must visit a ServiceOntario centre to renew your:
+                You must live in Ontario for at least 5 months in the past year
+                before you can renew your:
               </p>
             </Row>
             <Row>
@@ -40,16 +41,20 @@ class IneligibleFiveMos extends Component {
                 <li>health card</li>
               </ul>
             </Row>
-            <Row>
-              <p style={{ marginLeft: 1 + "rem" }}>
-                <a
-                  target="_blank"
-                  href="https://www.ontario.ca/page/serviceontario-locations-hours-and-contact"
-                >
-                  Find your nearest ServiceOntario centre
-                </a>{" "}
-              </p>
-            </Row>
+            {!this.props.showdl && !this.props.showopc ? (
+              <Button>Find your nearest ServiceOntario</Button>
+            ) : (
+              <Row>
+                <p style={{ marginLeft: 1 + "rem" }}>
+                  <a
+                    target="_blank"
+                    href="https://www.ontario.ca/page/serviceontario-locations-hours-and-contact"
+                  >
+                    Find your nearest ServiceOntario centre
+                  </a>{" "}
+                </p>
+              </Row>
+            )}
           </div>
           {this.props.showopc ? (
             <React.Fragment>

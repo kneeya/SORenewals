@@ -116,8 +116,8 @@ class OPCinput extends Component {
                 <strong>9 character sequence on card</strong>
               </p>
               <p>
-                Your 9 character sequence is found in the box on the back of
-                your card.
+                Your 9 character sequence is found in the fifth field on the
+                front of your card.
               </p>
               {this.state.charfail ? (
                 <ErrorMsg msg="Enter your Ontario photo card 9 character sequence" />

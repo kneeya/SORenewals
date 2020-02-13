@@ -7,7 +7,11 @@ export default class Footer extends Component {
     return (
       <React.Fragment>
         <Container
-          style={{ background: "#ededed", padding: "1.5rem 0 2em 2rem" }}
+          style={{
+            marginTop: "2.5rem",
+            background: "#ededed",
+            padding: "1.5rem 0 2em 2rem"
+          }}
         >
           {" "}
           <Row>
