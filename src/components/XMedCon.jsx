@@ -26,38 +26,41 @@ class Ineligible3 extends Component {
         <div class="landing-body">
           <div class="section">
             <Back onClick={this.goBack} />
-            <Container>
-              <Row>
-                <h2 class="ineligible-text">
-                  You are <strong>not </strong>eligible to renew online at this
-                  time.
-                </h2>
-                <p>You must visit a ServiceOntario centre to renew your:</p>
-              </Row>
-              <Row>
-                <ul>
-                  <li>
-                    <strong>driver's licence </strong>
-                  </li>
-                </ul>
-              </Row>
-              <Row>
-                <p>
+            <h2 class="ineligible-text">
+              You are <strong>not </strong>eligible to renew online at this
+              time.
+            </h2>
+            <div class="section">
+              <p>
+                You cannot have had any medical conditions that may affect your
+                ability to drive or have had a doctor tell you not to drive
+                since you last renewed your driver’s licence to renew your:
+              </p>
+            </div>
+            <ul>
+              <li>
+                <strong>driver's licence </strong>
+              </li>
+            </ul>
+            <p style={{ marginBottom: "1rem" }}>
+              {this.props.showhc ? (
+                <React.Fragment>
                   If your medical condition has changed, please bring supporting
-                  documentation.
-                </p>
-              </Row>
-              <Row>
-                <p>
+                  documentation to your‏‏‎ ‎
                   <a
                     target="_blank"
                     href="https://www.ontario.ca/page/serviceontario-locations-hours-and-contact"
                   >
-                    Find your nearest ServiceOntario centre
-                  </a>{" "}
-                </p>
-              </Row>
-            </Container>
+                    nearest ServiceOntario location.
+                  </a>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  If your medical condition has changed, please bring supporting
+                  documentation to your nearest ServiceOntario location.
+                </React.Fragment>
+              )}
+            </p>
           </div>
           {this.props.showhc ? (
             <React.Fragment>
@@ -67,7 +70,7 @@ class Ineligible3 extends Component {
               </Link>
             </React.Fragment>
           ) : (
-            ""
+            <Button>Find your nearest ServiceOntario</Button>
           )}
         </div>
       </React.Fragment>
