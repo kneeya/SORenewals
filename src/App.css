@@ -360,3 +360,7 @@ input:focus {
   margin-top: -2.2rem;
   margin-left: 2rem;
 }
+
+.ineligible-text {
+  margin-bottom: 2rem;
+}
