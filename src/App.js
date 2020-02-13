@@ -251,7 +251,7 @@ export default class App extends Component {
                 path="/contact"
                 render={() => (
                   <Contact
-                    showhc={this.state.showhc}
+                    hc={this.state.hc}
                     sendContact={this.getContact.bind(this)}
                   />
                 )}

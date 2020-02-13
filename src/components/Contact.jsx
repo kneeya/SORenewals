@@ -53,7 +53,7 @@ class Contact extends Component {
   }
 
   onSubmit() {
-    if (this.state.voicedisabled && this.props.showhc) {
+    if (this.state.voicedisabled && this.props.hc) {
       this.setState({ voicefail: true });
     } else {
       this.setState({ voicefail: false });
@@ -68,7 +68,7 @@ class Contact extends Component {
   checkvoice() {
     var regex = /^[(]?\d{3}[)]?[ -]?\d{3}[ -]?\d{4}$/;
     var match = regex.exec(this.state.voice);
-    if (this.props.showhc) {
+    if (this.props.hc) {
       if (match) {
         this.setState({ voicedisabled: false, voicefail: false });
       } else {
@@ -141,7 +141,7 @@ class Contact extends Component {
             <div class="section">
               <div style={{ marginBottom: "1rem" }}>
                 <strong>
-                  Phone number {!this.props.showhc ? "(optional)" : ""}
+                  Phone number {!this.props.hc ? "(optional)" : ""}
                 </strong>
               </div>
               {this.state.voicefail ? (
@@ -164,14 +164,18 @@ class Contact extends Component {
               <p>
                 We may call you to confirm that you live in Ontario, or to
                 resolve an issue with your renewal.{" "}
-                {/* <strong>
-                  If contacted by ServiceOntario, you have 30 days to respond to
-                  keep your health coverage.
-                </strong> */}
+                {this.props.hc ? (
+                  <strong>
+                    If contacted by ServiceOntario, you have 30 days to respond
+                    to keep your health coverage.
+                  </strong>
+                ) : (
+                  ""
+                )}
               </p>
             </div>
 
-            {(this.state.voicedisabled && this.props.showhc) ||
+            {(this.state.voicedisabled && this.props.hc) ||
             this.state.emaildisabled ? (
               <Button onClick={() => this.onSubmit()}>Next</Button>
             ) : (
