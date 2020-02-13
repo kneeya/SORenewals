@@ -5,6 +5,13 @@
   margin-left: 3rem;
 }
 
+.error-msg-black {
+  color: #000;
+  font-weight: 700;
+  margin-top: -2.2rem;
+  margin-left: 3rem;
+}
+
 .error-symbol {
   padding: 10px;
 }

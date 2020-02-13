@@ -6,6 +6,7 @@ import "rc-checkbox/assets/index.css";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import ErrorMsg from "./error/ErrorMsg";
+import ErrorB from "./error/ErrorMsgB";
 
 class IneligibleFiveMos extends Component {
   constructor(props) {
@@ -80,7 +81,7 @@ class IneligibleFiveMos extends Component {
           )}
           {this.props.showopc ? (
             <React.Fragment>
-              <ErrorMsg msg="By continuing, you will only be renewing your photo card." />
+              <ErrorB msg="By continuing, you will only be renewing your photo card." />
               <Link to="/pc-input">
                 <Button>Continue to only renew your photo card</Button>
               </Link>
@@ -90,7 +91,7 @@ class IneligibleFiveMos extends Component {
           )}
           {this.props.showdl ? (
             <React.Fragment>
-              <ErrorMsg msg="By continuing, you will only be renewing your driver's licence." />
+              <ErrorB msg="By continuing, you will only be renewing your driver's licence." />
               <Link to="/med-con2">
                 <Button>Continue to only renew your driver's licence</Button>
               </Link>

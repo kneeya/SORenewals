@@ -5,9 +5,12 @@ import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import "./success/success.css";
 import "../App.css";
+import Email from "../Form.js";
+import * as emailjs from "emailjs-com";
 
 class Review extends Component {
   state = {
+    email: "",
     voicedisabled: false,
     fail: false
   };
@@ -25,6 +28,24 @@ class Review extends Component {
       this.setState({ fail: false });
     }
   }
+  // handleSubmit = e => {
+  //   if (!this.state.emaildisabled) {
+  //     const { email } = this.state;
+  //     let templateParams = {
+  //       to_name: email
+  //     };
+  //     emailjs.send(
+  //       "gmail",
+  //       "template_RLG3E76r",
+  //       templateParams,
+  //       "user_u3p3HFlbdGyXe6PNlzFis"
+  //     );
+  //     console.log("sent");
+  //   }
+  // };
+  // handleChange = (param, e) => {
+  //   this.setState({ [param]: e.target.value });
+  // };
 
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -41,6 +62,7 @@ class Review extends Component {
             {this.props.dl ? (
               <p>
                 Driver's licence number: <br />
+                {/* {"***** *****" + this.props.dl} */}
                 {this.props.dl}
               </p>
             ) : (
@@ -144,7 +166,13 @@ class Review extends Component {
           </div>
 
           <Link to="/next-steps" onClick={() => this.onSubmit()}>
-            <Button>Next</Button>
+            <Button
+            // variant="primary"
+            // type="submit"
+            // onClick={this.handleSubmit()}
+            >
+              Next
+            </Button>
           </Link>
         </React.Fragment>
       </div>
