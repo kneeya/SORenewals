@@ -41,21 +41,43 @@ class IneligibleFiveMos extends Component {
                 <li>health card</li>
               </ul>
             </Row>
-            {!this.props.showdl && !this.props.showopc ? (
-              <Button>Find your nearest ServiceOntario</Button>
-            ) : (
-              <Row>
-                <p style={{ marginLeft: 1 + "rem" }}>
+            <p>
+              {this.props.showhc ? (
+                <React.Fragment>
+                  To verify your residency, you must bring‏‏‎ 
+                  <a
+                    target="_blank"
+                    href="https://www.ontario.ca/page/documents-needed-get-health-card#section-1"
+                  >
+                    supporting documentation
+                  </a>{" "}
+                   to your‏‏‎  
                   <a
                     target="_blank"
                     href="https://www.ontario.ca/page/serviceontario-locations-hours-and-contact"
                   >
-                    Find your nearest ServiceOntario centre
+                    nearest ServiceOntario location.
+                  </a>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  To verify your residency, you must bring‎‏‏‎ ‎
+                  <a
+                    target="_blank"
+                    href="https://www.ontario.ca/page/documents-needed-get-health-card#section-1"
+                  >
+                    supporting documentation‎‏‏‎
                   </a>{" "}
-                </p>
-              </Row>
-            )}
+                  ‏‏‎‏‏‎ to your‏‏‎ ‎nearest ServiceOntario location.
+                </React.Fragment>
+              )}
+            </p>
           </div>
+          {!this.props.showdl && !this.props.showopc ? (
+            <Button>Find your nearest ServiceOntario</Button>
+          ) : (
+            ""
+          )}
           {this.props.showopc ? (
             <React.Fragment>
               <ErrorMsg msg="By continuing, you will only be renewing your photo card." />
