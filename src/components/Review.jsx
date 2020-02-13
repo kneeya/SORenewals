@@ -123,8 +123,14 @@ class Review extends Component {
               are unable to share that address for privacy and security reasons.
               <br />
               <br />
-              If your address has changed, visit a ServiceOntario location to
-              update your address and renew your card(s).
+              If your address has changed,{" "}
+              <a
+                target="_blank"
+                href="https://www.ontario.ca/page/serviceontario-locations-hours-and-contact"
+              >
+                Visit a ServiceOntario location
+              </a>{" "}
+              to update your address and renew your card(s).
             </p>
           </div>
 
