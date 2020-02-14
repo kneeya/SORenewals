@@ -70,7 +70,7 @@ class Review extends Component {
             {this.props.opc ? (
               <p>
                 Photo card number: <br />
-                {this.props.opc}
+                {"*** **** " + this.props.opc.slice(-5)}
               </p>
             ) : (
               ""
@@ -78,7 +78,7 @@ class Review extends Component {
             {this.props.hc ? (
               <p>
                 Health card number: <br />
-                {this.props.hc}
+                {"**** *** " + this.props.hc.slice(-6)}
               </p>
             ) : (
               ""
