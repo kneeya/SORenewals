@@ -62,8 +62,7 @@ class Review extends Component {
             {this.props.dl ? (
               <p>
                 Driver's licence number: <br />
-                {/* {"***** *****" + this.props.dl} */}
-                {this.props.dl}
+                {"***** ***** " + this.props.dl.slice(-5)}
               </p>
             ) : (
               ""
