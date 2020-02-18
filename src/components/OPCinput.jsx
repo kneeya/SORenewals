@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactBootstrap from "react-bootstrap";
+import ReactBootstrap, { FormGroup } from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
@@ -14,8 +14,8 @@ class OPCinput extends Component {
     this.goBack = this.goBack.bind(this);
   }
   state = {
-    opc: "",
-    nchar: ""
+    opc: this.props.opc,
+    nchar: this.props.nchar
   };
   goBack() {
     this.props.history.goBack();
@@ -46,11 +46,13 @@ class OPCinput extends Component {
   onSubmit() {
     if (this.state.photodisabled) {
       this.setState({ opcfail: true });
+      window.scrollTo(0, 0);
     } else {
       this.setState({ opcfail: false });
     }
     if (this.state.chardisabled) {
       this.setState({ charfail: true });
+      window.scrollTo(0, 0);
     } else {
       this.setState({ charfail: false });
     }
@@ -58,8 +60,20 @@ class OPCinput extends Component {
   onClick = () => {
     this.sendOPC();
   };
+  handleOPChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ opc: value });
+  };
+  handleNChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ nchar: value });
+  };
   sendOPC = () => {
-    this.props.sendOPC(this.state.opc);
+    this.props.sendOPC(this.state.opc, this.state.nchar);
   };
   render() {
     return (
@@ -95,17 +109,13 @@ class OPCinput extends Component {
                 ""
               )}
               <p>For example 123 PD34 12345</p>
-              <input
-                id="pics"
-                ref={input => (this.pics = input)}
-                onChange={() => {
-                  let temp = this.pics;
-                  temp = this.pics.value;
-
-                  this.setState({ opc: temp });
-                }}
-                onBlur={() => this.checkphoto()}
-              />
+              <FormGroup initialstate={this.state.opc}>
+                <input
+                  value={this.state.opc}
+                  onChange={this.handleOPChange}
+                  onBlur={() => this.checkphoto()}
+                />
+              </FormGroup>
               <p>You can find your Ontario photo card number here:</p>
               <img class="card-photo" src="/OPCNum.png"></img>
             </div>
@@ -125,7 +135,14 @@ class OPCinput extends Component {
                 ""
               )}
               <p>For example MD0237452</p>
-              <input
+              <FormGroup initialstate={this.state.nchar}>
+                <input
+                  value={this.state.nchar}
+                  onChange={this.handleNChange}
+                  onBlur={() => this.checkninechar()}
+                />
+              </FormGroup>
+              {/* <input
                 id="nchar"
                 ref={input => (this.nchar = input)}
                 onChange={() => {
@@ -134,7 +151,7 @@ class OPCinput extends Component {
                   this.setState({ nchar: temp });
                 }}
                 onBlur={() => this.checkninechar()}
-              />
+              /> */}
               <p>You can find your 9 character sequence here:</p>
               <img class="card-photo" src="/OPCSeq.png"></img>
             </div>

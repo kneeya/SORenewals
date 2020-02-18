@@ -32,7 +32,7 @@ import NextSteps from "./components/NextSteps.jsx";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { dl: "" };
   }
 
   //call back fct to get info from Home.jsx that will be sent to Step1.jsx to determine which prods to show
@@ -51,29 +51,23 @@ export default class App extends Component {
     let reminder = this.state;
     reminder = { remail: remail, rphone: rphone, rvoice: rvoice };
     this.setState(reminder);
-    console.log(
-      "rphone: " + this.state.rphone + "rvoice: " + this.state.rvoice
-    );
   };
-  getDL = udl => {
+  getDL = (udl, utrill) => {
     let dlNum = this.state;
-    dlNum = { dl: udl };
+    dlNum = { dl: udl, trill: utrill };
     this.setState(dlNum);
-    console.log(this.state.dl);
   };
 
-  getHC = uhc => {
+  getHC = (uhc, unchar) => {
     let hcNum = this.state;
-    hcNum = { hc: uhc };
+    hcNum = { hc: uhc, hnchar: unchar };
     this.setState(hcNum);
-    console.log(this.state.hc);
   };
 
-  getOPC = uopc => {
+  getOPC = (uopc, unchar) => {
     let opcNum = this.state;
-    opcNum = { opc: uopc };
+    opcNum = { opc: uopc, nchar: unchar };
     this.setState(opcNum);
-    console.log(this.state.opc);
   };
 
   render() {
@@ -129,6 +123,8 @@ export default class App extends Component {
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
                     sendDL={this.getDL.bind(this)}
+                    dl={this.state.dl}
+                    trill={this.state.trill}
                   />
                 )}
               />
@@ -136,17 +132,25 @@ export default class App extends Component {
                 exact
                 path="/step2"
                 render={() => (
-                  <Step2 /* sending the state of app.js to step.jsx as properties*/
+                  <Step2 /* sending the state of app.js to step2.jsx as properties*/
                     showhc={this.state.showhc}
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
                     sendHC={this.getHC.bind(this)}
+                    hc={this.state.hc}
+                    hnchar={this.state.hnchar}
                   />
                 )}
               />
               <Route
                 path="/pc-input"
-                render={() => <OPCinput sendOPC={this.getOPC.bind(this)} />}
+                render={() => (
+                  <OPCinput
+                    sendOPC={this.getOPC.bind(this)}
+                    opc={this.state.opc}
+                    nchar={this.state.nchar}
+                  />
+                )}
               />
               <Route exact path="/postal" component={Postal} />
               <Route
