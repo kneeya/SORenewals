@@ -6,6 +6,7 @@ import "rc-checkbox/assets/index.css";
 import { Link, withRouter } from "react-router-dom";
 import Back from "./Back";
 import ErrorMsg from "./error/ErrorMsg";
+import ErrorB from "./error/ErrorMsgB";
 
 class Ineligible3 extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class Ineligible3 extends Component {
           </div>
           {this.props.showhc ? (
             <React.Fragment>
-              <ErrorMsg msg="By continuing, you will only be renewing your health card." />
+              <ErrorB msg="By continuing, you will only be renewing your health card." />
               <Link to="/step2">
                 <Button>Continue to renew only your health card</Button>
               </Link>
