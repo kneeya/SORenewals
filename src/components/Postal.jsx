@@ -23,7 +23,7 @@ class Postal extends Component {
   }
 
   checkpostal() {
-    var regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+    var regex = /^[A-Za-z][ -]?\d[ -]?[A-Za-z][ -]?\d[ -]?[A-Za-z][ -]?\d$/;
 
     var match = regex.exec(this.state.postal);
     if (match) {

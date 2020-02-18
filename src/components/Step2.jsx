@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactBootstrap from "react-bootstrap";
+import ReactBootstrap, { FormGroup } from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
@@ -14,8 +14,8 @@ class Step2 extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   state = {
-    hc: "",
-    nchar: ""
+    hc: this.props.hc,
+    nchar: this.props.hnchar
   };
   goBack() {
     this.props.history.goBack();
@@ -44,14 +44,28 @@ class Step2 extends Component {
     this.checkninechar();
     window.scrollTo(0, 0);
   }
+  handleHChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ hc: value });
+  };
+  handleNChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ nchar: value });
+  };
   onSubmit() {
     if (this.state.healthdisabled) {
       this.setState({ hcfail: true });
+      window.scrollTo(0, 0);
     } else {
       this.setState({ hcfail: false });
     }
     if (this.state.chardisabled) {
       this.setState({ charfail: true });
+      window.scrollTo(0, 0);
     } else {
       this.setState({ charfail: false });
     }
@@ -61,7 +75,7 @@ class Step2 extends Component {
   };
 
   sendHC = () => {
-    this.props.sendHC(this.state.hc);
+    this.props.sendHC(this.state.hc, this.state.nchar);
   };
   render() {
     return (
@@ -96,17 +110,13 @@ class Step2 extends Component {
                 ""
               )}
               <p>For example 1234 123 421 AA</p>
-              <input
-                id="healthy"
-                ref={input => (this.healthy = input)}
-                onChange={() => {
-                  let temp = this.healthy;
-                  temp = this.healthy.value;
-
-                  this.setState({ hc: temp });
-                }}
-                onBlur={() => this.checkhealth()}
-              />
+              <FormGroup initialstate={this.state.hc}>
+                <input
+                  value={this.state.hc}
+                  onChange={this.handleHChange}
+                  onBlur={() => this.checkhealth()}
+                />
+              </FormGroup>
               <p>You can find your health card number and version code here:</p>
               <img class="card-photo" src="/HCFront.png"></img>
             </div>
@@ -127,7 +137,14 @@ class Step2 extends Component {
                 ""
               )}
               <p>For example AA1234567</p>
-              <input
+              <FormGroup initialstate={this.state.nchar}>
+                <input
+                  value={this.state.nchar}
+                  onChange={this.handleNChange}
+                  onBlur={() => this.checkninechar()}
+                />
+              </FormGroup>
+              {/* <input
                 id="nchar"
                 ref={input => (this.nchar = input)}
                 onChange={() => {
@@ -137,7 +154,7 @@ class Step2 extends Component {
                   this.setState({ nchar: temp });
                 }}
                 onBlur={() => this.checkninechar()}
-              />
+              /> */}
               <p>You can find your 9 character sequence here:</p>
               <img class="card-photo" src="/HCBack.png"></img>
             </div>

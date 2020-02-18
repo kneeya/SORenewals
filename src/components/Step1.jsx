@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactBootstrap from "react-bootstrap";
+import ReactBootstrap, { FormGroup } from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
@@ -18,8 +18,8 @@ class Step1 extends Component {
   }
   state = {
     driverdisabled: false,
-    dl: "",
-    trill: ""
+    dl: this.props.dl,
+    trill: this.props.trill
   };
   goBack() {
     this.props.history.goBack();
@@ -27,12 +27,14 @@ class Step1 extends Component {
   onSubmit() {
     if (this.state.driverdisabled) {
       this.setState({ dlfail: true });
+      window.scrollTo(0, 0);
     } else {
       this.setState({ dlfail: false });
     }
 
     if (this.state.trilldisabled) {
       this.setState({ trillfail: true });
+      window.scrollTo(0, 0);
     } else {
       this.setState({ trillfail: false });
     }
@@ -68,8 +70,7 @@ class Step1 extends Component {
     this.sendDL();
   };
   sendDL = () => {
-    this.props.sendDL(this.state.dl);
-    console.log("swag");
+    this.props.sendDL(this.state.dl, this.state.trill);
   };
 
   componentDidMount() {
@@ -77,7 +78,18 @@ class Step1 extends Component {
     this.checktrill();
     window.scrollTo(0, 0);
   }
-
+  handleTChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ trill: value });
+  };
+  handleDLChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ dl: value });
+  };
   render() {
     return (
       <div class="landing-body">
@@ -111,36 +123,15 @@ class Step1 extends Component {
                 ""
               )}
               <p>For example D6101 50707 51120</p>
-              <MaskedInput
-                ref={input => (this.driver = input)}
-                onChange={() => {
-                  let temp = this.driver.textMaskInputElement.state
-                    .previousConformedValue;
-
-                  this.setState({ dl: temp });
-                }}
-                onBlur={() => this.checkdriver()}
-                mask={[
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  " ",
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  " ",
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-
-                  /[A-Za-z0-9]/
-                ]}
-              />
+              <Form>
+                <FormGroup initialstate={this.state.dl}>
+                  <input
+                    value={this.state.dl}
+                    onChange={this.handleDLChange}
+                    onBlur={() => this.checkdriver()}
+                  />
+                </FormGroup>
+              </Form>
               <p>You can find your driver's licence number here:</p>
               <img class="card-photo" src="/DLFront.png"></img>
             </div>
@@ -160,15 +151,13 @@ class Step1 extends Component {
                 ""
               )}
               <p>For example 0237452</p>
-              <input
-                id="trill"
-                ref={input => (this.trill = input)}
-                onChange={() => {
-                  let temp = this.trill.value;
-                  this.setState({ trill: temp });
-                }}
-                onBlur={() => this.checktrill()}
-              />
+              <FormGroup initialstate={this.state.trill}>
+                <input
+                  value={this.state.trill}
+                  onChange={this.handleTChange}
+                  onBlur={() => this.checktrill()}
+                />
+              </FormGroup>
               <p>You can find your 7-digit number here:</p>
               <img class="card-photo" src="/DLBack.png"></img>
             </div>
