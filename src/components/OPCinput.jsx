@@ -25,6 +25,9 @@ class OPCinput extends Component {
     this.checkninechar();
     window.scrollTo(0, 0);
   }
+  componentWillUnmount() {
+    window.scrollTo(0, 0);
+  }
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;
     var match = regex.exec(this.state.opc);
@@ -46,19 +49,19 @@ class OPCinput extends Component {
   onSubmit() {
     if (this.state.photodisabled) {
       this.setState({ opcfail: true });
-      window.scrollTo(0, 0);
     } else {
       this.setState({ opcfail: false });
     }
     if (this.state.chardisabled) {
       this.setState({ charfail: true });
-      window.scrollTo(0, 0);
     } else {
       this.setState({ charfail: false });
     }
+    window.scrollTo(0, 0);
   }
   onClick = () => {
     this.sendOPC();
+    window.scrollTo(0, 0);
   };
   handleOPChange = e => {
     const {

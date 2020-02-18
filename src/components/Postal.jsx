@@ -27,19 +27,7 @@ class Postal extends Component {
 
     var match = regex.exec(this.state.postal);
     if (match) {
-      if (
-        (this.state.postal.indexOf("-") !== -1 ||
-          this.state.postal.indexOf(" ") !== -1) &&
-        this.state.postal.length == 7
-      ) {
-        this.setState({ postaldisabled: false, fail: false });
-      } else if (
-        (this.state.postal.indexOf("-") == -1 ||
-          this.state.postal.indexOf(" ") == -1) &&
-        this.state.postal.length == 6
-      ) {
-        this.setState({ postaldisabled: false, fail: false });
-      }
+      this.setState({ postaldisabled: false, fail: false });
     } else {
       this.setState({ postaldisabled: true });
     }
