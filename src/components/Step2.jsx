@@ -59,19 +59,19 @@ class Step2 extends Component {
   onSubmit() {
     if (this.state.healthdisabled) {
       this.setState({ hcfail: true });
-      window.scrollTo(0, 0);
     } else {
       this.setState({ hcfail: false });
     }
     if (this.state.chardisabled) {
       this.setState({ charfail: true });
-      window.scrollTo(0, 0);
     } else {
       this.setState({ charfail: false });
     }
+    window.scrollTo(0, 0);
   }
   onClick = () => {
     this.sendHC();
+    window.scrollTo(0, 0);
   };
 
   sendHC = () => {

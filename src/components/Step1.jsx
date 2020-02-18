@@ -27,17 +27,16 @@ class Step1 extends Component {
   onSubmit() {
     if (this.state.driverdisabled) {
       this.setState({ dlfail: true });
-      window.scrollTo(0, 0);
     } else {
       this.setState({ dlfail: false });
     }
 
     if (this.state.trilldisabled) {
       this.setState({ trillfail: true });
-      window.scrollTo(0, 0);
     } else {
       this.setState({ trillfail: false });
     }
+    window.scrollTo(0, 0);
   }
 
   checktrill() {
@@ -68,6 +67,7 @@ class Step1 extends Component {
 
   onClick = () => {
     this.sendDL();
+    window.scrollTo(0, 0);
   };
   sendDL = () => {
     this.props.sendDL(this.state.dl, this.state.trill);

@@ -1,10 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Header from "./components/Header.jsx";
 import Home from "./components/Home.jsx";
 import Step1 from "./components/Step1.jsx";
 import ReactBootstrap from "react-bootstrap";
 import { Container, Row } from "react-bootstrap";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Redirect,
+  Switch,
+  useLocation
+} from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer.jsx";
 import Eligibility from "./components/Eligibility.jsx";
