@@ -101,7 +101,7 @@ class Contact extends Component {
           ) : this.state.emailfail && !this.state.voicefail ? (
             <Error id1="#email" bul1="Email" />
           ) : this.state.voicefail && !this.state.emailfail ? (
-            <Error id2="#phonenumber" bul1="Phone number" />
+            <Error id1="#phonenumber" bul1="Phone number" />
           ) : (
             ""
           )}
