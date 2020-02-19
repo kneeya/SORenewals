@@ -288,6 +288,8 @@ export default class App extends Component {
                     remail={this.state.remail}
                     rphone={this.state.rphone}
                     rvoice={this.state.rvoice}
+                    sendContact={this.getContact.bind(this)}
+                    sendRContact={this.getRContact.bind(this)}
                   />
                 )}
               />

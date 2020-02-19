@@ -274,6 +274,33 @@ h3 {
   margin: 2rem 0 2rem 0;
 }
 
+.info-sect {
+  display: flex;
+}
+
+.info-edit {
+  position: absolute;
+  right: 2rem;
+  text-decoration: underline;
+  color: #0066cc;
+  cursor: pointer;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.cancel-button {
+  text-decoration: underline;
+  color: #0066cc;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 1rem;
+  margin-top: 1.45rem;
+}
+
 a {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   color: #0066cc;
