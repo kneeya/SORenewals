@@ -15,6 +15,7 @@ import "./App.css";
 import Footer from "./components/Footer.jsx";
 import Eligibility from "./components/Eligibility.jsx";
 import Landing from "./components/Landing.jsx";
+import Landing2 from "./components/Landing2.jsx";
 import Step2 from "./components/Step2.jsx";
 import Healthcard from "./components/Healthcard.jsx";
 import Postal from "./components/Postal.jsx";
@@ -93,6 +94,7 @@ export default class App extends Component {
           >
             <Switch>
               <Route exact path="/" component={Landing} />
+              <Route exact path="/byb" component={Landing2} />
               <Route exact path="/terms-and-conditions" component={TnC} />
               <Route /*using render=() to send props while using react router*/
                 exact

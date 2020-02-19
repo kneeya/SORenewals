@@ -51,11 +51,11 @@ class Postal extends Component {
       <React.Fragment>
         <div class="landing-body">
           <Back onClick={this.goBack} />
-          {this.state.fail ? <Error bul1="Postal code" /> : ""}
+          {this.state.fail ? <Error id1="#postal" bul1="Postal code" /> : ""}
           <div className={this.state.fail ? "error-content" : ""}>
             <Row>
               <Col>
-                <h3>Postal code</h3>
+                <h3 id="postal">Postal code</h3>
               </Col>
             </Row>
             <Row>

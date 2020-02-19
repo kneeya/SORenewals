@@ -43,13 +43,16 @@ class FiveMos extends Component {
         <div class="landing-body">
           <Back onClick={this.goBack} />
           {this.state.fail ? (
-            <Error bul1="In the past year, have you lived in Ontario for at least 5 months?" />
+            <Error
+              id1="#5mos"
+              bul1="In the past year, have you lived in Ontario for at least 5 months?"
+            />
           ) : (
             ""
           )}
           <div className={this.state.fail ? "error-content" : ""}>
             <Row>
-              <h3 style={{ marginLeft: 1 + "rem" }}>
+              <h3 id="5mos" style={{ marginLeft: 1 + "rem" }}>
                 In the past year, have you lived in Ontario for at least 5
                 months?
               </h3>

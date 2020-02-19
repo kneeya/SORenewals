@@ -391,3 +391,7 @@ input:focus {
 .ineligible-text {
   margin-bottom: 2rem;
 }
+
+.cards {
+  display: block;
+}

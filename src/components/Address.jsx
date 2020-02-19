@@ -49,23 +49,26 @@ class Address extends Component {
         <div class="landing-body">
           <Back onClick={this.goBack} />
           {this.state.fail ? (
-            <Error bul1="Has your address changed in the last 90 days?" />
+            <Error
+              id1="#address"
+              bul1="Has your address changed in the last 90 days?"
+            />
           ) : (
             ""
           )}
           <div className={this.state.fail ? "error-content" : ""}>
             <Row>
               {this.props.showdl ? (
-                <h3 style={{ marginLeft: 1 + "rem" }}>
+                <h3 id="address" style={{ marginLeft: 1 + "rem" }}>
                   Do you currently live at the address on your driver's license?
                 </h3>
               ) : this.props.showopc ? (
-                <h3 style={{ marginLeft: 1 + "rem" }}>
+                <h3 id="address" style={{ marginLeft: 1 + "rem" }}>
                   Do you currently live at the address on your Ontario photo
                   card?
                 </h3>
               ) : (
-                <h3 style={{ marginLeft: 1 + "rem" }}>
+                <h3 id="address" style={{ marginLeft: 1 + "rem" }}>
                   Do you currently live at the address on your driver's license
                   or Ontario photo card?
                 </h3>
