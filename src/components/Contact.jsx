@@ -66,7 +66,7 @@ class Contact extends Component {
     }
   }
   checkvoice() {
-    var regex = /^[(]?\d{3}[)]?[ -]?\d{3}[ -]?\d{4}$/;
+    var regex = /^[(]?\d{3}[)]?[ -.]?\d{3}[ -.]?\d{4}$/;
     var match = regex.exec(this.state.voice);
     if (this.props.hc) {
       if (match) {
