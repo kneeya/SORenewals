@@ -15,23 +15,31 @@ export default class Footer extends Component {
         >
           {" "}
           <Row>
-            <a>Contact Us</a>
+            <a href="https://www.ontario.ca/feedback/contact-us?id=7476&nid=56934">
+              Contact Us
+            </a>
           </Row>
           <Row>
-            <a>About Ontario</a>
+            <a href="https://www.ontario.ca/page/about-ontario">
+              About Ontario
+            </a>
           </Row>
           <Row>
-            <a>Accessibility</a>
+            <a href="https://www.ontario.ca/page/accessibility">
+              Accessibility
+            </a>
           </Row>
           <Row>
-            <a>Privacy</a>
+            <a href="https://www.ontario.ca/page/privacy-statement">Privacy</a>
           </Row>
           <Row>
-            <a>Terms of use</a>
+            <a href="https://www.ontario.ca/page/terms-use">Terms of use</a>
           </Row>
           <Row></Row>
           <Row style={{ paddingTop: "1.5rem" }}>
-            <a>(c) Queen's Printer for Ontario</a>
+            <a href="https://www.ontario.ca/page/copyright-information-c-queens-printer-ontario">
+              (c) Queen's Printer for Ontario
+            </a>
           </Row>
         </Container>
       </React.Fragment>
