@@ -162,7 +162,7 @@ class Review extends Component {
       this.props.sendContact(this.state.email, this.state.phone);
       this.setState({ editCemail: false });
       this.setState({ editCphone: false });
-    } else if (this.state.emaildisbaled) {
+    } else if (this.state.emaildisabled) {
       this.setState({ emailfail: true });
     } else if (this.state.voicedisabled) {
       this.setState({ voicefail: true });
@@ -180,11 +180,16 @@ class Review extends Component {
           <Back onClick={this.goBack} />
           <h3>Review your details</h3>
           {this.state.voicefail && this.state.emailfail ? (
-            <Error bul1="Email" bul2="Phone number" />
+            <Error
+              id1="#reviewemail"
+              id2="reviewpn"
+              bul1="Email"
+              bul2="Phone number"
+            />
           ) : this.state.emailfail && !this.state.voicefail ? (
-            <Error bul1="Email" />
+            <Error id1="#reviewemail" bul1="Email" />
           ) : this.state.voicefail && !this.state.emailfail ? (
-            <Error bul1="Phone number" />
+            <Error id1="#reviewpn" bul1="Phone number" />
           ) : (
             ""
           )}
@@ -226,7 +231,7 @@ class Review extends Component {
                 {this.state.emailfail ? (
                   <div>
                     <ErrorMsg msg="" />
-                    <p class="weird-one-line-err">
+                    <p id="reviewemail" class="weird-one-line-err">
                       Please provide a valid email
                     </p>
                   </div>
@@ -266,7 +271,7 @@ class Review extends Component {
             {this.props.phone ? (
               <div className="info-sect">
                 <div>
-                  <p>Phone number:</p>
+                  <p id="reviewpn">Phone number:</p>
                   {this.state.voicefail ? (
                     <ErrorMsg msg="Please provide a phone number" />
                   ) : (
