@@ -44,13 +44,16 @@ class Vision extends Component {
         <div class="landing-body">
           <Back onClick={this.goBack} />
           {this.state.fail ? (
-            <Error bul1="Do you require corrective lenses to drive?" />
+            <Error
+              id1="#vision"
+              bul1="Do you require corrective lenses to drive?"
+            />
           ) : (
             ""
           )}
           <div className={this.state.fail ? "error-content" : ""}>
             <Row>
-              <h3 style={{ marginLeft: 1 + "rem" }}>
+              <h3 id="vision" style={{ marginLeft: 1 + "rem" }}>
                 Do you require corrective lenses to drive?
               </h3>
             </Row>
