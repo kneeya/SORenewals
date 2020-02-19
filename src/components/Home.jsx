@@ -109,7 +109,10 @@ class Home extends Component {
           <Back onClick={this.goBack} />
 
           {this.state.fail || this.state.opcdlfail ? (
-            <Error bul1="Choose the card(s) you want to renew (select at least one)" />
+            <Error
+              id1="#choosecard"
+              bul1="Choose the card(s) you want to renew (select at least one)"
+            />
           ) : (
             ""
           )}
@@ -118,7 +121,7 @@ class Home extends Component {
               this.state.fail || this.state.opcdlfail ? "error-content" : ""
             }
           >
-            <h2>Choose the card(s) you want to renew</h2>
+            <h2 id="choosecard">Choose the card(s) you want to renew</h2>
             <p>(select at least one)</p>
             {//this prop is a state in App.js, when true it shows this error msg
             this.state.fail ? (

@@ -92,11 +92,16 @@ class Contact extends Component {
         <div class="landing-body">
           <Back onClick={this.goBack} />
           {this.state.voicefail && this.state.emailfail ? (
-            <Error bul1="Email" bul2="Phone number" />
+            <Error
+              id1="#email"
+              id2="#phonenumber"
+              bul1="Email"
+              bul2="Phone number"
+            />
           ) : this.state.emailfail && !this.state.voicefail ? (
-            <Error bul1="Email" />
+            <Error id1="#email" bul1="Email" />
           ) : this.state.voicefail && !this.state.emailfail ? (
-            <Error bul1="Phone number" />
+            <Error id2="#phonenumber" bul1="Phone number" />
           ) : (
             ""
           )}
@@ -105,7 +110,7 @@ class Contact extends Component {
             <p>Enter your contact information below</p>
 
             <div class="section">
-              <div style={{ marginBottom: "1rem" }}>
+              <div id="email" style={{ marginBottom: "1rem" }}>
                 <strong style={{ paddingRight: 50 + "rem" }}>Email</strong>
               </div>
 
@@ -139,7 +144,7 @@ class Contact extends Component {
           </div>
           <div className={this.state.voicefail ? "error-content" : ""}>
             <div class="section">
-              <div style={{ marginBottom: "1rem" }}>
+              <div id="phonenumber" style={{ marginBottom: "1rem" }}>
                 <strong>
                   Phone number {!this.props.hc ? "(optional)" : ""}
                 </strong>

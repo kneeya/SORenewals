@@ -148,11 +148,17 @@ class Healthcard extends Component {
       <div className="landing-body">
         <React.Fragment>
           <Back onClick={this.goBack} />
-          {this.state.fail ? <Error bul1="Before you proceed" /> : ""}
+          {this.state.fail ? (
+            <Error id1="#bypopc" bul1="Before you proceed" />
+          ) : (
+            ""
+          )}
           <div className={this.state.fail ? "error-content" : ""}>
             <React.Fragment>
               <div>
-                <h2 className="sub-header">Verify your identity</h2>
+                <h2 id="bypopc" className="sub-header">
+                  Verify your identity
+                </h2>
               </div>
               <div>
                 <p>

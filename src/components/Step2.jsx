@@ -84,6 +84,8 @@ class Step2 extends Component {
           <Back onClick={this.goBack} />
           {this.state.hcfail && this.state.charfail ? (
             <Error
+              id1="#hcnumber"
+              id2="#hcsequence"
               bul1="Health card number and version code"
               bul2="9 number sequence on card"
             />
@@ -91,9 +93,9 @@ class Step2 extends Component {
             ""
           )}
           {this.state.hcfail && !this.state.charfail ? (
-            <Error bul1="Health card number and version code" />
+            <Error id1="#hcnumber" bul1="Health card number and version code" />
           ) : this.state.charfail && !this.state.hcfail ? (
-            <Error bul1="9 number sequence on card" />
+            <Error id1="#hcsequence" bul1="9 number sequence on card" />
           ) : (
             ""
           )}
@@ -101,7 +103,7 @@ class Step2 extends Component {
           <p>Enter your card information</p>
           <div class="section">
             <div className={this.state.hcfail ? "error-content" : ""}>
-              <p>
+              <p id="hcnumber">
                 <strong>Health Card number and version code</strong>
               </p>
               {this.state.hcfail ? (
@@ -123,7 +125,7 @@ class Step2 extends Component {
           </div>
           <div class="section">
             <div className={this.state.charfail ? "error-content" : ""}>
-              <p>
+              <p id="hcsequence">
                 {" "}
                 <strong>9 character sequence on card</strong>
               </p>

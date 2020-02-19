@@ -97,6 +97,8 @@ class Step1 extends Component {
           <Back onClick={this.goBack} />
           {this.state.dlfail && this.state.trillfail ? (
             <Error
+              id1="#dlnumber"
+              id2="#dlsequence"
               bul1="Driver's licence number"
               bul2="7 number sequence on card"
             />
@@ -114,7 +116,7 @@ class Step1 extends Component {
           <p>Enter your licence information</p>
           <div class="section">
             <div className={this.state.dlfail ? "error-content" : ""}>
-              <p>
+              <p id="dlnumber">
                 <strong>Driver's licence number</strong>{" "}
               </p>
               {this.state.dlfail ? (
@@ -138,7 +140,7 @@ class Step1 extends Component {
           </div>
           <div class="section">
             <div className={this.state.trillfail ? "error-content" : ""}>
-              <p>
+              <p id="dlsequence">
                 <strong>7-digit on card</strong>
               </p>
               <p>

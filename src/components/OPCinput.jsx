@@ -85,16 +85,18 @@ class OPCinput extends Component {
           <Back onClick={this.goBack} />
           {this.state.opcfail && this.state.charfail ? (
             <Error
-              bul1="Health card number and version code"
+              id1="#opcnumber"
+              id2="#opcsequence"
+              bul1="Photo card number and version code"
               bul2="9 character sequence on card"
             />
           ) : (
             ""
           )}
           {this.state.opcfail && !this.state.charfail ? (
-            <Error bul1="Ontario photo card" />
+            <Error id1="#opcnumber" bul1="Ontario photo card" />
           ) : this.state.charfail && !this.state.opcfail ? (
-            <Error bul1="9 character sequence on card" />
+            <Error id1="#opcsequence" bul1="9 character sequence on card" />
           ) : (
             ""
           )}
@@ -104,7 +106,7 @@ class OPCinput extends Component {
             <div className={this.state.opcfail ? "error-content" : ""}>
               <p>
                 {" "}
-                <strong>Ontario Photo Card number</strong>
+                <strong id="opcnumber">Ontario Photo Card number</strong>
               </p>
               {this.state.opcfail ? (
                 <ErrorMsg msg="Enter your Ontario photo card number." />
@@ -125,7 +127,7 @@ class OPCinput extends Component {
           </div>
           <div class="section">
             <div className={this.state.charfail ? "error-content" : ""}>
-              <p>
+              <p id="opcsequence">
                 <strong>9 character sequence on card</strong>
               </p>
               <p>

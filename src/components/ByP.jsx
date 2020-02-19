@@ -42,9 +42,13 @@ class ByP extends Component {
       <React.Fragment>
         <div class="landing-body">
           <Back onClick={this.goBack} />
-          {this.state.fail ? <Error bul1="Before you proceed" /> : ""}
+          {this.state.fail ? (
+            <Error id1="#byp" bul1="Before you proceed" />
+          ) : (
+            ""
+          )}
           <div className={this.state.fail ? "error-content" : ""}>
-            <h3>Before you proceed</h3>
+            <h3 id="byp">Before you proceed</h3>
             {this.state.fail ? (
               <ErrorMsg msg="Please confirm your understanding before proceeding" />
             ) : (
