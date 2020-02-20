@@ -386,6 +386,7 @@ input:focus {
   font-weight: 700;
   margin-top: -2.2rem;
   margin-left: 2rem;
+  margin-bottom: 0.8rem;
 }
 
 .ineligible-text {
@@ -394,4 +395,11 @@ input:focus {
 
 .cards {
   display: block;
+}
+
+.weird-error {
+  color: #cd0000;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  margin-left: 1.6rem;
 }
