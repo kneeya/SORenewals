@@ -54,6 +54,9 @@ class Step1 extends Component {
 
     if (this.state.dl === "") {
       this.setState({ driverdisabled: true });
+    }
+    if (this.state.dl == "D6101 50707 51111") {
+      this.setState({ ineligible: true });
     } else if (
       ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
       check2 < 1 ||
@@ -166,6 +169,10 @@ class Step1 extends Component {
           </div>
           {this.state.driverdisabled || this.state.trilldisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
+          ) : this.state.ineligible ? (
+            <Link to="/ineligible4">
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            </Link>
           ) : (
             <Link to="/postal">
               <Button onClick={() => this.onClick()}>Next</Button>
