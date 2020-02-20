@@ -288,8 +288,8 @@ h3 {
 
 .edit-buttons {
   display: flex;
-  justify-content: center;
   text-align: center;
+  width: 100%;
 }
 
 .cancel-button {
@@ -431,7 +431,21 @@ input:focus {
     margin-left: 0;
   }
 
+  .form-group {
+    margin-bottom: 0;
+  }
+
   .checkbox-text {
     margin: 0;
+  }
+
+  .card-photo {
+    margin-top: 2rem;
+    width: 500px;
+    height: 400px;
+  }
+
+  .info-sect-wrapper {
+    width: 100%;
   }
 }
