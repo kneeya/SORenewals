@@ -31,6 +31,7 @@ import Notify from "./components/Notify.jsx";
 import Ineligible from "./components/Ineligible.jsx";
 import IneligibleFiveMos from "./components/XFiveMos.jsx";
 import Ineligible3 from "./components/XMedCon.jsx";
+import Expired from "./components/Expired.jsx";
 import OPCinput from "./components/OPCinput.jsx";
 import PDFViewer from "./components/PDFViewer/PDFViewer";
 import Review from "./components/Review.jsx";
@@ -253,6 +254,16 @@ export default class App extends Component {
                 path="/ineligible3"
                 render={() => (
                   <Ineligible3
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
+              <Route
+                path="/ineligible4"
+                render={() => (
+                  <Expired
                     showdl={this.state.showdl}
                     showhc={this.state.showhc}
                     showopc={this.state.showopc}
