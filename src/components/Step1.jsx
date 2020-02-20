@@ -55,33 +55,51 @@ class Step1 extends Component {
     }, 0.001);
   }
   checkdriver() {
+    var regex = /^[A-Za-z][ -]?(\d{4})[ -]?(\d{5})[ -]?(\d{5})$/;
+    var match = regex.exec(this.state.dl);
     var check1 = parseInt(this.state.dl.substring(13, 15));
     var check2 = parseInt(this.state.dl.substring(15, 17));
 
-    if (this.state.dl === "") {
-<<<<<<< HEAD
-      this.setState({ driverdisabled: true, dlfail: true });
-=======
-      this.setState({ driverdisabled: true });
-    }
-    if (this.state.dl == "D6101 50707 51111") {
-      this.setState({ ineligible: true });
->>>>>>> 1f6bd66d2ae99c8f59b6d7f250b34672a5f9ddf5
-    } else if (
-      ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
-      check2 < 1 ||
-      check2 > 31
-    ) {
-      this.setState({ driverdisabled: true, dlfail: true });
+    if (match) {
+      if (this.state.dl === "D6101 50707 51111") {
+        this.setState({ ineligible: true });
+        this.setState({ driverdisabled: false, dlfail: false });
+      } else if (
+        ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
+        check2 < 1 ||
+        check2 > 31
+      ) {
+        this.setState({ driverdisabled: true, dlfail: true });
+      } else {
+        this.setState({ driverdisabled: false, dlfail: false });
+      }
     } else {
-      this.setState({ driverdisabled: false, dlfail: false });
+      this.setState({ driverdisabled: true, dlfail: true });
     }
+    // if (this.state.dl === null) {
+    //   this.setState({ driverdisabled: true, dlfail: true });
+    // }
+    // if (this.state.dl === "D6101 50707 51111") {
+    //   this.setState({ ineligible: true });
+    // } else if (
+    //   ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
+    //   check2 < 1 ||
+    //   check2 > 31
+    // ) {
+    //   this.setState({ driverdisabled: true, dlfail: true });
+    // } else {
+    //   this.setState({ driverdisabled: false, dlfail: false });
+    // }
   }
 
   onClick = () => {
     if (!this.state.driverdisabled && !this.state.trilldisabled) {
       this.sendDL();
-      this.props.history.push("/postal");
+      if (this.state.ineligible) {
+        this.props.history.push("/ineligible4");
+      } else {
+        this.props.history.push("/postal");
+      }
     }
   };
 
@@ -122,9 +140,9 @@ class Step1 extends Component {
             ""
           )}
           {this.state.dlfail && !this.state.trillfail ? (
-            <Error bul1="Driver's licence number" />
+            <Error id1="#dlnumber" bul1="Driver's licence number" />
           ) : this.state.trillfail && !this.state.dlfail ? (
-            <Error bul1="7 number sequence on card" />
+            <Error id1="#dlsequence" bul1="7 number sequence on card" />
           ) : (
             ""
           )}
