@@ -288,8 +288,8 @@ h3 {
 
 .edit-buttons {
   display: flex;
-  justify-content: center;
   text-align: center;
+  width: 100%;
 }
 
 .cancel-button {
@@ -418,7 +418,7 @@ input:focus {
   margin: 0.8rem 0 0.1rem 0;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1000px) {
   .landing-body {
     margin: 5% 15%;
   }
@@ -444,6 +444,24 @@ input:focus {
     margin: 0;
   }
 
+  .card-photo {
+    margin-top: 2rem;
+    width: 500px;
+    height: 400px;
+  }
+
+  .info-sect-wrapper {
+    width: 100%;
+  }
+
+  .reminder-indent {
+    margin-left: 4.25rem;
+  }
+
+  .review-input {
+    margin: 0;
+  }
+
   .col {
     padding: 0;
     padding-top: 0.4rem;
@@ -459,6 +477,7 @@ input:focus {
 
   .form-group {
     width: 50%;
+    margin-bottom: 0.5rem;
   }
 
   .m1 {

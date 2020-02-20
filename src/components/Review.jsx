@@ -147,23 +147,48 @@ class Review extends Component {
     this.setState({ editRvoice: false });
   };
 
-  onRemSave = () => {
+  onRemEmailSave = () => {
     this.props.sendRContact(
       this.state.remail,
       this.state.rphone,
       this.state.rvoice
     );
-    this.setState({ editRemail: false, editRphone: false, editRvoice: false });
+    this.setState({ editRemail: false });
   };
 
-  onConSave = () => {
-    if (!this.state.emaildisabled && !this.state.voicedisabled) {
+  onRemPhoneSave = () => {
+    this.props.sendRContact(
+      this.state.remail,
+      this.state.rphone,
+      this.state.rvoice
+    );
+    this.setState({ editRphone: false });
+  };
+
+  onRemVoiceSave = () => {
+    this.props.sendRContact(
+      this.state.remail,
+      this.state.rphone,
+      this.state.rvoice
+    );
+    this.setState({ editRvoice: false });
+  };
+
+  onConEmailSave = () => {
+    if (!this.state.emaildisabled) {
       //sending email and phone number to app.js to use in notify and review details page
       this.props.sendContact(this.state.email, this.state.phone);
       this.setState({ editCemail: false });
-      this.setState({ editCphone: false });
     } else if (this.state.emaildisabled) {
       this.setState({ emailfail: true });
+    }
+  };
+
+  onConPhoneSave = () => {
+    if (!this.state.voicedisabled) {
+      //sending email and phone number to app.js to use in notify and review details page
+      this.props.sendContact(this.state.email, this.state.phone);
+      this.setState({ editCphone: false });
     } else if (this.state.voicedisabled) {
       this.setState({ voicefail: true });
     }
@@ -226,7 +251,7 @@ class Review extends Component {
           <div className="section">
             <strong>Contact Information</strong>
             <div className="info-sect">
-              <div>
+              <div className="info-sect-wrapper">
                 <p>Email:</p>
                 {this.state.emailfail ? (
                   <div>
@@ -242,13 +267,19 @@ class Review extends Component {
                   <React.Fragment>
                     <FormGroup initialstate={this.props.email}>
                       <input
+                        className="review-input"
                         value={this.state.email}
                         onChange={this.handleCEmailChange}
                         onBlur={() => this.checkemail()}
                       />
                     </FormGroup>
                     <div className="edit-buttons">
-                      <Button onClick={this.onConSave}>Save</Button>
+                      <Button
+                        // style={{ width: "100%" }}
+                        onClick={this.onConEmailSave}
+                      >
+                        Save
+                      </Button>
 
                       <p className="cancel-button" onClick={this.cancelCEmail}>
                         Cancel
@@ -270,7 +301,7 @@ class Review extends Component {
             </div>
             {this.props.phone ? (
               <div className="info-sect">
-                <div>
+                <div className="info-sect-wrapper">
                   <p id="reviewpn">Phone number:</p>
                   {this.state.voicefail ? (
                     <ErrorMsg msg="Please provide a phone number" />
@@ -281,13 +312,14 @@ class Review extends Component {
                     <React.Fragment>
                       <FormGroup initialstate={this.props.phone}>
                         <input
+                          className="review-input"
                           value={this.state.phone}
                           onChange={this.handleCPhoneChange}
                           onBlur={() => this.checkvoice()}
                         />
                       </FormGroup>
                       <div className="edit-buttons">
-                        <Button onClick={this.onConSave}>Save</Button>
+                        <Button onClick={this.onConPhoneSave}>Save</Button>
 
                         <p
                           className="cancel-button"
@@ -321,21 +353,20 @@ class Review extends Component {
               <strong>Reminder information</strong>
               {this.props.remail ? (
                 <div className="info-sect">
-                  <div>
+                  <div className="info-sect-wrapper">
                     <p>Email: </p>
                     {this.state.editRemail ? (
                       <React.Fragment>
                         <FormGroup initialstate={this.props.remail}>
                           <input
-                            type="email"
-                            name="email"
+                            className="review-input"
                             value={this.state.remail}
                             onChange={this.handleREmailChange}
                             onBlur={() => this.checkemail()}
                           />
                         </FormGroup>
                         <div className="edit-buttons">
-                          <Button onClick={this.onRemSave}>Save</Button>
+                          <Button onClick={this.onRemEmailSave}>Save</Button>
 
                           <p
                             className="cancel-button"
@@ -362,19 +393,20 @@ class Review extends Component {
               )}
               {this.props.rphone ? (
                 <div className="info-sect">
-                  <div>
+                  <div className="info-sect-wrapper">
                     <p>Phone number:</p>
                     {this.state.editRphone ? (
                       <React.Fragment>
                         <FormGroup initialstate={this.props.rphone}>
                           <input
+                            className="review-input"
                             value={this.state.rphone}
                             onChange={this.handleRPhoneChange}
                             onBlur={() => this.checkvoice()}
                           />
                         </FormGroup>
                         <div className="edit-buttons">
-                          <Button onClick={this.onRemSave}>Save</Button>
+                          <Button onClick={this.onRemPhoneSave}>Save</Button>
 
                           <p
                             className="cancel-button"
@@ -401,19 +433,20 @@ class Review extends Component {
               )}
               {this.props.rvoice ? (
                 <div className="info-sect">
-                  <div>
+                  <div className="info-sect-wrapper">
                     <p>Phone number:</p>
                     {this.state.editRvoice ? (
                       <React.Fragment>
                         <FormGroup initialstate={this.props.rvoice}>
                           <input
+                            className="review-input"
                             value={this.state.rvoice}
                             onChange={this.handleRVoiceChange}
                             onBlur={() => this.checkvoice()}
                           />
                         </FormGroup>
                         <div className="edit-buttons">
-                          <Button onClick={this.onRemSave}>Save</Button>
+                          <Button onClick={this.onRemVoiceSave}>Save</Button>
 
                           <p
                             className="cancel-button"
