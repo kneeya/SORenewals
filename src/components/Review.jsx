@@ -267,6 +267,7 @@ class Review extends Component {
                   <React.Fragment>
                     <FormGroup initialstate={this.props.email}>
                       <input
+                        className="review-input"
                         value={this.state.email}
                         onChange={this.handleCEmailChange}
                         onBlur={() => this.checkemail()}
@@ -311,6 +312,7 @@ class Review extends Component {
                     <React.Fragment>
                       <FormGroup initialstate={this.props.phone}>
                         <input
+                          className="review-input"
                           value={this.state.phone}
                           onChange={this.handleCPhoneChange}
                           onBlur={() => this.checkvoice()}
@@ -357,8 +359,7 @@ class Review extends Component {
                       <React.Fragment>
                         <FormGroup initialstate={this.props.remail}>
                           <input
-                            type="email"
-                            name="email"
+                            className="review-input"
                             value={this.state.remail}
                             onChange={this.handleREmailChange}
                             onBlur={() => this.checkemail()}
@@ -398,6 +399,7 @@ class Review extends Component {
                       <React.Fragment>
                         <FormGroup initialstate={this.props.rphone}>
                           <input
+                            className="review-input"
                             value={this.state.rphone}
                             onChange={this.handleRPhoneChange}
                             onBlur={() => this.checkvoice()}
@@ -437,6 +439,7 @@ class Review extends Component {
                       <React.Fragment>
                         <FormGroup initialstate={this.props.rvoice}>
                           <input
+                            className="review-input"
                             value={this.state.rvoice}
                             onChange={this.handleRVoiceChange}
                             onBlur={() => this.checkvoice()}

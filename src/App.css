@@ -409,7 +409,16 @@ input:focus {
   margin-left: 1rem;
 }
 
-@media screen and (min-width: 1200px) {
+.bypbullet {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.learn-more {
+  margin: 0.8rem 0 0.1rem 0;
+}
+
+@media screen and (min-width: 1000px) {
   .landing-body {
     margin: 5% 15%;
   }
@@ -431,10 +440,6 @@ input:focus {
     margin-left: 0;
   }
 
-  .form-group {
-    margin-bottom: 0;
-  }
-
   .checkbox-text {
     margin: 0;
   }
@@ -447,5 +452,35 @@ input:focus {
 
   .info-sect-wrapper {
     width: 100%;
+  }
+
+  .reminder-indent {
+    margin-left: 4.25rem;
+  }
+
+  .review-input {
+    margin: 0;
+  }
+
+  .col {
+    padding: 0;
+    padding-top: 0.4rem;
+  }
+
+  .col-1 {
+    padding: 0.2rem 0 0.2rem 2rem;
+  }
+
+  .ontario-fieldset {
+    padding-left: 1rem;
+  }
+
+  .form-group {
+    width: 50%;
+    margin-bottom: 0.5rem;
+  }
+
+  .m1 {
+    padding-left: 1rem;
   }
 }
