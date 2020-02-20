@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactBootstrap, { FormGroup } from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import Back from "./Back";
 import Error from "./error/Error";
 import ErrorMsg from "./error/ErrorMsg";
@@ -15,26 +15,24 @@ class OPCinput extends Component {
   }
   state = {
     opc: this.props.opc,
-    nchar: this.props.nchar
+    nchar: this.props.nchar,
+    photodisabled: true,
+    chardisabled: true
   };
   goBack() {
     this.props.history.goBack();
   }
   componentDidMount() {
-    this.checkphoto();
-    this.checkninechar();
     window.scrollTo(0, 0);
   }
-  componentWillUnmount() {
-    window.scrollTo(0, 0);
-  }
+
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;
     var match = regex.exec(this.state.opc);
     if (match) {
       this.setState({ photodisabled: false, opcfail: false });
     } else {
-      this.setState({ photodisabled: true });
+      this.setState({ photodisabled: true, opcfail: true });
     }
   }
   checkninechar() {
@@ -43,25 +41,22 @@ class OPCinput extends Component {
     if (match) {
       this.setState({ chardisabled: false, charfail: false });
     } else {
-      this.setState({ chardisabled: true });
+      this.setState({ chardisabled: true, charfail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.onClick();
+    }, 0.001);
   }
   onSubmit() {
-    if (this.state.photodisabled) {
-      this.setState({ opcfail: true });
-    } else {
-      this.setState({ opcfail: false });
-    }
-    if (this.state.chardisabled) {
-      this.setState({ charfail: true });
-    } else {
-      this.setState({ charfail: false });
-    }
-    window.scrollTo(0, 0);
+    this.checkninechar();
+    this.checkphoto();
   }
   onClick = () => {
-    this.sendOPC();
-    window.scrollTo(0, 0);
+    if (!this.state.chardisabled && !this.state.photodisabled) {
+      this.sendOPC();
+      this.props.history.push("/postal");
+    }
   };
   handleOPChange = e => {
     const {
@@ -118,7 +113,7 @@ class OPCinput extends Component {
                 <input
                   value={this.state.opc}
                   onChange={this.handleOPChange}
-                  onBlur={() => this.checkphoto()}
+                  //onBlur={() => this.checkphoto()}
                 />
               </FormGroup>
               <p>You can find your Ontario photo card number here:</p>
@@ -144,30 +139,15 @@ class OPCinput extends Component {
                 <input
                   value={this.state.nchar}
                   onChange={this.handleNChange}
-                  onBlur={() => this.checkninechar()}
+                  //onBlur={() => this.checkninechar()}
                 />
               </FormGroup>
-              {/* <input
-                id="nchar"
-                ref={input => (this.nchar = input)}
-                onChange={() => {
-                  let temp = this.nchar;
-                  temp = this.nchar.value;
-                  this.setState({ nchar: temp });
-                }}
-                onBlur={() => this.checkninechar()}
-              /> */}
               <p>You can find your 9 character sequence here:</p>
               <img class="card-photo" src="/OPCSeq.png"></img>
             </div>
           </div>
-          {this.state.chardisabled || this.state.photodisabled ? (
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : (
-            <Link to="/postal">
-              <Button onClick={() => this.onClick()}>Next</Button>
-            </Link>
-          )}
+
+          <Button onClick={() => this.onSubmit()}>Next</Button>
         </React.Fragment>
       </div>
     );
