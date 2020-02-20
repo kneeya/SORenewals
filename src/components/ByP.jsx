@@ -84,17 +84,15 @@ class ByP extends Component {
                   <p style={{ marginLeft: 1 + "rem" }}>
                     If you have a combination licence, the renewal will only
                     apply to:
-                  </p>
-                  <ul>
-                    <li>the G in a GM1 or GM2</li>
-                    <li>the M in a G1M or G2M</li>
-                  </ul>
-                  <p
-                    style={{ marginLeft: 1 + "rem", paddingBottom: 1 + "rem" }}
-                  >
-                    <a href="https://ontario.ca" target="_blank">
-                      Learn more about licence classes.
-                    </a>
+                    <ul class="bypbullet">
+                      <li>the G in a GM1 or GM2</li>
+                      <li>the M in a G1M or G2M</li>
+                    </ul>
+                    <p class="learn-more">
+                      <a href="https://ontario.ca" target="_blank">
+                        Learn more about licence classes.
+                      </a>
+                    </p>
                   </p>
                 </Row>
                 <Row>
