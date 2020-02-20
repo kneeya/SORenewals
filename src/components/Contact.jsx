@@ -158,6 +158,7 @@ class Contact extends Component {
               {/* <Form onSubmit={this.handleSubmit.bind(this)}>
             <FormGroup controlId="formBasicEmail"> */}
               <input
+                class="form-group"
                 ref={input => (this.email = input)}
                 onChange={() => {
                   let temp = this.email;
@@ -189,6 +190,7 @@ class Contact extends Component {
               <p>For example 226 808 3813</p>
 
               <input
+                class="form-group"
                 id="voicey"
                 ref={input => (this.voicey = input)}
                 onChange={() => {

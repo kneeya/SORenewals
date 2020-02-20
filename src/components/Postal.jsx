@@ -61,12 +61,14 @@ class Postal extends Component {
           <div className={this.state.fail ? "error-content" : ""}>
             <Row>
               <Col>
-                <h3 id="postal">Postal code</h3>
+                <h3 class="m1" id="postal">
+                  Postal code
+                </h3>
               </Col>
             </Row>
             <Row>
               <Col>
-                <p>Enter your postal code</p>
+                <p class="m1">Enter your postal code</p>
               </Col>
             </Row>
             {this.state.fail ? (
@@ -77,13 +79,14 @@ class Postal extends Component {
             <p>For example N3T 2L7</p>
             <input
               id="postal"
+              class="form-group"
               ref={input => (this.postal = input)}
               onChange={() => {
                 let temp = this.postal.value;
                 this.setState({ postal: temp });
               }}
             />
-
+            <br></br>
             <Button onClick={() => this.onSubmit()}>Next</Button>
           </div>
         </div>
