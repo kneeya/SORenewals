@@ -16,6 +16,7 @@ class Header extends Component {
                 <a href="/">
                   {" "}
                   <img
+                    class="ontario"
                     src={this.state.imgUrl}
                     alt="logo"
                     style={{ width: 11 + "rem", marginTop: "0.6rem" }}

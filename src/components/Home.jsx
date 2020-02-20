@@ -123,11 +123,27 @@ class Home extends Component {
           >
             <h2 id="choosecard">Choose the card(s) you want to renew</h2>
             <p>(select at least one)</p>
+            <p>
+              <b>Note:</b> You cannot renew both your driver’s licence and your
+              photo card at the same time.
+            </p>
             {//this prop is a state in App.js, when true it shows this error msg
             this.state.fail ? (
-              <ErrorMsg msg="You must choose one or more card(s) on this page and click next to continue." />
+              <React.Fragment>
+                <ErrorMsg msg="You must choose one or more card(s) on this page and click next to continue." />
+                <br></br>
+              </React.Fragment>
             ) : this.state.opcdlfail ? (
-              <ErrorMsg msg="You can only renew one. Please choose driver's licence or photo card." />
+              <React.Fragment>
+                <div>
+                  <ErrorMsg msg="" />
+                  <p class="weird-one-line-err">Choose only one of:</p>
+                  <ul>
+                    <li class="weird-error">driver’s licence</li>
+                    <li class="weird-error">Ontario photo card</li>
+                  </ul>
+                </div>
+              </React.Fragment>
             ) : (
               ""
             )}
@@ -140,10 +156,7 @@ class Home extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    {" "}
-                    Driver's Licence
-                  </p>
+                  <p class="checkbox-text"> Driver's Licence</p>
                 </Col>
               </Row>
               <Row>
@@ -154,10 +167,7 @@ class Home extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    {" "}
-                    Ontario Photo Card
-                  </p>
+                  <p class="checkbox-text"> Ontario Photo Card</p>
                 </Col>
               </Row>
               <Row>
@@ -168,9 +178,7 @@ class Home extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    Health Card
-                  </p>
+                  <p class="checkbox-text">Health Card</p>
                 </Col>
               </Row>
             </Form>

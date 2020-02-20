@@ -14,13 +14,7 @@ class Landing extends Component {
       <React.Fragment>
         <div class="landing-body">
           <h1 class="landing-header">Renew your Ontario cards</h1>
-          <img
-            src="/cards.png"
-            alt=""
-            class="cards"
-            height="80%"
-            width="100%"
-          />
+          <img src="/cards.png" alt="" class="cards" height="80%" width="40%" />
           <br />
           <p class="lead-text">What you can renew online:</p>
           <ul>

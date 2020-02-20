@@ -149,7 +149,7 @@ class Notify extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                  <p class="checkbox-text">
                     {" "}
                     <strong>Email</strong>
                   </p>
@@ -180,7 +180,7 @@ class Notify extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                  <p class="checkbox-text">
                     <strong>Text message</strong>
                   </p>
                 </Col>
@@ -210,7 +210,7 @@ class Notify extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                  <p class="checkbox-text">
                     <strong>Automated phone call</strong>
                   </p>
                 </Col>

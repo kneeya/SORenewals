@@ -105,7 +105,7 @@ class ByP extends Component {
                     ></Checkbox>
                   </Col>
                   <Col>
-                    <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    <p class="checkbox-text">
                       I acknowledge and understand that only the full class
                       portion of my driver's licence can be renewed online.
                     </p>
