@@ -403,3 +403,35 @@ input:focus {
   margin-bottom: 0.2rem;
   margin-left: 1.6rem;
 }
+
+.checkbox-text {
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+}
+
+@media screen and (min-width: 1200px) {
+  .landing-body {
+    margin: 5% 15%;
+  }
+
+  .btn-primary {
+    width: 30%;
+  }
+
+  .so-logo img {
+    margin-left: 13.5rem;
+  }
+
+  .ontario {
+    margin-left: 3.1rem;
+  }
+
+  .error-msg {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .checkbox-text {
+    margin: 0;
+  }
+}

@@ -6,11 +6,11 @@ export default class Footer extends Component {
   render() {
     return (
       <React.Fragment>
-        <Container
+        <div
           style={{
             marginTop: "2.5rem",
             background: "#ededed",
-            padding: "1.5rem 0 2em 2rem"
+            padding: "1.5rem 0 2em 13.5rem"
           }}
         >
           {" "}
@@ -41,7 +41,7 @@ export default class Footer extends Component {
               (c) Queen's Printer for Ontario
             </a>
           </Row>
-        </Container>
+        </div>
       </React.Fragment>
     );
   }

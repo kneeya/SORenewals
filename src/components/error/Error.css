@@ -48,3 +48,10 @@
   padding-left: 1rem;
   margin-bottom: 3rem;
 }
+
+@media screen and (min-width: 1200px) {
+  .error-msg {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}

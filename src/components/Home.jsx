@@ -129,7 +129,10 @@ class Home extends Component {
             </p>
             {//this prop is a state in App.js, when true it shows this error msg
             this.state.fail ? (
-              <ErrorMsg msg="You must choose one or more card(s) on this page and click next to continue." />
+              <React.Fragment>
+                <ErrorMsg msg="You must choose one or more card(s) on this page and click next to continue." />
+                <br></br>
+              </React.Fragment>
             ) : this.state.opcdlfail ? (
               <React.Fragment>
                 <div>
@@ -153,10 +156,7 @@ class Home extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    {" "}
-                    Driver's Licence
-                  </p>
+                  <p class="checkbox-text"> Driver's Licence</p>
                 </Col>
               </Row>
               <Row>
@@ -167,10 +167,7 @@ class Home extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    {" "}
-                    Ontario Photo Card
-                  </p>
+                  <p class="checkbox-text"> Ontario Photo Card</p>
                 </Col>
               </Row>
               <Row>
@@ -181,9 +178,7 @@ class Home extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
-                    Health Card
-                  </p>
+                  <p class="checkbox-text">Health Card</p>
                 </Col>
               </Row>
             </Form>
