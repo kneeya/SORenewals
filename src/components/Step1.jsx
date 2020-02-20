@@ -17,7 +17,8 @@ class Step1 extends Component {
     this.checktrill = this.checktrill.bind(this);
   }
   state = {
-    driverdisabled: false,
+    driverdisabled: true,
+    trilldisabled: true,
     dl: this.props.dl,
     trill: this.props.trill
   };
@@ -25,18 +26,19 @@ class Step1 extends Component {
     this.props.history.goBack();
   }
   onSubmit() {
-    if (this.state.driverdisabled) {
-      this.setState({ dlfail: true });
-    } else {
-      this.setState({ dlfail: false });
-    }
+    this.checktrill();
+    this.checkdriver();
+    // if (this.state.driverdisabled) {
+    //   this.setState({ dlfail: true });
+    // } else {
+    //   this.setState({ dlfail: false });
+    // }
 
-    if (this.state.trilldisabled) {
-      this.setState({ trillfail: true });
-    } else {
-      this.setState({ trillfail: false });
-    }
-    window.scrollTo(0, 0);
+    // if (this.state.trilldisabled) {
+    //   this.setState({ trillfail: true });
+    // } else {
+    //   this.setState({ trillfail: false });
+    // }
   }
 
   checktrill() {
@@ -45,40 +47,69 @@ class Step1 extends Component {
     if (match) {
       this.setState({ trilldisabled: false, trillfail: false });
     } else {
-      this.setState({ trilldisabled: true });
+      this.setState({ trilldisabled: true, trillfail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.onClick();
+    }, 0.001);
   }
   checkdriver() {
+    var regex = /^[A-Za-z][ -]?(\d{4})[ -]?(\d{5})[ -]?(\d{5})$/;
+    var match = regex.exec(this.state.dl);
     var check1 = parseInt(this.state.dl.substring(13, 15));
     var check2 = parseInt(this.state.dl.substring(15, 17));
 
-    if (this.state.dl === "") {
-      this.setState({ driverdisabled: true });
-    }
-    if (this.state.dl == "D6101 50707 51111") {
-      this.setState({ ineligible: true });
-    } else if (
-      ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
-      check2 < 1 ||
-      check2 > 31
-    ) {
-      this.setState({ driverdisabled: true });
+    if (match) {
+      if (this.state.dl === "D6101 50707 51111") {
+        this.setState({ ineligible: true });
+        this.setState({ driverdisabled: false, dlfail: false });
+      } else if (
+        ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
+        check2 < 1 ||
+        check2 > 31
+      ) {
+        this.setState({ driverdisabled: true, dlfail: true });
+      } else {
+        this.setState({ driverdisabled: false, dlfail: false });
+      }
     } else {
-      this.setState({ driverdisabled: false, dlfail: false });
+      this.setState({ driverdisabled: true, dlfail: true });
     }
+    // if (this.state.dl === null) {
+    //   this.setState({ driverdisabled: true, dlfail: true });
+    // }
+    // if (this.state.dl === "D6101 50707 51111") {
+    //   this.setState({ ineligible: true });
+    // } else if (
+    //   ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
+    //   check2 < 1 ||
+    //   check2 > 31
+    // ) {
+    //   this.setState({ driverdisabled: true, dlfail: true });
+    // } else {
+    //   this.setState({ driverdisabled: false, dlfail: false });
+    // }
   }
 
   onClick = () => {
-    this.sendDL();
-    window.scrollTo(0, 0);
+    if (!this.state.driverdisabled && !this.state.trilldisabled) {
+      this.sendDL();
+      if (this.state.ineligible) {
+        this.props.history.push("/ineligible4");
+      } else {
+        this.props.history.push("/postal");
+      }
+    }
   };
+
   sendDL = () => {
     this.props.sendDL(this.state.dl, this.state.trill);
   };
 
   componentDidMount() {
-    this.checkdriver();
-    this.checktrill();
+    // this.checkdriver();
+    // this.checktrill();
     window.scrollTo(0, 0);
   }
   handleTChange = e => {
@@ -109,9 +140,9 @@ class Step1 extends Component {
             ""
           )}
           {this.state.dlfail && !this.state.trillfail ? (
-            <Error bul1="Driver's licence number" />
+            <Error id1="#dlnumber" bul1="Driver's licence number" />
           ) : this.state.trillfail && !this.state.dlfail ? (
-            <Error bul1="7 number sequence on card" />
+            <Error id1="#dlsequence" bul1="7 number sequence on card" />
           ) : (
             ""
           )}
@@ -133,7 +164,7 @@ class Step1 extends Component {
                   <input
                     value={this.state.dl}
                     onChange={this.handleDLChange}
-                    onBlur={() => this.checkdriver()}
+                    //onBlur={() => this.checkdriver()}
                   />
                 </FormGroup>
               </Form>
@@ -160,14 +191,14 @@ class Step1 extends Component {
                 <input
                   value={this.state.trill}
                   onChange={this.handleTChange}
-                  onBlur={() => this.checktrill()}
+                  //onBlur={() => this.checktrill()}
                 />
               </FormGroup>
               <p>You can find your 7-digit number here:</p>
               <img class="card-photo" src="/DLBack.png"></img>
             </div>
           </div>
-          {this.state.driverdisabled || this.state.trilldisabled ? (
+          {/* {this.state.driverdisabled || this.state.trilldisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : this.state.ineligible ? (
             <Link to="/ineligible4">
@@ -177,7 +208,8 @@ class Step1 extends Component {
             <Link to="/postal">
               <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
-          )}
+          )} */}
+          <Button onClick={() => this.onSubmit()}>Next</Button>
         </React.Fragment>
       </div>
     );

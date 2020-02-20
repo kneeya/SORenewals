@@ -16,7 +16,8 @@ class Postal extends Component {
     this.checkpostal = this.checkpostal.bind(this);
   }
   state = {
-    postal: ""
+    postal: "",
+    postaldisabled: true
   };
   goBack() {
     this.props.history.goBack();
@@ -29,21 +30,26 @@ class Postal extends Component {
     if (match) {
       this.setState({ postaldisabled: false, fail: false });
     } else {
-      this.setState({ postaldisabled: true });
+      this.setState({ postaldisabled: true, fail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.onClick();
+    }, 0.001);
   }
 
+  onClick = () => {
+    if (!this.state.postaldisabled) {
+      this.props.history.push("/contact");
+    }
+  };
+
   componentDidMount() {
-    this.checkpostal();
     window.scrollTo(0, 0);
   }
 
   onSubmit() {
-    if (this.state.postaldisabled) {
-      this.setState({ fail: true });
-    } else {
-      this.setState({ fail: false });
-    }
+    this.checkpostal();
   }
 
   render() {
@@ -76,15 +82,9 @@ class Postal extends Component {
                 let temp = this.postal.value;
                 this.setState({ postal: temp });
               }}
-              onBlur={() => this.checkpostal()}
             />
-            {this.state.postaldisabled ? (
-              <Button onClick={() => this.onSubmit()}>Next</Button>
-            ) : (
-              <Link to="/contact">
-                <Button>Next</Button>
-              </Link>
-            )}
+
+            <Button onClick={() => this.onSubmit()}>Next</Button>
           </div>
         </div>
       </React.Fragment>

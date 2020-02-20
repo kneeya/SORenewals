@@ -13,7 +13,8 @@ class Contact extends Component {
   state = {
     email: "",
     voice: "",
-    voicedisabled: false
+    voicedisabled: true,
+    emaildisabled: true
   };
   constructor(props) {
     super(props);
@@ -28,10 +29,26 @@ class Contact extends Component {
   }
 
   handleSubmit = e => {
-    if (!this.state.emaildisabled) {
-      //sending email and phone number to app.js to use in notify and review details page
+    if (this.props.hc) {
+      if (!this.state.emaildisabled && !this.state.voicedisabled) {
+        //sending email and phone number to app.js to use in notify and review details page
+        this.props.sendContact(this.state.email, this.state.voice);
+        this.props.history.push("/notify-so");
+        //const { email } = this.state;
+        // let templateParams = {
+        //   to_name: email
+        // };
+        // emailjs.send(
+        //   "gmail",
+        //   "template_RLG3E76r",
+        //   templateParams,
+        //   "user_u3p3HFlbdGyXe6PNlzFis"
+        // );
+        console.log("sent");
+      }
+    } else if (!this.state.emaildisabled) {
       this.props.sendContact(this.state.email, this.state.voice);
-
+      this.props.history.push("/notify-so");
       //const { email } = this.state;
       // let templateParams = {
       //   to_name: email
@@ -44,26 +61,35 @@ class Contact extends Component {
       // );
       console.log("sent");
     }
+    // if (
+    //   !this.state.emaildisabled(this.props.showhc && !this.state.voicedisabled)
+    // ) {
+    //   //sending email and phone number to app.js to use in notify and review details page
+    //   this.props.sendContact(this.state.email, this.state.voice);
+    //   this.props.history.push("/notify-so");
+    //   //const { email } = this.state;
+    //   // let templateParams = {
+    //   //   to_name: email
+    //   // };
+    //   // emailjs.send(
+    //   //   "gmail",
+    //   //   "template_RLG3E76r",
+    //   //   templateParams,
+    //   //   "user_u3p3HFlbdGyXe6PNlzFis"
+    //   // );
+    //   console.log("sent");
+    // }
   };
 
   componentDidMount() {
-    this.checkvoice();
-    this.checkemail();
+    // this.checkvoice();
+    // this.checkemail();
     window.scrollTo(0, 0);
   }
 
   onSubmit() {
-    if (this.state.voicedisabled && this.props.hc) {
-      this.setState({ voicefail: true });
-    } else {
-      this.setState({ voicefail: false });
-    }
-
-    if (this.state.emaildisabled) {
-      this.setState({ emailfail: true });
-    } else {
-      this.setState({ emailfail: false });
-    }
+    this.checkemail();
+    this.checkvoice();
   }
   checkvoice() {
     var regex = /^[(]?\d{3}[)]?[ -.]?\d{3}[ -.]?\d{4}$/;
@@ -72,8 +98,10 @@ class Contact extends Component {
       if (match) {
         this.setState({ voicedisabled: false, voicefail: false });
       } else {
-        this.setState({ voicedisabled: true });
+        this.setState({ voicedisabled: true, voicefail: true });
       }
+    } else {
+      this.setState({ voicedisabled: false, voicefail: false });
     }
   }
 
@@ -83,8 +111,12 @@ class Contact extends Component {
     if (match) {
       this.setState({ emaildisabled: false, emailfail: false });
     } else {
-      this.setState({ emaildisabled: true });
+      this.setState({ emaildisabled: true, emailfail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.handleSubmit();
+    }, 0.001);
   }
   render() {
     return (
@@ -132,7 +164,7 @@ class Contact extends Component {
                   temp = this.email.value;
                   this.setState({ email: temp });
                 }}
-                onBlur={() => this.checkemail()}
+                //onBlur={() => this.checkemail()}
               />
               {/* </FormGroup> */}
               <p style={{ marginBottom: "-1rem" }}>
@@ -164,7 +196,7 @@ class Contact extends Component {
                   temp = this.voicey.value;
                   this.setState({ voice: temp });
                 }}
-                onBlur={() => this.checkvoice()}
+                //onBlur={() => this.checkvoice()}
               />
               <p>
                 We may call you to confirm that you live in Ontario, or to
