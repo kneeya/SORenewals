@@ -102,7 +102,7 @@ class Contact extends Component {
 
             <div class="section">
               <div id="email" style={{ marginBottom: "1rem" }}>
-                <strong style={{ paddingRight: 50 + "rem" }}>Email</strong>
+                <strong style={{ paddingRight: 50 }}>Email</strong>
               </div>
 
               {this.state.emailfail ? (
@@ -114,7 +114,10 @@ class Contact extends Component {
                 ""
               )}
               <p>For example odslab@ontario.ca</p>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce1a44b742d72a8f19d4160fb8900d56fa2926e6
               <input
                 class="form-group"
                 ref={input => (this.email = input)}
