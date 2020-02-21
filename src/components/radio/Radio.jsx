@@ -5,7 +5,7 @@ import "./Radio.css";
 class Radio extends Component {
   render() {
     return (
-      <div class="ontario-form-group" onClick={this.props.onClick}>
+      <div class="ontario-form-group">
         <fieldset class="ontario-fieldset" aria-describedby="renewal-hint">
           <legend class="ontario-fieldset__legend ontario-fieldset__legend--large"></legend>
           <div class="ontario-radios">
@@ -16,6 +16,7 @@ class Radio extends Component {
                 id="1-year-renewal"
                 name="licence-renewal"
                 type="radio"
+                onClick={this.props.onClick}
               />
               <label class="ontario-label ontario-radios__label">
                 <strong>{this.props.value}</strong>

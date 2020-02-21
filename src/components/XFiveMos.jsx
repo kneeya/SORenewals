@@ -62,7 +62,7 @@ class IneligibleFiveMos extends Component {
                 </React.Fragment>
               ) : (
                 <React.Fragment>
-                  To verify your residency, you must bring‎‏‏‎ ‎
+                  To verify your residency, you must bring‎‏‏‎{""} ‎
                   <a
                     target="_blank"
                     href="https://www.ontario.ca/page/documents-needed-get-health-card#section-1"
