@@ -419,6 +419,12 @@ input:focus {
   margin: 0.8rem 0 0.1rem 0;
 }
 
+.footer {
+  display: inline-table;
+  padding: 1.5rem 0 2em 4rem;
+  background-color: #ededed;
+}
+
 @media screen and (min-width: 1000px) {
   .landing-body {
     margin: 5% 15%;
@@ -488,5 +494,11 @@ input:focus {
   .cards {
     height: 80%;
     width: 40%;
+  }
+
+  .footer {
+    display: inline-table;
+    padding: 1.5rem 0 2em 13.5rem;
+    background-color: #ededed;
   }
 }
