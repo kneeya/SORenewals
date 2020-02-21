@@ -114,8 +114,7 @@ class Contact extends Component {
                 ""
               )}
               <p>For example odslab@ontario.ca</p>
-              {/* <Form onSubmit={this.handleSubmit.bind(this)}>
-            <FormGroup controlId="formBasicEmail"> */}
+
               <input
                 class="form-group"
                 ref={input => (this.email = input)}
@@ -126,7 +125,7 @@ class Contact extends Component {
                 }}
                 //onBlur={() => this.checkemail()}
               />
-              {/* </FormGroup> */}
+
               <p style={{ marginBottom: "-1rem" }}>
                 We will email you an electronic receipt and temporary
                 document(s) for this transaction.
@@ -172,23 +171,7 @@ class Contact extends Component {
                 )}
               </p>
             </div>
-
-            {/* {(this.state.voicedisabled && this.props.hc) ||
-            this.state.emaildisabled ? (
-              <Button onClick={() => this.onSubmit()}>Next</Button>
-            ) : (
-              <Link to="/notify-so">
-                <Button
-                  variant="primary"
-                  type="submit"
-                  onClick={() => this.handleSubmit()}
-                >
-                  Next
-                </Button>
-              </Link>
-            )} */}
             <Button onClick={() => this.onSubmit()}>Next</Button>
-            {/* </Form> */}
           </div>
         </div>
       </React.Fragment>
