@@ -36,27 +36,9 @@ class Expired extends Component {
           </Row>
           <Row>
             <ul>
-              {this.props.showhc ? (
-                <li>
-                  <strong>health card</strong>
-                </li>
-              ) : (
-                ""
-              )}
-              {this.props.showopc ? (
-                <li>
-                  <strong>photo card</strong>
-                </li>
-              ) : (
-                ""
-              )}
-              {this.props.showdl ? (
-                <li>
-                  <strong>driver's licence</strong>
-                </li>
-              ) : (
-                ""
-              )}
+              <li>
+                <strong>driver's licence</strong>
+              </li>
             </ul>
           </Row>
           <Button
