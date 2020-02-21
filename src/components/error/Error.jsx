@@ -17,7 +17,9 @@ export default class Error extends Component {
         </Row>
         <Row>
           <Col>
-            <p>Please check your entries in these fields:</p>
+            <p className="check-entries">
+              Please check your entries in these fields:
+            </p>
           </Col>
         </Row>
         <Row>

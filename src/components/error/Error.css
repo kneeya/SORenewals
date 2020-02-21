@@ -49,9 +49,20 @@
   margin-bottom: 3rem;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1000px) {
   .error-msg {
     margin-top: 0;
     margin-left: 0;
+  }
+
+  .check-entries {
+    margin-left: 0.5rem;
+  }
+
+  .error-msg-black {
+    margin-top: 0;
+
+    margin-left: 0;
+    margin-bottom: 0;
   }
 }
