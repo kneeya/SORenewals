@@ -319,10 +319,7 @@ export default class App extends Component {
             </Switch>
           </BrowserRouter>
         </div>
-        <div class="clearfooter"></div>
-        <div class="footer">
-          <Footer />
-        </div>
+        <Footer />
         {/* <div className="App">
           <PDFViewer />
         </div> */}
