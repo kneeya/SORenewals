@@ -1,14 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Header from "./components/Header.jsx";
 import Home from "./components/Home.jsx";
 import Step1 from "./components/Step1.jsx";
 import ReactBootstrap from "react-bootstrap";
 import { Container, Row } from "react-bootstrap";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Redirect,
+  Switch,
+  useLocation
+} from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer.jsx";
 import Eligibility from "./components/Eligibility.jsx";
 import Landing from "./components/Landing.jsx";
+import Landing2 from "./components/Landing2.jsx";
 import Step2 from "./components/Step2.jsx";
 import Healthcard from "./components/Healthcard.jsx";
 import Postal from "./components/Postal.jsx";
@@ -24,6 +31,7 @@ import Notify from "./components/Notify.jsx";
 import Ineligible from "./components/Ineligible.jsx";
 import IneligibleFiveMos from "./components/XFiveMos.jsx";
 import Ineligible3 from "./components/XMedCon.jsx";
+import Expired from "./components/Expired.jsx";
 import OPCinput from "./components/OPCinput.jsx";
 import PDFViewer from "./components/PDFViewer/PDFViewer";
 import Review from "./components/Review.jsx";
@@ -32,7 +40,7 @@ import NextSteps from "./components/NextSteps.jsx";
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { dl: "" };
   }
 
   //call back fct to get info from Home.jsx that will be sent to Step1.jsx to determine which prods to show
@@ -51,29 +59,23 @@ export default class App extends Component {
     let reminder = this.state;
     reminder = { remail: remail, rphone: rphone, rvoice: rvoice };
     this.setState(reminder);
-    console.log(
-      "rphone: " + this.state.rphone + "rvoice: " + this.state.rvoice
-    );
   };
-  getDL = udl => {
+  getDL = (udl, utrill) => {
     let dlNum = this.state;
-    dlNum = { dl: udl };
+    dlNum = { dl: udl, trill: utrill };
     this.setState(dlNum);
-    console.log(this.state.dl);
   };
 
-  getHC = uhc => {
+  getHC = (uhc, unchar) => {
     let hcNum = this.state;
-    hcNum = { hc: uhc };
+    hcNum = { hc: uhc, hnchar: unchar };
     this.setState(hcNum);
-    console.log(this.state.hc);
   };
 
-  getOPC = uopc => {
+  getOPC = (uopc, unchar) => {
     let opcNum = this.state;
-    opcNum = { opc: uopc };
+    opcNum = { opc: uopc, nchar: unchar };
     this.setState(opcNum);
-    console.log(this.state.opc);
   };
 
   render() {
@@ -93,6 +95,7 @@ export default class App extends Component {
           >
             <Switch>
               <Route exact path="/" component={Landing} />
+              <Route exact path="/byb" component={Landing2} />
               <Route exact path="/terms-and-conditions" component={TnC} />
               <Route /*using render=() to send props while using react router*/
                 exact
@@ -129,6 +132,8 @@ export default class App extends Component {
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
                     sendDL={this.getDL.bind(this)}
+                    dl={this.state.dl}
+                    trill={this.state.trill}
                   />
                 )}
               />
@@ -136,17 +141,25 @@ export default class App extends Component {
                 exact
                 path="/step2"
                 render={() => (
-                  <Step2 /* sending the state of app.js to step.jsx as properties*/
+                  <Step2 /* sending the state of app.js to step2.jsx as properties*/
                     showhc={this.state.showhc}
                     showdl={this.state.showdl}
                     showopc={this.state.showopc}
                     sendHC={this.getHC.bind(this)}
+                    hc={this.state.hc}
+                    hnchar={this.state.hnchar}
                   />
                 )}
               />
               <Route
                 path="/pc-input"
-                render={() => <OPCinput sendOPC={this.getOPC.bind(this)} />}
+                render={() => (
+                  <OPCinput
+                    sendOPC={this.getOPC.bind(this)}
+                    opc={this.state.opc}
+                    nchar={this.state.nchar}
+                  />
+                )}
               />
               <Route exact path="/postal" component={Postal} />
               <Route
@@ -248,6 +261,16 @@ export default class App extends Component {
                 )}
               />
               <Route
+                path="/ineligible4"
+                render={() => (
+                  <Expired
+                    showdl={this.state.showdl}
+                    showhc={this.state.showhc}
+                    showopc={this.state.showopc}
+                  />
+                )}
+              />
+              <Route
                 path="/contact"
                 render={() => (
                   <Contact
@@ -278,6 +301,8 @@ export default class App extends Component {
                     remail={this.state.remail}
                     rphone={this.state.rphone}
                     rvoice={this.state.rvoice}
+                    sendContact={this.getContact.bind(this)}
+                    sendRContact={this.getRContact.bind(this)}
                   />
                 )}
               />

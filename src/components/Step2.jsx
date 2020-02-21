@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactBootstrap from "react-bootstrap";
+import ReactBootstrap, { FormGroup } from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
@@ -14,8 +14,10 @@ class Step2 extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   state = {
-    hc: "",
-    nchar: ""
+    hc: this.props.hc,
+    nchar: this.props.hnchar,
+    healthdisabled: true,
+    chardisabled: true
   };
   goBack() {
     this.props.history.goBack();
@@ -26,7 +28,7 @@ class Step2 extends Component {
     if (match) {
       this.setState({ healthdisabled: false, hcfail: false });
     } else {
-      this.setState({ healthdisabled: true });
+      this.setState({ healthdisabled: true, hcfail: true });
     }
   }
 
@@ -36,33 +38,49 @@ class Step2 extends Component {
     if (match) {
       this.setState({ chardisabled: false, charfail: false });
     } else {
-      this.setState({ chardisabled: true });
+      this.setState({ chardisabled: true, charfail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.onClick();
+    }, 0.001);
   }
   componentDidMount() {
-    this.checkhealth();
-    this.checkninechar();
+    //this.checkhealth();
+    //this.checkninechar();
     window.scrollTo(0, 0);
   }
+  handleHChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ hc: value });
+  };
+  handleNChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ nchar: value });
+  };
   onSubmit() {
-    if (this.state.healthdisabled) {
-      this.setState({ hcfail: true });
-    } else {
-      this.setState({ hcfail: false });
-    }
-    if (this.state.chardisabled) {
-      this.setState({ charfail: true });
-    } else {
-      this.setState({ charfail: false });
-    }
+    this.checkninechar();
+    this.checkhealth();
   }
   onClick = () => {
-    this.sendHC();
+    if (!this.state.chardisabled && !this.state.chardisabled) {
+      if (this.props.showdl) {
+        this.props.history.push("/step1");
+      } else if (this.props.showopc) {
+        this.props.history.push("/pc-input");
+      } else this.props.history.push("/healthcard");
+      this.sendHC();
+    }
   };
 
   sendHC = () => {
-    this.props.sendHC(this.state.hc);
+    this.props.sendHC(this.state.hc, this.state.nchar);
   };
+
   render() {
     return (
       <div class="landing-body">
@@ -70,6 +88,8 @@ class Step2 extends Component {
           <Back onClick={this.goBack} />
           {this.state.hcfail && this.state.charfail ? (
             <Error
+              id1="#hcnumber"
+              id2="#hcsequence"
               bul1="Health card number and version code"
               bul2="9 number sequence on card"
             />
@@ -77,9 +97,9 @@ class Step2 extends Component {
             ""
           )}
           {this.state.hcfail && !this.state.charfail ? (
-            <Error bul1="Health card number and version code" />
+            <Error id1="#hcnumber" bul1="Health card number and version code" />
           ) : this.state.charfail && !this.state.hcfail ? (
-            <Error bul1="9 number sequence on card" />
+            <Error id1="#hcsequence" bul1="9 number sequence on card" />
           ) : (
             ""
           )}
@@ -87,7 +107,7 @@ class Step2 extends Component {
           <p>Enter your card information</p>
           <div class="section">
             <div className={this.state.hcfail ? "error-content" : ""}>
-              <p>
+              <p id="hcnumber">
                 <strong>Health Card number and version code</strong>
               </p>
               {this.state.hcfail ? (
@@ -96,24 +116,20 @@ class Step2 extends Component {
                 ""
               )}
               <p>For example 1234 123 421 AA</p>
-              <input
-                id="healthy"
-                ref={input => (this.healthy = input)}
-                onChange={() => {
-                  let temp = this.healthy;
-                  temp = this.healthy.value;
-
-                  this.setState({ hc: temp });
-                }}
-                onBlur={() => this.checkhealth()}
-              />
+              <FormGroup initialstate={this.state.hc}>
+                <input
+                  value={this.state.hc}
+                  onChange={this.handleHChange}
+                  //onBlur={() => this.checkhealth()}
+                />
+              </FormGroup>
               <p>You can find your health card number and version code here:</p>
               <img class="card-photo" src="/HCFront.png"></img>
             </div>
           </div>
           <div class="section">
             <div className={this.state.charfail ? "error-content" : ""}>
-              <p>
+              <p id="hcsequence">
                 {" "}
                 <strong>9 character sequence on card</strong>
               </p>
@@ -127,22 +143,18 @@ class Step2 extends Component {
                 ""
               )}
               <p>For example AA1234567</p>
-              <input
-                id="nchar"
-                ref={input => (this.nchar = input)}
-                onChange={() => {
-                  let temp = this.nchar;
-                  temp = this.nchar.value;
-
-                  this.setState({ nchar: temp });
-                }}
-                onBlur={() => this.checkninechar()}
-              />
+              <FormGroup initialstate={this.state.nchar}>
+                <input
+                  value={this.state.nchar}
+                  onChange={this.handleNChange}
+                  //onBlur={() => this.checkninechar()}
+                />
+              </FormGroup>
               <p>You can find your 9 character sequence here:</p>
               <img class="card-photo" src="/HCBack.png"></img>
             </div>
           </div>
-          {this.state.chardisabled || this.state.healthdisabled ? (
+          {/* {this.state.chardisabled || this.state.healthdisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
           ) : this.props.showdl ? (
             <Link to="/step1">
@@ -156,7 +168,8 @@ class Step2 extends Component {
             <Link to="/healthcard">
               <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
-          )}
+          )} */}
+          <Button onClick={() => this.onSubmit()}>Next</Button>
         </React.Fragment>
       </div>
     );

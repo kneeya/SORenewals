@@ -149,7 +149,7 @@ class Notify extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                  <p class="checkbox-text">
                     {" "}
                     <strong>Email</strong>
                   </p>
@@ -180,7 +180,7 @@ class Notify extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                  <p class="checkbox-text">
                     <strong>Text message</strong>
                   </p>
                 </Col>
@@ -188,7 +188,7 @@ class Notify extends Component {
               {this.state.smscheck ? (
                 <React.Fragment>
                   <div class="reminder-indent">
-                    <p> For example odslab@ontario.ca</p>{" "}
+                    <p> For example 5193446757</p>{" "}
                     <FormGroup initialstate={this.state.phone}>
                       <input
                         type="email"
@@ -210,7 +210,7 @@ class Notify extends Component {
                   ></Checkbox>
                 </Col>
                 <Col>
-                  <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                  <p class="checkbox-text">
                     <strong>Automated phone call</strong>
                   </p>
                 </Col>
@@ -218,7 +218,7 @@ class Notify extends Component {
               {this.state.voicecheck ? (
                 <React.Fragment>
                   <div class="reminder-indent">
-                    <p> For example odslab@ontario.ca</p>
+                    <p> For example 5194333484</p>
                     <FormGroup initialstate={this.state.voice}>
                       <input
                         type="email"

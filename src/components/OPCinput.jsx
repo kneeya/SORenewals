@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import ReactBootstrap from "react-bootstrap";
+import ReactBootstrap, { FormGroup } from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Breadcrumb, BreadcrumbItem, Input } from "reactstrap";
-import { Link, withRouter } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import Back from "./Back";
 import Error from "./error/Error";
 import ErrorMsg from "./error/ErrorMsg";
@@ -14,24 +14,25 @@ class OPCinput extends Component {
     this.goBack = this.goBack.bind(this);
   }
   state = {
-    opc: "",
-    nchar: ""
+    opc: this.props.opc,
+    nchar: this.props.nchar,
+    photodisabled: true,
+    chardisabled: true
   };
   goBack() {
     this.props.history.goBack();
   }
   componentDidMount() {
-    this.checkphoto();
-    this.checkninechar();
     window.scrollTo(0, 0);
   }
+
   checkphoto() {
     var regex = /^\d{3}[ -]?[A-Za-z][A-Za-z]\d{2}[ -]?\d{5}$/;
     var match = regex.exec(this.state.opc);
     if (match) {
       this.setState({ photodisabled: false, opcfail: false });
     } else {
-      this.setState({ photodisabled: true });
+      this.setState({ photodisabled: true, opcfail: true });
     }
   }
   checkninechar() {
@@ -40,26 +41,37 @@ class OPCinput extends Component {
     if (match) {
       this.setState({ chardisabled: false, charfail: false });
     } else {
-      this.setState({ chardisabled: true });
+      this.setState({ chardisabled: true, charfail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.onClick();
+    }, 0.001);
   }
   onSubmit() {
-    if (this.state.photodisabled) {
-      this.setState({ opcfail: true });
-    } else {
-      this.setState({ opcfail: false });
-    }
-    if (this.state.chardisabled) {
-      this.setState({ charfail: true });
-    } else {
-      this.setState({ charfail: false });
-    }
+    this.checkninechar();
+    this.checkphoto();
   }
   onClick = () => {
-    this.sendOPC();
+    if (!this.state.chardisabled && !this.state.photodisabled) {
+      this.sendOPC();
+      this.props.history.push("/postal");
+    }
+  };
+  handleOPChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ opc: value });
+  };
+  handleNChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ nchar: value });
   };
   sendOPC = () => {
-    this.props.sendOPC(this.state.opc);
+    this.props.sendOPC(this.state.opc, this.state.nchar);
   };
   render() {
     return (
@@ -68,16 +80,18 @@ class OPCinput extends Component {
           <Back onClick={this.goBack} />
           {this.state.opcfail && this.state.charfail ? (
             <Error
-              bul1="Health card number and version code"
+              id1="#opcnumber"
+              id2="#opcsequence"
+              bul1="Photo card number and version code"
               bul2="9 character sequence on card"
             />
           ) : (
             ""
           )}
           {this.state.opcfail && !this.state.charfail ? (
-            <Error bul1="Ontario photo card" />
+            <Error id1="#opcnumber" bul1="Ontario photo card" />
           ) : this.state.charfail && !this.state.opcfail ? (
-            <Error bul1="9 character sequence on card" />
+            <Error id1="#opcsequence" bul1="9 character sequence on card" />
           ) : (
             ""
           )}
@@ -87,7 +101,7 @@ class OPCinput extends Component {
             <div className={this.state.opcfail ? "error-content" : ""}>
               <p>
                 {" "}
-                <strong>Ontario Photo Card number</strong>
+                <strong id="opcnumber">Ontario Photo Card number</strong>
               </p>
               {this.state.opcfail ? (
                 <ErrorMsg msg="Enter your Ontario photo card number." />
@@ -95,29 +109,25 @@ class OPCinput extends Component {
                 ""
               )}
               <p>For example 123 PD34 12345</p>
-              <input
-                id="pics"
-                ref={input => (this.pics = input)}
-                onChange={() => {
-                  let temp = this.pics;
-                  temp = this.pics.value;
-
-                  this.setState({ opc: temp });
-                }}
-                onBlur={() => this.checkphoto()}
-              />
+              <FormGroup initialstate={this.state.opc}>
+                <input
+                  value={this.state.opc}
+                  onChange={this.handleOPChange}
+                  //onBlur={() => this.checkphoto()}
+                />
+              </FormGroup>
               <p>You can find your Ontario photo card number here:</p>
               <img class="card-photo" src="/OPCNum.png"></img>
             </div>
           </div>
           <div class="section">
             <div className={this.state.charfail ? "error-content" : ""}>
-              <p>
+              <p id="opcsequence">
                 <strong>9 character sequence on card</strong>
               </p>
               <p>
-                Your 9 character sequence is found in the box on the back of
-                your card.
+                Your 9 character sequence is found in the fifth field on the
+                front of your card.
               </p>
               {this.state.charfail ? (
                 <ErrorMsg msg="Enter your Ontario photo card 9 character sequence" />
@@ -125,27 +135,19 @@ class OPCinput extends Component {
                 ""
               )}
               <p>For example MD0237452</p>
-              <input
-                id="nchar"
-                ref={input => (this.nchar = input)}
-                onChange={() => {
-                  let temp = this.nchar;
-                  temp = this.nchar.value;
-                  this.setState({ nchar: temp });
-                }}
-                onBlur={() => this.checkninechar()}
-              />
+              <FormGroup initialstate={this.state.nchar}>
+                <input
+                  value={this.state.nchar}
+                  onChange={this.handleNChange}
+                  //onBlur={() => this.checkninechar()}
+                />
+              </FormGroup>
               <p>You can find your 9 character sequence here:</p>
               <img class="card-photo" src="/OPCSeq.png"></img>
             </div>
           </div>
-          {this.state.chardisabled || this.state.photodisabled ? (
-            <Button onClick={() => this.onSubmit()}>Next</Button>
-          ) : (
-            <Link to="/postal">
-              <Button onClick={() => this.onClick()}>Next</Button>
-            </Link>
-          )}
+
+          <Button onClick={() => this.onSubmit()}>Next</Button>
         </React.Fragment>
       </div>
     );

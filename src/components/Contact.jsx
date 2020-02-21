@@ -13,7 +13,8 @@ class Contact extends Component {
   state = {
     email: "",
     voice: "",
-    voicedisabled: false
+    voicedisabled: true,
+    emaildisabled: true
   };
   constructor(props) {
     super(props);
@@ -28,10 +29,26 @@ class Contact extends Component {
   }
 
   handleSubmit = e => {
-    if (!this.state.emaildisabled) {
-      //sending email and phone number to app.js to use in notify and review details page
+    if (this.props.hc) {
+      if (!this.state.emaildisabled && !this.state.voicedisabled) {
+        //sending email and phone number to app.js to use in notify and review details page
+        this.props.sendContact(this.state.email, this.state.voice);
+        this.props.history.push("/notify-so");
+        //const { email } = this.state;
+        // let templateParams = {
+        //   to_name: email
+        // };
+        // emailjs.send(
+        //   "gmail",
+        //   "template_RLG3E76r",
+        //   templateParams,
+        //   "user_u3p3HFlbdGyXe6PNlzFis"
+        // );
+        console.log("sent");
+      }
+    } else if (!this.state.emaildisabled) {
       this.props.sendContact(this.state.email, this.state.voice);
-
+      this.props.history.push("/notify-so");
       //const { email } = this.state;
       // let templateParams = {
       //   to_name: email
@@ -44,36 +61,47 @@ class Contact extends Component {
       // );
       console.log("sent");
     }
+    // if (
+    //   !this.state.emaildisabled(this.props.showhc && !this.state.voicedisabled)
+    // ) {
+    //   //sending email and phone number to app.js to use in notify and review details page
+    //   this.props.sendContact(this.state.email, this.state.voice);
+    //   this.props.history.push("/notify-so");
+    //   //const { email } = this.state;
+    //   // let templateParams = {
+    //   //   to_name: email
+    //   // };
+    //   // emailjs.send(
+    //   //   "gmail",
+    //   //   "template_RLG3E76r",
+    //   //   templateParams,
+    //   //   "user_u3p3HFlbdGyXe6PNlzFis"
+    //   // );
+    //   console.log("sent");
+    // }
   };
 
   componentDidMount() {
-    this.checkvoice();
-    this.checkemail();
+    // this.checkvoice();
+    // this.checkemail();
     window.scrollTo(0, 0);
   }
 
   onSubmit() {
-    if (this.state.voicedisabled && this.props.hc) {
-      this.setState({ voicefail: true });
-    } else {
-      this.setState({ voicefail: false });
-    }
-
-    if (this.state.emaildisabled) {
-      this.setState({ emailfail: true });
-    } else {
-      this.setState({ emailfail: false });
-    }
+    this.checkemail();
+    this.checkvoice();
   }
   checkvoice() {
-    var regex = /^[(]?\d{3}[)]?[ -]?\d{3}[ -]?\d{4}$/;
+    var regex = /^[(]?\d{3}[)]?[ -.]?\d{3}[ -.]?\d{4}$/;
     var match = regex.exec(this.state.voice);
     if (this.props.hc) {
       if (match) {
         this.setState({ voicedisabled: false, voicefail: false });
       } else {
-        this.setState({ voicedisabled: true });
+        this.setState({ voicedisabled: true, voicefail: true });
       }
+    } else {
+      this.setState({ voicedisabled: false, voicefail: false });
     }
   }
 
@@ -83,8 +111,12 @@ class Contact extends Component {
     if (match) {
       this.setState({ emaildisabled: false, emailfail: false });
     } else {
-      this.setState({ emaildisabled: true });
+      this.setState({ emaildisabled: true, emailfail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.handleSubmit();
+    }, 0.001);
   }
   render() {
     return (
@@ -92,11 +124,16 @@ class Contact extends Component {
         <div class="landing-body">
           <Back onClick={this.goBack} />
           {this.state.voicefail && this.state.emailfail ? (
-            <Error bul1="Email" bul2="Phone number" />
+            <Error
+              id1="#email"
+              id2="#phonenumber"
+              bul1="Email"
+              bul2="Phone number"
+            />
           ) : this.state.emailfail && !this.state.voicefail ? (
-            <Error bul1="Email" />
+            <Error id1="#email" bul1="Email" />
           ) : this.state.voicefail && !this.state.emailfail ? (
-            <Error bul1="Phone number" />
+            <Error id1="#phonenumber" bul1="Phone number" />
           ) : (
             ""
           )}
@@ -105,7 +142,7 @@ class Contact extends Component {
             <p>Enter your contact information below</p>
 
             <div class="section">
-              <div style={{ marginBottom: "1rem" }}>
+              <div id="email" style={{ marginBottom: "1rem" }}>
                 <strong style={{ paddingRight: 50 + "rem" }}>Email</strong>
               </div>
 
@@ -121,13 +158,14 @@ class Contact extends Component {
               {/* <Form onSubmit={this.handleSubmit.bind(this)}>
             <FormGroup controlId="formBasicEmail"> */}
               <input
+                class="form-group"
                 ref={input => (this.email = input)}
                 onChange={() => {
                   let temp = this.email;
                   temp = this.email.value;
                   this.setState({ email: temp });
                 }}
-                onBlur={() => this.checkemail()}
+                //onBlur={() => this.checkemail()}
               />
               {/* </FormGroup> */}
               <p style={{ marginBottom: "-1rem" }}>
@@ -139,7 +177,7 @@ class Contact extends Component {
           </div>
           <div className={this.state.voicefail ? "error-content" : ""}>
             <div class="section">
-              <div style={{ marginBottom: "1rem" }}>
+              <div id="phonenumber" style={{ marginBottom: "1rem" }}>
                 <strong>
                   Phone number {!this.props.hc ? "(optional)" : ""}
                 </strong>
@@ -152,6 +190,7 @@ class Contact extends Component {
               <p>For example 226 808 3813</p>
 
               <input
+                class="form-group"
                 id="voicey"
                 ref={input => (this.voicey = input)}
                 onChange={() => {
@@ -159,7 +198,7 @@ class Contact extends Component {
                   temp = this.voicey.value;
                   this.setState({ voice: temp });
                 }}
-                onBlur={() => this.checkvoice()}
+                //onBlur={() => this.checkvoice()}
               />
               <p>
                 We may call you to confirm that you live in Ontario, or to

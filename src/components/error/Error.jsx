@@ -23,13 +23,17 @@ export default class Error extends Component {
         <Row>
           <ul>
             {this.props.bul1 ? (
-              <li className="error-list">{this.props.bul1}</li>
+              <a href={this.props.id1}>
+                <li className="error-list">{this.props.bul1}</li>
+              </a>
             ) : (
               ""
             )}
 
             {this.props.bul2 ? (
-              <li className="error-list">{this.props.bul2}</li>
+              <a href={this.props.id2}>
+                <li className="error-list">{this.props.bul2}</li>
+              </a>
             ) : (
               ""
             )}

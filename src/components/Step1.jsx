@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactBootstrap from "react-bootstrap";
+import ReactBootstrap, { FormGroup } from "react-bootstrap";
 import { Container, Row, Form, Button, Col } from "react-bootstrap";
 import { Input } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
@@ -17,25 +17,28 @@ class Step1 extends Component {
     this.checktrill = this.checktrill.bind(this);
   }
   state = {
-    driverdisabled: false,
-    dl: "",
-    trill: ""
+    driverdisabled: true,
+    trilldisabled: true,
+    dl: this.props.dl,
+    trill: this.props.trill
   };
   goBack() {
     this.props.history.goBack();
   }
   onSubmit() {
-    if (this.state.driverdisabled) {
-      this.setState({ dlfail: true });
-    } else {
-      this.setState({ dlfail: false });
-    }
+    this.checktrill();
+    this.checkdriver();
+    // if (this.state.driverdisabled) {
+    //   this.setState({ dlfail: true });
+    // } else {
+    //   this.setState({ dlfail: false });
+    // }
 
-    if (this.state.trilldisabled) {
-      this.setState({ trillfail: true });
-    } else {
-      this.setState({ trillfail: false });
-    }
+    // if (this.state.trilldisabled) {
+    //   this.setState({ trillfail: true });
+    // } else {
+    //   this.setState({ trillfail: false });
+    // }
   }
 
   checktrill() {
@@ -44,40 +47,83 @@ class Step1 extends Component {
     if (match) {
       this.setState({ trilldisabled: false, trillfail: false });
     } else {
-      this.setState({ trilldisabled: true });
+      this.setState({ trilldisabled: true, trillfail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.onClick();
+    }, 0.001);
   }
   checkdriver() {
+    var regex = /^[A-Za-z][ -]?(\d{4})[ -]?(\d{5})[ -]?(\d{5})$/;
+    var match = regex.exec(this.state.dl);
     var check1 = parseInt(this.state.dl.substring(13, 15));
     var check2 = parseInt(this.state.dl.substring(15, 17));
 
-    if (this.state.dl === "") {
-      this.setState({ driverdisabled: true });
-    } else if (
-      ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
-      check2 < 1 ||
-      check2 > 31
-    ) {
-      this.setState({ driverdisabled: true });
+    if (match) {
+      if (this.state.dl === "D6101 50707 51111") {
+        this.setState({ ineligible: true });
+        this.setState({ driverdisabled: false, dlfail: false });
+      } else if (
+        ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
+        check2 < 1 ||
+        check2 > 31
+      ) {
+        this.setState({ driverdisabled: true, dlfail: true });
+      } else {
+        this.setState({ driverdisabled: false, dlfail: false });
+      }
     } else {
-      this.setState({ driverdisabled: false, dlfail: false });
+      this.setState({ driverdisabled: true, dlfail: true });
     }
+    // if (this.state.dl === null) {
+    //   this.setState({ driverdisabled: true, dlfail: true });
+    // }
+    // if (this.state.dl === "D6101 50707 51111") {
+    //   this.setState({ ineligible: true });
+    // } else if (
+    //   ((check1 < 1 || check1 > 12) && (check1 < 51 || check1 > 62)) ||
+    //   check2 < 1 ||
+    //   check2 > 31
+    // ) {
+    //   this.setState({ driverdisabled: true, dlfail: true });
+    // } else {
+    //   this.setState({ driverdisabled: false, dlfail: false });
+    // }
   }
 
   onClick = () => {
-    this.sendDL();
+    if (!this.state.driverdisabled && !this.state.trilldisabled) {
+      this.sendDL();
+      if (this.state.ineligible) {
+        this.props.history.push("/ineligible4");
+      } else {
+        this.props.history.push("/postal");
+      }
+    }
   };
+
   sendDL = () => {
-    this.props.sendDL(this.state.dl);
-    console.log("swag");
+    this.props.sendDL(this.state.dl, this.state.trill);
   };
 
   componentDidMount() {
-    this.checkdriver();
-    this.checktrill();
+    // this.checkdriver();
+    // this.checktrill();
     window.scrollTo(0, 0);
   }
-
+  handleTChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ trill: value });
+  };
+  handleDLChange = e => {
+    const {
+      target: { value }
+    } = e;
+    this.setState({ dl: value });
+  };
   render() {
     return (
       <div class="landing-body">
@@ -85,6 +131,8 @@ class Step1 extends Component {
           <Back onClick={this.goBack} />
           {this.state.dlfail && this.state.trillfail ? (
             <Error
+              id1="#dlnumber"
+              id2="#dlsequence"
               bul1="Driver's licence number"
               bul2="7 number sequence on card"
             />
@@ -92,9 +140,9 @@ class Step1 extends Component {
             ""
           )}
           {this.state.dlfail && !this.state.trillfail ? (
-            <Error bul1="Driver's licence number" />
+            <Error id1="#dlnumber" bul1="Driver's licence number" />
           ) : this.state.trillfail && !this.state.dlfail ? (
-            <Error bul1="7 number sequence on card" />
+            <Error id1="#dlsequence" bul1="7 number sequence on card" />
           ) : (
             ""
           )}
@@ -102,7 +150,7 @@ class Step1 extends Component {
           <p>Enter your licence information</p>
           <div class="section">
             <div className={this.state.dlfail ? "error-content" : ""}>
-              <p>
+              <p id="dlnumber">
                 <strong>Driver's licence number</strong>{" "}
               </p>
               {this.state.dlfail ? (
@@ -111,43 +159,22 @@ class Step1 extends Component {
                 ""
               )}
               <p>For example D6101 50707 51120</p>
-              <MaskedInput
-                ref={input => (this.driver = input)}
-                onChange={() => {
-                  let temp = this.driver.textMaskInputElement.state
-                    .previousConformedValue;
-
-                  this.setState({ dl: temp });
-                }}
-                onBlur={() => this.checkdriver()}
-                mask={[
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  " ",
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  " ",
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-                  /[A-Za-z0-9]/,
-
-                  /[A-Za-z0-9]/
-                ]}
-              />
+              <Form>
+                <FormGroup initialstate={this.state.dl}>
+                  <input
+                    value={this.state.dl}
+                    onChange={this.handleDLChange}
+                    //onBlur={() => this.checkdriver()}
+                  />
+                </FormGroup>
+              </Form>
               <p>You can find your driver's licence number here:</p>
               <img class="card-photo" src="/DLFront.png"></img>
             </div>
           </div>
           <div class="section">
             <div className={this.state.trillfail ? "error-content" : ""}>
-              <p>
+              <p id="dlsequence">
                 <strong>7-digit on card</strong>
               </p>
               <p>
@@ -160,26 +187,29 @@ class Step1 extends Component {
                 ""
               )}
               <p>For example 0237452</p>
-              <input
-                id="trill"
-                ref={input => (this.trill = input)}
-                onChange={() => {
-                  let temp = this.trill.value;
-                  this.setState({ trill: temp });
-                }}
-                onBlur={() => this.checktrill()}
-              />
+              <FormGroup initialstate={this.state.trill}>
+                <input
+                  value={this.state.trill}
+                  onChange={this.handleTChange}
+                  //onBlur={() => this.checktrill()}
+                />
+              </FormGroup>
               <p>You can find your 7-digit number here:</p>
               <img class="card-photo" src="/DLBack.png"></img>
             </div>
           </div>
-          {this.state.driverdisabled || this.state.trilldisabled ? (
+          {/* {this.state.driverdisabled || this.state.trilldisabled ? (
             <Button onClick={() => this.onSubmit()}>Next</Button>
+          ) : this.state.ineligible ? (
+            <Link to="/ineligible4">
+              <Button onClick={() => this.onSubmit()}>Next</Button>
+            </Link>
           ) : (
             <Link to="/postal">
               <Button onClick={() => this.onClick()}>Next</Button>
             </Link>
-          )}
+          )} */}
+          <Button onClick={() => this.onSubmit()}>Next</Button>
         </React.Fragment>
       </div>
     );

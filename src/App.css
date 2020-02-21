@@ -274,6 +274,33 @@ h3 {
   margin: 2rem 0 2rem 0;
 }
 
+.info-sect {
+  display: flex;
+}
+
+.info-edit {
+  position: absolute;
+  right: 2rem;
+  text-decoration: underline;
+  color: #0066cc;
+  cursor: pointer;
+}
+
+.edit-buttons {
+  display: flex;
+  text-align: center;
+  width: 100%;
+}
+
+.cancel-button {
+  text-decoration: underline;
+  color: #0066cc;
+  cursor: pointer;
+  text-align: center;
+  margin-left: 1rem;
+  margin-top: 1.45rem;
+}
+
 a {
   font-family: "Open Sans", "Helvetica Neue", sans-serif;
   color: #0066cc;
@@ -359,4 +386,107 @@ input:focus {
   font-weight: 700;
   margin-top: -2.2rem;
   margin-left: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.ineligible-text {
+  margin-bottom: 2rem;
+}
+
+.cards {
+  display: block;
+  width: 100%;
+}
+
+.weird-error {
+  color: #cd0000;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  margin-left: 1.6rem;
+}
+
+.checkbox-text {
+  margin-top: 0.2rem;
+  margin-left: 1rem;
+}
+
+.bypbullet {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.learn-more {
+  margin: 0.8rem 0 0.1rem 0;
+}
+
+@media screen and (min-width: 1000px) {
+  .landing-body {
+    margin: 5% 15%;
+  }
+
+  .btn-primary {
+    width: 30%;
+  }
+
+  .so-logo img {
+    margin-left: 13.5rem;
+  }
+
+  .ontario {
+    margin-left: 3.1rem;
+  }
+
+  .error-msg {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .checkbox-text {
+    margin: 0;
+  }
+
+  .card-photo {
+    margin-top: 2rem;
+    width: 500px;
+    height: 400px;
+  }
+
+  .info-sect-wrapper {
+    width: 100%;
+  }
+
+  .reminder-indent {
+    margin-left: 4.25rem;
+  }
+
+  .review-input {
+    margin: 0;
+  }
+
+  .col {
+    padding: 0;
+    padding-top: 0.4rem;
+  }
+
+  .col-1 {
+    padding: 0.2rem 0 0.2rem 2rem;
+  }
+
+  .ontario-fieldset {
+    padding-left: 1rem;
+  }
+
+  .form-group {
+    width: 50%;
+    margin-bottom: 0.5rem;
+  }
+
+  .m1 {
+    padding-left: 1rem;
+  }
+
+  .cards {
+    height: 80%;
+    width: 40%;
+  }
 }

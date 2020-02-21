@@ -42,9 +42,13 @@ class ByP extends Component {
       <React.Fragment>
         <div class="landing-body">
           <Back onClick={this.goBack} />
-          {this.state.fail ? <Error bul1="Before you proceed" /> : ""}
+          {this.state.fail ? (
+            <Error id1="#byp" bul1="Before you proceed" />
+          ) : (
+            ""
+          )}
           <div className={this.state.fail ? "error-content" : ""}>
-            <h3>Before you proceed</h3>
+            <h3 id="byp">Before you proceed</h3>
             {this.state.fail ? (
               <ErrorMsg msg="Please confirm your understanding before proceeding" />
             ) : (
@@ -80,17 +84,15 @@ class ByP extends Component {
                   <p style={{ marginLeft: 1 + "rem" }}>
                     If you have a combination licence, the renewal will only
                     apply to:
-                  </p>
-                  <ul>
-                    <li>the G in a GM1 or GM2</li>
-                    <li>the M in a G1M or G2M</li>
-                  </ul>
-                  <p
-                    style={{ marginLeft: 1 + "rem", paddingBottom: 1 + "rem" }}
-                  >
-                    <a href="https://ontario.ca" target="_blank">
-                      Learn more about licence classes.
-                    </a>
+                    <ul class="bypbullet">
+                      <li>the G in a GM1 or GM2</li>
+                      <li>the M in a G1M or G2M</li>
+                    </ul>
+                    <p class="learn-more">
+                      <a href="https://ontario.ca" target="_blank">
+                        Learn more about licence classes.
+                      </a>
+                    </p>
                   </p>
                 </Row>
                 <Row>
@@ -101,7 +103,7 @@ class ByP extends Component {
                     ></Checkbox>
                   </Col>
                   <Col>
-                    <p style={{ marginTop: "0.2rem", marginLeft: "1rem" }}>
+                    <p class="checkbox-text">
                       I acknowledge and understand that only the full class
                       portion of my driver's licence can be renewed online.
                     </p>

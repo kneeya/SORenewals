@@ -16,46 +16,40 @@ class Postal extends Component {
     this.checkpostal = this.checkpostal.bind(this);
   }
   state = {
-    postal: ""
+    postal: "",
+    postaldisabled: true
   };
   goBack() {
     this.props.history.goBack();
   }
 
   checkpostal() {
-    var regex = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/;
+    var regex = /^[A-Za-z][ -]?\d[ -]?[A-Za-z][ -]?\d[ -]?[A-Za-z][ -]?\d$/;
 
     var match = regex.exec(this.state.postal);
     if (match) {
-      if (
-        (this.state.postal.indexOf("-") !== -1 ||
-          this.state.postal.indexOf(" ") !== -1) &&
-        this.state.postal.length == 7
-      ) {
-        this.setState({ postaldisabled: false, fail: false });
-      } else if (
-        (this.state.postal.indexOf("-") == -1 ||
-          this.state.postal.indexOf(" ") == -1) &&
-        this.state.postal.length == 6
-      ) {
-        this.setState({ postaldisabled: false, fail: false });
-      }
+      this.setState({ postaldisabled: false, fail: false });
     } else {
-      this.setState({ postaldisabled: true });
+      this.setState({ postaldisabled: true, fail: true });
     }
+    setTimeout(() => {
+      window.scrollTo({ top: 0, left: 0 });
+      this.onClick();
+    }, 0.001);
   }
 
+  onClick = () => {
+    if (!this.state.postaldisabled) {
+      this.props.history.push("/contact");
+    }
+  };
+
   componentDidMount() {
-    this.checkpostal();
     window.scrollTo(0, 0);
   }
 
   onSubmit() {
-    if (this.state.postaldisabled) {
-      this.setState({ fail: true });
-    } else {
-      this.setState({ fail: false });
-    }
+    this.checkpostal();
   }
 
   render() {
@@ -63,16 +57,18 @@ class Postal extends Component {
       <React.Fragment>
         <div class="landing-body">
           <Back onClick={this.goBack} />
-          {this.state.fail ? <Error bul1="Postal code" /> : ""}
+          {this.state.fail ? <Error id1="#postal" bul1="Postal code" /> : ""}
           <div className={this.state.fail ? "error-content" : ""}>
             <Row>
               <Col>
-                <h3>Postal code</h3>
+                <h3 class="m1" id="postal">
+                  Postal code
+                </h3>
               </Col>
             </Row>
             <Row>
               <Col>
-                <p>Enter your postal code</p>
+                <p class="m1">Enter your postal code</p>
               </Col>
             </Row>
             {this.state.fail ? (
@@ -83,20 +79,15 @@ class Postal extends Component {
             <p>For example N3T 2L7</p>
             <input
               id="postal"
+              class="form-group"
               ref={input => (this.postal = input)}
               onChange={() => {
                 let temp = this.postal.value;
                 this.setState({ postal: temp });
               }}
-              onBlur={() => this.checkpostal()}
             />
-            {this.state.postaldisabled ? (
-              <Button onClick={() => this.onSubmit()}>Next</Button>
-            ) : (
-              <Link to="/contact">
-                <Button>Next</Button>
-              </Link>
-            )}
+            <br></br>
+            <Button onClick={() => this.onSubmit()}>Next</Button>
           </div>
         </div>
       </React.Fragment>
