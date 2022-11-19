@@ -18,7 +18,7 @@
     "react-phone-number-input": "^3.0.17",
     "react-router-dom": "^5.1.2",
     "react-router-scroll-top": "^0.2.1",
-    "react-scripts": "3.3.0",
+    "react-scripts": "5.0.1",
     "react-text-mask": "^5.4.3",
     "reactstrap": "^8.4.1",
     "styled-components": "^5.0.1"
